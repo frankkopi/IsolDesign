@@ -1,0 +1,48 @@
+﻿@model IsolDesign.WebUI.Models.ApplicantsIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @foreach (var item in Model.Applicants.ToList())
+            {
+        <div class="row applicantsIndex">
+            <div class="col-md-2">
+                <img src="../../@item.ProfileImagePath" class="thumbnail applicantsImage" />
+                
+                @*<a href="@Url.Action("More", "Applicants", new { applicantId = item.ApplicantId})">
+                    <img src="../../@item.ProfileImagePath" class="thumbnail" />
+                </a>*@
+            </div>
+            <div class="col-md-4">
+                <p>Name: @item.Name</p>
+                <p>Contry: @item.Country</p>
+            </div>
+        </div>
+
+        <!-- ************************ This section is hidden until applicant image is clicked ***************************** -->
+        <div class="row applicantsInfo">
+            @Html.Partial("PartialApplicantsInfo", item)
+        </div>
+    }
+</div>
+
+@section MyScripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".applicantsImage").click(function () {
+                $(".applicantsIndex").css('display', 'inline');
+                $(this).parent().parent().css('display', 'none');
+                $('.applicantsInfo').css('display', 'none');
+                $(this).parent().parent().next().css('display', 'inline');
+            });
+        });
+    </script>    
+}
+
+
+
+

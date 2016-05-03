@@ -1,0 +1,81 @@
+﻿@model IsolDesign.Domain.Models.ApplicantModel
+
+@{
+    ViewBag.Title = "Test";
+}
+<div class="panel">
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt></dt>
+            <dd>
+               
+                <img src="../../@Model.ProfileImagePath" class="thumbnail applicantsImage" />
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SkypeLink)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SkypeLink)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Facebook)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Facebook)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LinkedIn)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LinkedIn)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+        <p>
+            @Html.ActionLink("Portfolio", "", new { id = Model.ApplicantId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ApplicantId })
+        </p>
+    </div>
+
+</div>

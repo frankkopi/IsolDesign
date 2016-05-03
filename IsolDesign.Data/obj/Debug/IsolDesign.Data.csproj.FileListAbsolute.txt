@@ -1,0 +1,16 @@
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Debug\IsolDesign.Data.Migrations.init.resources
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Debug\IsolDesign.Data.csproj.GenerateResource.Cache
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\IsolDesign.Data.dll.config
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\IsolDesign.Data.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\IsolDesign.Data.pdb
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\EntityFramework.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\EntityFramework.xml
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Debug\IsolDesign.Data.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Debug\IsolDesign.Data.pdb
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Debug\IsolDesign.Data.csprojResolveAssemblyReference.cache
