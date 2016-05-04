@@ -6,10 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using IsolDesign.Data.DBContext;
-using IsolDesign.Data.Models;
-using IsolDesign.Data.Interfaces.IUnitOfWork;
-using IsolDesign.Data;
+using IsolDesign.DataAccess.DBContext;
+using IsolDesign.DataAccess.Models;
+using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
+using IsolDesign.DataAccess;
 
 namespace IsolDesign.WebUI.Controllers
 {

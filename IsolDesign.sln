@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsolDesign.Domain", "IsolDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsolDesign.Data", "IsolDesign.Data\IsolDesign.Data.csproj", "{F2B66FC3-3E13-4EDC-A599-B93B8C35051F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data_Access", "Data_Access", "{1BEE67DC-7E4A-4993-A6E3-23CE7410FDE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsolDesign.DataAccess", "IsolDesign.DataAccess\IsolDesign.DataAccess.csproj", "{946F4948-5091-4E51-A610-5E5DA6DB954D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{F2B66FC3-3E13-4EDC-A599-B93B8C35051F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2B66FC3-3E13-4EDC-A599-B93B8C35051F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2B66FC3-3E13-4EDC-A599-B93B8C35051F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946F4948-5091-4E51-A610-5E5DA6DB954D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946F4948-5091-4E51-A610-5E5DA6DB954D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946F4948-5091-4E51-A610-5E5DA6DB954D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946F4948-5091-4E51-A610-5E5DA6DB954D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +46,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7BFE8ACC-B78A-411B-B263-D4027CEB6705} = {0F37FF91-2B0D-47EE-BAF7-229E82525C0C}
 		{F2B66FC3-3E13-4EDC-A599-B93B8C35051F} = {24A106F4-ECEA-49AC-8B72-9975EFEA9431}
+		{946F4948-5091-4E51-A610-5E5DA6DB954D} = {1BEE67DC-7E4A-4993-A6E3-23CE7410FDE6}
 	EndGlobalSection
 EndGlobal

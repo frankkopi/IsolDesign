@@ -78,3 +78,5 @@ C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDes
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.WebUI\obj\Debug\IsolDesign.WebUI.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.WebUI\obj\Debug\IsolDesign.WebUI.dll
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.WebUI\obj\Debug\IsolDesign.WebUI.pdb
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.WebUI\bin\IsolDesign.DataAccess.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.WebUI\bin\IsolDesign.DataAccess.pdb

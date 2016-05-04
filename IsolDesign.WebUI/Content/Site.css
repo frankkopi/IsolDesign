@@ -46,3 +46,7 @@ textarea {
 .applicantsInfo {
     display: none;
 }
+
+.applicantsImage {
+    cursor: pointer;
+}

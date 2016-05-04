@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IsolDesign.WebUI.Models;
-using IsolDesign.Data.DBContext;
+using IsolDesign.DataAccess.DBContext;
 
 namespace IsolDesign.WebUI.Controllers
 {

@@ -280,6 +280,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IsolDesign.DataAccess\IsolDesign.DataAccess.csproj">
+      <Project>{946f4948-5091-4e51-a610-5e5da6db954d}</Project>
+      <Name>IsolDesign.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IsolDesign.Data\IsolDesign.Data.csproj">
       <Project>{f2b66fc3-3e13-4edc-a599-b93b8c35051f}</Project>
       <Name>IsolDesign.Data</Name>

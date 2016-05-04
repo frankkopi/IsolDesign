@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using IsolDesign.WebUI.Models;
-using IsolDesign.Data.DBContext;
+using IsolDesign.DataAccess.DBContext;
 
 namespace IsolDesign.WebUI
 {

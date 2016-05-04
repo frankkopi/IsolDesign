@@ -11,3 +11,5 @@ C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDes
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Domain\obj\Debug\IsolDesign.Domain.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Domain\obj\Debug\IsolDesign.Domain.dll
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Domain\obj\Debug\IsolDesign.Domain.pdb
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Domain\bin\Debug\IsolDesign.DataAccess.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Domain\bin\Debug\IsolDesign.DataAccess.pdb

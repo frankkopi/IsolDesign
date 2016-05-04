@@ -1,14 +1,9 @@
-﻿using IsolDesign.Data.DBContext;
-using IsolDesign.Data.Interfaces;
-using IsolDesign.Data.Models;
-using IsolDesign.Data.Repositories;
+﻿using IsolDesign.DataAccess.DBContext;
+using IsolDesign.DataAccess.Interfaces;
+using IsolDesign.DataAccess.Repositories;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -26,7 +21,8 @@ namespace IsolDesign.Domain.Handlers
         // Get all applicants
         public IEnumerable<ApplicantModel> GetApplicants()
         {
-            var applicantModels = new List<ApplicantModel>();
+            //var applicantModels = new List<ApplicantModel>();
+            var applicantModels = new Stack<ApplicantModel>();
             var applicantsFromDB = _applicantRepository.GetAll();
             foreach(var item in applicantsFromDB)
             {
@@ -46,7 +42,8 @@ namespace IsolDesign.Domain.Handlers
                     LinkedIn = item.LinkedIn,
                     Homepage = item.Homepage
                 };
-                applicantModels.Add(applicantModel);
+                //applicantModels.Add(applicantModel);
+                applicantModels.Push(applicantModel);
             }
             return applicantModels;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IsolDesign.Data.Models
+namespace IsolDesign.DataAccess.Models
 {
     public class Team
     {

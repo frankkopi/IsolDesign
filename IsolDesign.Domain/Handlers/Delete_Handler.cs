@@ -1,9 +1,9 @@
-﻿using IsolDesign.Data;
-using IsolDesign.Data.DBContext;
-using IsolDesign.Data.Interfaces;
-using IsolDesign.Data.Interfaces.IUnitOfWork;
-using IsolDesign.Data.Models;
-using IsolDesign.Data.Repositories;
+﻿using IsolDesign.DataAccess;
+using IsolDesign.DataAccess.DBContext;
+using IsolDesign.DataAccess.Interfaces;
+using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
+using IsolDesign.DataAccess.Models;
+using IsolDesign.DataAccess.Repositories;
 using IsolDesign.Domain.Interfaces;
 
 namespace IsolDesign.Domain.Handlers
@@ -25,10 +25,16 @@ namespace IsolDesign.Domain.Handlers
         {
             Applicant applicant = _unitOfWork.Applicants.Get(id);
 
-            _unitOfWork.Applicants.Remove(applicant);
+            _unitOfWork.Applicants.DeleteEntity(id);
             _unitOfWork.SaveChanges();
             _unitOfWork.Dispose();
-           
+
+            //Applicant applicant = _unitOfWork.Applicants.Get(id);
+
+            //_unitOfWork.Applicants.Remove(applicant);
+            //_unitOfWork.SaveChanges();
+            //_unitOfWork.Dispose();
+
         }
     }
 }

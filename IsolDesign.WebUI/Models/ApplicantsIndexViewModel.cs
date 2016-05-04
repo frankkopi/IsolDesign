@@ -1,9 +1,5 @@
-﻿using IsolDesign.Data.Models;
-using IsolDesign.Domain.Models;
-using System;
+﻿using IsolDesign.Domain.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace IsolDesign.WebUI.Models
 {

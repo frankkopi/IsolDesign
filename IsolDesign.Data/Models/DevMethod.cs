@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IsolDesign.Data.Models
+namespace IsolDesign.DataAccess.Models
 {
     // this class describes the development method used in a project
     public class DevMethod

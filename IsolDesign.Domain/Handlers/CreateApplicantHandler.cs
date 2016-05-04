@@ -1,11 +1,11 @@
-﻿using IsolDesign.Data.Interfaces.IUnitOfWork;
-using IsolDesign.Data.Models;
-using IsolDesign.Data.DBContext;
-using IsolDesign.Data;
+﻿using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
+using IsolDesign.DataAccess.DBContext;
+using IsolDesign.DataAccess;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Interfaces.Interfaces_Models;
 using System.Web;
 using System.Web.Hosting;
+using IsolDesign.DataAccess.Models;
 
 namespace IsolDesign.Domain.Handlers
 {
