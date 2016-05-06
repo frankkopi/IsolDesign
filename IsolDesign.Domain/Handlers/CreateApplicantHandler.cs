@@ -5,13 +5,13 @@ using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Interfaces.Interfaces_Models;
 using System.Web;
 using System.Web.Hosting;
-
 using IsolDesign.Domain.Models;
 using System;
 using System.Collections;
 using IsolDesign.Data.Models;
 using System.Collections.Generic;
 using IsolDesign.Domain.Helpers;
+using System.Linq;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -23,13 +23,15 @@ namespace IsolDesign.Domain.Handlers
         private static Applicant _applicant;
         private static PortfolioSubject _portfolioSubject1;
         private static PortfolioSubject _portfolioSubject2;
+        private IEnumerable<int> _competencyIds;
 
         public CreateApplicantHandler(IApplicantModel applicantModel, HttpFileCollectionBase images,
-            PortfolioSubjectModel portSubj1, PortfolioSubjectModel portSubj2)
+            PortfolioSubjectModel portSubj1, PortfolioSubjectModel portSubj2, IEnumerable<int> competencyIds)
         {
             this._model = applicantModel;
             this._images = images;
             this._imageHandler = new ImageHandler();
+            this._competencyIds = competencyIds;
 
             _portfolioSubject1 = new PortfolioSubject
             {
@@ -66,7 +68,8 @@ namespace IsolDesign.Domain.Handlers
                 Facebook = _model.Facebook,
                 LinkedIn = _model.LinkedIn,
                 Homepage = _model.Homepage,
-                Portfolio = null
+                Portfolio = null,
+                Competencies = null
             };
         }
 
@@ -119,6 +122,9 @@ namespace IsolDesign.Domain.Handlers
             portfolio.Add(_portfolioSubject2);
             _applicant.Portfolio = portfolio;
 
+            ICollection<Competency> competencies = GetCompetencies();
+            _applicant.Competencies = competencies;
+
             ApplicationDbContext _context = new ApplicationDbContext();
             IUnitOfWork _unitOfWork = new UnitOfWork(_context);
             _unitOfWork.Applicants.Add(_applicant);
@@ -126,6 +132,7 @@ namespace IsolDesign.Domain.Handlers
             _unitOfWork.Dispose();
         }
 
+        
         public static Applicant GetApplicant()
         {
             return _applicant;
@@ -142,6 +149,30 @@ namespace IsolDesign.Domain.Handlers
                 return _portfolioSubject2;
             }
             return null;
+        }
+
+        public ICollection<Competency> GetCompetencies()
+        {
+            IGetCompetencies_Handler handler = new GetCompetencies_Handler();
+            var competencyModels = handler.GetCompetencies();
+
+            List<Competency> competencies = new List<Competency>();
+
+            foreach (var competencyModel in competencyModels)
+            {
+                if (_competencyIds.Contains(competencyModel.CompetencyId))
+                {
+                    Competency checkedCompetency = new Competency
+                    {
+                        CompetencyId = competencyModel.CompetencyId,
+                        Name = competencyModel.Name,
+                        Description = competencyModel.Description
+                    };
+                    competencies.Add(checkedCompetency);
+                }
+            }
+
+            return competencies;
         }
     }
 }

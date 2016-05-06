@@ -66,7 +66,7 @@ namespace IsolDesign.Domain.Handlers
             return applicantModels;
         }
 
-        // Get one applicant
+        // Get a single applicant
         public ApplicantModel GetApplicant(int id)
         {
             var item = _unitOfWork.Applicants.Get(id);

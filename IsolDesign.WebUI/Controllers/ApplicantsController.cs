@@ -28,6 +28,9 @@ namespace IsolDesign.WebUI.Controllers
         // GET: Applicants/Create
         public ActionResult Create()
         {
+            IGetCompetencies_Handler handler = new GetCompetencies_Handler();
+            var competencies = handler.GetCompetencies();
+
             ApplicantModel applicantModel = new ApplicantModel();
             PortfolioSubjectModel port1 = new PortfolioSubjectModel();
             PortfolioSubjectModel port2 = new PortfolioSubjectModel();
@@ -35,8 +38,9 @@ namespace IsolDesign.WebUI.Controllers
             CreateApplicantViewModel vm = new CreateApplicantViewModel()
             {
                 ApplicantModel = applicantModel,
-                portfolioSubject1 = port1,
-                portfolioSubject2 = port2
+                PortfolioSubject1 = port1,
+                PortfolioSubject2 = port2,
+                Competencies = competencies
             };
 
             return View(vm);
@@ -44,14 +48,14 @@ namespace IsolDesign.WebUI.Controllers
 
         // POST: Applicants/Create
         [HttpPost]
-        public ActionResult Create(CreateApplicantViewModel model)
+        public ActionResult Create(CreateApplicantViewModel model, IEnumerable<int> competencyIds)
         {
             if (ModelState.IsValid)
             {
                 var images = Request.Files;
                 var applicantModel = model.ApplicantModel;
 
-                ICreateApplicantHandler handler = new CreateApplicantHandler(applicantModel, images, model.portfolioSubject1, model.portfolioSubject2);
+                ICreateApplicantHandler handler = new CreateApplicantHandler(applicantModel, images, model.PortfolioSubject1, model.PortfolioSubject2, competencyIds);
                 handler.SaveProfileImage();
                 handler.SavePortfolioImages();
                 handler.Execute();
