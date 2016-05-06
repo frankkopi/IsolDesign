@@ -1,27 +1,23 @@
-﻿using System;
+﻿using IsolDesign.Domain.Interfaces.Interfaces_Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using IsolDesign.Data.Models;
+using System;
 
 namespace IsolDesign.Domain.Models
 {
-    public class CompetencyModel
+    public class CompetencyModel : ICompetencyModel
     {
-        public CompetencyModel()
-        {
-            this.Partners = new List<PartnerModel>();
-            this.Applicants = new List<ApplicantModel>();
-        }
 
         public int CompetencyId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
-
-        public ICollection<PartnerModel> Partners { get; private set; }
-        public ICollection<ApplicantModel> Applicants { get; private set; }
+        public ICollection<PartnerModel> Partners { get; set; }
+        public ICollection<ApplicantModel> Applicants { get; set; }
     }
 }

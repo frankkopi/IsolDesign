@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using IsolDesign.DataAccess.DBContext;
-using IsolDesign.DataAccess.Models;
+using IsolDesign.Data.Models;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.DataAccess;
 

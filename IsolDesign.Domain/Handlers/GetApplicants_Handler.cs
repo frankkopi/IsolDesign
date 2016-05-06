@@ -1,5 +1,7 @@
-﻿using IsolDesign.DataAccess.DBContext;
+﻿using IsolDesign.DataAccess;
+using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces;
+using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.DataAccess.Repositories;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
@@ -10,39 +12,55 @@ namespace IsolDesign.Domain.Handlers
     public class GetApplicants_Handler : IGetApplicants_Handler
     {
         private ApplicationDbContext _context;
-        private IApplicantRepository _applicantRepository;
+        private IUnitOfWork _unitOfWork;
 
         public GetApplicants_Handler()
         {
             this._context = new ApplicationDbContext();
-            this._applicantRepository = new ApplicantRepository(_context);
+            this._unitOfWork = new UnitOfWork(_context);
         }
 
         // Get all applicants
         public IEnumerable<ApplicantModel> GetApplicants()
         {
-            //var applicantModels = new List<ApplicantModel>();
             var applicantModels = new Stack<ApplicantModel>();
-            var applicantsFromDB = _applicantRepository.GetAll();
-            foreach(var item in applicantsFromDB)
+            var applicantsFromDB = _unitOfWork.Applicants.GetAll();
+
+            foreach (var applicant in applicantsFromDB)
             {
+                var portfolio = new List<PortfolioSubjectModel>();
+
+                foreach (var portSubject in applicant.Portfolio)
+                {
+                    PortfolioSubjectModel portfolioSubjectModel = new PortfolioSubjectModel
+                    {
+                        Name = portSubject.Name,
+                        Date = portSubject.Date,
+                        Description = portSubject.Description,
+                        Photo1 = portSubject.ImagePath1,
+                        Photo2 = portSubject.ImagePath2,
+                        Photo3 = portSubject.ImagePath3
+                    };
+                    portfolio.Add(portfolioSubjectModel);
+                }
+
                 var applicantModel = new ApplicantModel
                 {
-                    ApplicantId = item.ApplicantId,
-                    Name = item.Name,
-                    Address = item.Address,
-                    City = item.City,
-                    Country = item.Country,
-                    Phone = item.Phone,
-                    Email = item.Email,
-                    ProfileImagePath = item.ProfileImagePath,
-                    Description = item.Description,
-                    SkypeLink = item.SkypeLink,
-                    Facebook = item.Facebook,
-                    LinkedIn = item.LinkedIn,
-                    Homepage = item.Homepage
+                    ApplicantId = applicant.ApplicantId,
+                    Name = applicant.Name,
+                    Address = applicant.Address,
+                    City = applicant.City,
+                    Country = applicant.Country,
+                    Phone = applicant.Phone,
+                    Email = applicant.Email,
+                    ProfileImagePath = applicant.ProfileImagePath,
+                    Description = applicant.Description,
+                    SkypeLink = applicant.SkypeLink,
+                    Facebook = applicant.Facebook,
+                    LinkedIn = applicant.LinkedIn,
+                    Homepage = applicant.Homepage,
+                    Portfolio = portfolio
                 };
-                //applicantModels.Add(applicantModel);
                 applicantModels.Push(applicantModel);
             }
             return applicantModels;
@@ -51,7 +69,8 @@ namespace IsolDesign.Domain.Handlers
         // Get one applicant
         public ApplicantModel GetApplicant(int id)
         {
-            var item = _applicantRepository.Get(id);
+            var item = _unitOfWork.Applicants.Get(id);
+
             var applicantModel = new ApplicantModel()
             {
                 ApplicantId = item.ApplicantId,

@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using IsolDesign.DataAccess.Models;
+using IsolDesign.Data.Models;
 
 namespace IsolDesign.DataAccess.DBContext
 {

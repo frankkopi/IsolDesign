@@ -186,6 +186,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicantsController.cs" />
+    <Compile Include="Controllers\CompetenciesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Models\ApplicantsIndexViewModel.cs" />
     <Compile Include="Models\ApplicantDeleteViewModel.cs" />
     <Compile Include="Models\CreateApplicantViewModel.cs" />
+    <Compile Include="Models\CreateCompetencyViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ThanxForApplicationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,6 +206,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\MySiteCss.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -266,10 +269,17 @@
     <Content Include="Views\Applicants\ThanxForApplication.cshtml" />
     <Content Include="Views\Applicants\PartialApplicantsInfo.cshtml" />
     <Content Include="Views\Applicants\Delete.cshtml" />
+    <Content Include="Views\Competencies\Create.cshtml" />
+    <Content Include="Views\Competencies\Delete.cshtml" />
+    <Content Include="Views\Competencies\Details.cshtml" />
+    <Content Include="Views\Competencies\Edit.cshtml" />
+    <Content Include="Views\Competencies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\PortfolioImages\" />
     <Folder Include="Images\ProfileImages\" />
+    <Folder Include="Views\PortfolioSubjects\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

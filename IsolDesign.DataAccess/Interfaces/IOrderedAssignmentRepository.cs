@@ -1,4 +1,4 @@
-﻿using IsolDesign.DataAccess.Models;
+﻿using IsolDesign.Data.Models;
 
 namespace IsolDesign.DataAccess.Interfaces
 {

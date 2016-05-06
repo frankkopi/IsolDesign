@@ -25,6 +25,7 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Applicants", "Index", "Applicants")</li>
+                    <li>@Html.ActionLink("Competencies", "Index", "Competencies")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -42,5 +43,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @RenderSection("MyScripts", required: false)
+    @RenderSection("ShowPortfolioFields", required: false)
 </body>
 </html>

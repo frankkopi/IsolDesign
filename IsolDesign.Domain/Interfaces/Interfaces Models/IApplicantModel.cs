@@ -1,4 +1,7 @@
-﻿namespace IsolDesign.Domain.Interfaces.Interfaces_Models
+﻿using IsolDesign.Domain.Models;
+using System.Collections.Generic;
+
+namespace IsolDesign.Domain.Interfaces.Interfaces_Models
 {
     public interface IApplicantModel
     {
@@ -14,5 +17,6 @@
         string Facebook { get; set; }
         string LinkedIn { get; set; }
         string Homepage { get; set; }
+        ICollection<PortfolioSubjectModel> Portfolio { get; set; }
     }
 }

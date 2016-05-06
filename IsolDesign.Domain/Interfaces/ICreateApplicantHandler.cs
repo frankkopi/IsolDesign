@@ -6,7 +6,9 @@ namespace IsolDesign.Domain.Interfaces
 {
     public interface ICreateApplicantHandler
     {
-        void SaveImage(HttpPostedFileBase image);
+        void SaveProfileImage();
+        void SavePortfolioImages();
+        void SaveImage(HttpPostedFileBase image, string type, int? count);
         void Execute();
     }
 }

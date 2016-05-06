@@ -1,11 +1,10 @@
 ﻿using IsolDesign.Domain.Handlers;
 using IsolDesign.Domain.Interfaces;
-using IsolDesign.Domain.Interfaces.Interfaces_Models;
 using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
-using System.Net;
-using System.Web;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace IsolDesign.WebUI.Controllers
 {
@@ -17,6 +16,7 @@ namespace IsolDesign.WebUI.Controllers
         {
             IGetApplicants_Handler handler = new GetApplicants_Handler();
             var applicants = handler.GetApplicants();
+
             ApplicantsIndexViewModel vm = new ApplicantsIndexViewModel
             {
                 Applicants = applicants
@@ -28,35 +28,32 @@ namespace IsolDesign.WebUI.Controllers
         // GET: Applicants/Create
         public ActionResult Create()
         {
-            CreateApplicantViewModel vm = new CreateApplicantViewModel();
+            ApplicantModel applicantModel = new ApplicantModel();
+            PortfolioSubjectModel port1 = new PortfolioSubjectModel();
+            PortfolioSubjectModel port2 = new PortfolioSubjectModel();
+
+            CreateApplicantViewModel vm = new CreateApplicantViewModel()
+            {
+                ApplicantModel = applicantModel,
+                portfolioSubject1 = port1,
+                portfolioSubject2 = port2
+            };
 
             return View(vm);
         }
 
         // POST: Applicants/Create
         [HttpPost]
-        public ActionResult Create(CreateApplicantViewModel model, HttpPostedFileBase image)
+        public ActionResult Create(CreateApplicantViewModel model)
         {
             if (ModelState.IsValid)
             {
-                IApplicantModel applicantModel = new ApplicantModel
-                {
-                    Name = model.Name,
-                    Address = model.Address,
-                    City = model.City,
-                    Country = model.Country,
-                    Phone = model.Phone,
-                    Email = model.Email,
-                    ProfileImagePath = null,
-                    Description = model.Description,
-                    SkypeLink = model.SkypeLink,
-                    Facebook = model.Facebook,
-                    LinkedIn = model.LinkedIn,
-                    Homepage = model.Homepage
-                };
+                var images = Request.Files;
+                var applicantModel = model.ApplicantModel;
 
-                ICreateApplicantHandler handler = new CreateApplicantHandler(applicantModel);
-                handler.SaveImage(image);
+                ICreateApplicantHandler handler = new CreateApplicantHandler(applicantModel, images, model.portfolioSubject1, model.portfolioSubject2);
+                handler.SaveProfileImage();
+                handler.SavePortfolioImages();
                 handler.Execute();
 
                 ThanxForApplicationViewModel vm = new ThanxForApplicationViewModel

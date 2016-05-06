@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IsolDesign.DataAccess.Models
+namespace IsolDesign.Data.Models
 {
     public class PortfolioSubject
     {
@@ -16,13 +16,13 @@ namespace IsolDesign.DataAccess.Models
 
         public string Description { get; set; }
 
-        public string Photo1 { get; set; }
+        public string ImagePath1 { get; set; }
 
-        public string Photo2 { get; set; }
+        public string ImagePath2 { get; set; }
 
-        public string Photo3 { get; set; }
+        public string ImagePath3 { get; set; }
 
-        public int PartnerId { get; set; } // FK
+        public int? PartnerId { get; set; } // FK
 
         public int ApplicantId { get; set; } // FK
 

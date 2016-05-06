@@ -2,7 +2,7 @@
 using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
-using IsolDesign.DataAccess.Models;
+using IsolDesign.Data.Models;
 using IsolDesign.DataAccess.Repositories;
 using IsolDesign.Domain.Interfaces;
 

@@ -6,119 +6,254 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", @id = "myForm" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Applicant</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.Address, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.City, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.City, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.Country, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.Country, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.Country, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.Phone, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <!-- Upload Image -->
+        <!-- Upload Photo of applicant -->
         <div class="form-group">
-            <label class="control-label col-md-2">Photo</label>
+            <label class="control-label col-md-2">Profile Image</label>
             <!-- The name="image" attribute must match the parameter name in the post action-method for model binding to work -->
             <div class="col-md-10">
-                <input type="file" name="image" class="form-control" />
+                <input type="file" name="profileImage" class="form-control" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.ApplicantModel.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SkypeLink, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.SkypeLink, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SkypeLink, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SkypeLink, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.SkypeLink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.SkypeLink, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Facebook, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.Facebook, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Facebook, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Facebook, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.Facebook, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.Facebook, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LinkedIn, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.LinkedIn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LinkedIn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LinkedIn, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.LinkedIn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.LinkedIn, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Homepage, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ApplicantModel.Homepage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Homepage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Homepage, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ApplicantModel.Homepage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantModel.Homepage, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <!-- ************************ Hidden input elements for first case in portfolio ******************************* -->
+
+        <div id="firstCaseButton" class="showFormFields btn btn-lg  btn-primary col-md-12 col-md-offset-2">Add a project from your portfolio</div>
+        <div id="firstPortfolioSubject" class="hide">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.portfolioSubject1.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.portfolioSubject1.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.portfolioSubject1.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.portfolioSubject1.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.portfolioSubject1.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.portfolioSubject1.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.portfolioSubject1.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.portfolioSubject1.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.portfolioSubject1.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="form-group">
+                <label class="control-label col-md-2">Photo of project</label>
+                <!-- The name="image" attribute must match the parameter name in the post action-method for model binding to work -->
+                <div class="col-md-10">
+                    <input type="file" name="port1Image1" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="form-group">
+                <label class="control-label col-md-2">Photo of project</label>
+                <!-- The name="image" attribute must match the parameter name in the post action-method for model binding to work -->
+                <div class="col-md-10">
+                    <input type="file" name="port1Image2" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="form-group">
+                <label class="control-label col-md-2">Photo of project</label>
+                <!-- The name="image" attribute must match the parameter name in the post action-method for model binding to work -->
+                <div class="col-md-10">
+                    <input type="file" name="port1Image3" class="form-control" />
+                </div>
             </div>
         </div>
-    </div>
+
+
+        <!-- ************************ Hidden input elements for Second case in portfolio ******************************* -->
+
+        <div id="secondCaseButton" class="showFormFields hide btn btn-lg btn-primary col-md-12 col-md-offset-2">Add a second project from your portfolio</div>
+        <div id="secondPortfolioSubject" class="hide">
+            <div class="form-group">
+                @Html.LabelFor(model => model.portfolioSubject2.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.portfolioSubject2.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.portfolioSubject2.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.portfolioSubject2.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.portfolioSubject2.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.portfolioSubject2.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.portfolioSubject2.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.portfolioSubject2.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.portfolioSubject2.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="form-group">
+                <label class="control-label col-md-2">Photo of project</label>
+                <!-- The name="image" attribute must match the parameter name in the post action-method for model binding to work -->
+                <div class="col-md-10">
+                    <input type="file" name="port2Image1" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="form-group">
+                <label class="control-label col-md-2">Photo of project</label>
+                <!-- The name="image" attribute must match the parameter name in the post action-method for model binding to work -->
+                <div class="col-md-10">
+                    <input type="file" name="port2Image2" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="form-group">
+                <label class="control-label col-md-2">Photo of project</label>
+                <!-- The name="image" attribute must match the parameter name in the post action-method for model binding to work -->
+                <div class="col-md-10">
+                    <input type="file" name="port2Image3" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group" id="submitButton">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Send your application" class="btn btn-lg btn-success" />
+                </div>
+            </div>
+        </div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@section ShowPortfolioFields {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#firstCaseButton").click(function () {
+                $("#firstPortfolioSubject").toggleClass('show');
+                $("#secondCaseButton").toggleClass('show');
+            });
+
+            $("#secondCaseButton").click(function () {
+                $("#secondPortfolioSubject").toggleClass('show');
+            });
+        });
+    </script>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
