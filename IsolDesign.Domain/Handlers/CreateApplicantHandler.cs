@@ -117,16 +117,17 @@ namespace IsolDesign.Domain.Handlers
 
         public void Execute()
         {
+            ApplicationDbContext _context = new ApplicationDbContext();
+            IUnitOfWork _unitOfWork = new UnitOfWork(_context);
+
             ICollection<PortfolioSubject> portfolio = new List<PortfolioSubject>();
             portfolio.Add(_portfolioSubject1);
             portfolio.Add(_portfolioSubject2);
             _applicant.Portfolio = portfolio;
 
-            ICollection<Competency> competencies = GetCompetencies();
+            ICollection<Competency> competencies = GetCompetencies(_unitOfWork);
             _applicant.Competencies = competencies;
 
-            ApplicationDbContext _context = new ApplicationDbContext();
-            IUnitOfWork _unitOfWork = new UnitOfWork(_context);
             _unitOfWork.Applicants.Add(_applicant);
             _unitOfWork.SaveChanges();
             _unitOfWork.Dispose();
@@ -151,28 +152,19 @@ namespace IsolDesign.Domain.Handlers
             return null;
         }
 
-        public ICollection<Competency> GetCompetencies()
+        public ICollection<Competency> GetCompetencies(IUnitOfWork unitOfWork)
         {
-            IGetCompetencies_Handler handler = new GetCompetencies_Handler();
-            var competencyModels = handler.GetCompetencies();
+            List<Competency> checkedCompentencies = new List<Competency>();
+            var competencies = unitOfWork.Competencies.GetAll();
 
-            List<Competency> competencies = new List<Competency>();
-
-            foreach (var competencyModel in competencyModels)
+            foreach(var comp in competencies)
             {
-                if (_competencyIds.Contains(competencyModel.CompetencyId))
+                if (_competencyIds.Contains(comp.CompetencyId))
                 {
-                    Competency checkedCompetency = new Competency
-                    {
-                        CompetencyId = competencyModel.CompetencyId,
-                        Name = competencyModel.Name,
-                        Description = competencyModel.Description
-                    };
-                    competencies.Add(checkedCompetency);
+                    checkedCompentencies.Add(comp);
                 }
             }
-
-            return competencies;
+            return checkedCompentencies;
         }
     }
 }
