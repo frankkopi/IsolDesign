@@ -3,12 +3,15 @@ using IsolDesign.DataAccess;
 using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.Domain.Interfaces;
+using System.Collections.Generic;
 
 namespace IsolDesign.Domain.Handlers
 {
     public class CreatePartner_Handler : ICreatePartner_Handler
     {
         private int _applicantId;
+        private Applicant _applicant;
+        private Partner _partner;
         private ApplicationDbContext _context;
         private IUnitOfWork _unitOfWork;
 
@@ -20,26 +23,26 @@ namespace IsolDesign.Domain.Handlers
         }
 
         public void CreatePartner() {
-            var applicant = GetApplicant(_applicantId);
+            _applicant = GetApplicant(_applicantId);
 
-            Partner partner = new Partner()
+            _partner = new Partner()
             {
                 PartnerId = 0,
-                Name = applicant.Name,
-                Address = applicant.Address,
-                City = applicant.City,
-                Country = applicant.Country,
-                Phone = applicant.Phone,
-                Email = applicant.Email,
-                Photo = applicant.Phone,
-                Description = applicant.Description,
-                SkypeLink = applicant.SkypeLink,
-                Facebook = applicant.Facebook,
-                LinkedIn = applicant.LinkedIn,
-                Homepage = applicant.Homepage,
+                Name = _applicant.Name,
+                Address = _applicant.Address,
+                City = _applicant.City,
+                Country = _applicant.Country,
+                Phone = _applicant.Phone,
+                Email = _applicant.Email,
+                ProfileImagePath = _applicant.ProfileImagePath,
+                Description = _applicant.Description,
+                SkypeLink = _applicant.SkypeLink,
+                Facebook = _applicant.Facebook,
+                LinkedIn = _applicant.LinkedIn,
+                Homepage = _applicant.Homepage,
                 TeamId = null,
-                Competencies = applicant.Competencies,
-                Portfolio = applicant.Portfolio
+                Competencies = _applicant.Competencies,
+                Portfolio = _applicant.Portfolio
             };
         }
 
@@ -47,6 +50,14 @@ namespace IsolDesign.Domain.Handlers
         {
             var applicant = _unitOfWork.Applicants.Get(applicantId);
             return applicant;
+        }
+
+
+        public void Execute()
+        {
+            _unitOfWork.Partners.Add(_partner);
+            _unitOfWork.SaveChanges();
+            _unitOfWork.Dispose();
         }
     }
 }

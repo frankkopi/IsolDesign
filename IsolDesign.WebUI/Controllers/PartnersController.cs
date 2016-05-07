@@ -29,6 +29,7 @@ namespace IsolDesign.WebUI.Controllers
                 // TODO: Add insert logic here
                 ICreatePartner_Handler handler = new CreatePartner_Handler(applicantId);
                 handler.CreatePartner();
+                handler.Execute();
 
                 return RedirectToAction("Index");
             }

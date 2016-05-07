@@ -24,7 +24,7 @@ namespace IsolDesign.Data.Models
 
         public int? PartnerId { get; set; } // FK
 
-        public int ApplicantId { get; set; } // FK
+        public int? ApplicantId { get; set; } // FK
 
 
         public virtual Partner Partner { get; set; }

@@ -12,5 +12,7 @@ namespace IsolDesign.Domain.Interfaces
         void CreatePartner();
 
         Applicant GetApplicant(int applicantId);
+
+        void Execute();
     }
 }
