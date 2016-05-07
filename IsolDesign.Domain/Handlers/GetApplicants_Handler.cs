@@ -28,8 +28,8 @@ namespace IsolDesign.Domain.Handlers
 
             foreach (var applicant in applicantsFromDB)
             {
+                // transform List<PortfolioSubject> til List<PortfolioSubjectModel>
                 var portfolio = new List<PortfolioSubjectModel>();
-
                 foreach (var portSubject in applicant.Portfolio)
                 {
                     PortfolioSubjectModel portfolioSubjectModel = new PortfolioSubjectModel
@@ -43,6 +43,20 @@ namespace IsolDesign.Domain.Handlers
                     };
                     portfolio.Add(portfolioSubjectModel);
                 }
+
+                // transform List<Competency> til List<CompetencyModel>
+                var competencyModels = new List<CompetencyModel>();
+                foreach (var competency in applicant.Competencies)
+                {
+                    CompetencyModel competencyModel = new CompetencyModel
+                    {
+                        CompetencyId = competency.CompetencyId,
+                        Name = competency.Name,
+                        Description = competency.Description
+                    };
+                    competencyModels.Add(competencyModel);
+                }
+
 
                 var applicantModel = new ApplicantModel
                 {
@@ -59,10 +73,12 @@ namespace IsolDesign.Domain.Handlers
                     Facebook = applicant.Facebook,
                     LinkedIn = applicant.LinkedIn,
                     Homepage = applicant.Homepage,
-                    Portfolio = portfolio
+                    Portfolio = portfolio,
+                    Competencies = competencyModels
                 };
                 applicantModels.Push(applicantModel);
             }
+            _unitOfWork.Dispose();
             return applicantModels;
         }
 
@@ -87,6 +103,7 @@ namespace IsolDesign.Domain.Handlers
                 LinkedIn = item.LinkedIn,
                 Homepage = item.Homepage
             };
+            _unitOfWork.Dispose();
             return applicantModel;
         }
     }

@@ -30,6 +30,7 @@ namespace IsolDesign.Domain.Models
         public string ProfileImagePath { get; set; }
 
         [Required]
+        [Display(Name="Personal Description")]
         public string Description { get; set; }
 
         public string SkypeLink { get; set; }
@@ -41,7 +42,7 @@ namespace IsolDesign.Domain.Models
         public string Homepage { get; set; }
 
 
-        //public ICollection<CompetencyModel> Competencies { get; private set; }
+        public ICollection<CompetencyModel> Competencies { get; set; }
         public ICollection<PortfolioSubjectModel> Portfolio { get; set; }
 
     }

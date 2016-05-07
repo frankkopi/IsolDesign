@@ -47,24 +47,3 @@ namespace IsolDesign.Domain.Handlers
     }
 }
 
-
-//var applicantModels = new List<ApplicantModel>();
-//                foreach(var item in competency.Applicants)
-//                {
-//                    ApplicantModel applicantModel = new ApplicantModel
-//                    {
-//                        ApplicantId = item.ApplicantId,
-//                        Name = item.Name,
-//                        Address = item.Address,
-//                        City = item.City,
-//                        Country = item.Country,
-//                        Phone = item.Phone,
-//                        Email = item.Email,
-//                        ProfileImagePath = item.ProfileImagePath,
-//                        Description = item.Description,
-//                        SkypeLink = item.SkypeLink,
-//                        Facebook = item.Facebook,
-//                        LinkedIn = item.LinkedIn,
-//                        Homepage = item.Homepage
-//                    };
-//                }

@@ -8,8 +8,7 @@
         <dl class="dl-horizontal">
             <dt></dt>
             <dd>
-
-                <img src="../../@Model.ProfileImagePath" class="thumbnail applicantsImage" />
+                <img src="../../@Model.ProfileImagePath" class="thumbnail applicantsImageInfo" />
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
@@ -66,6 +65,27 @@
                 @Html.DisplayFor(model => model.LinkedIn)
             </dd>
             <dt>
+                @Html.DisplayNameFor(model => model.Competencies)
+            </dt>
+            <dd>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Competency</th>
+                        <th>Description of Competency</th>
+                    </tr>
+                    @{
+                        foreach (var competency in Model.Competencies)
+                        {
+                            <tr>
+                                <td>@competency.Name</td>
+                                <td>@competency.Description</td>
+                            </tr>
+                        }
+                    }
+                </table>
+
+            </dd>
+            <dt>
                 @Html.DisplayNameFor(model => model.Description)
             </dt>
             <dd>
@@ -78,8 +98,6 @@
 
             foreach (var portfolioSubject in Model.Portfolio)
             {
-
-
                 <dl class="dl-horizontal">
                     <dt>
                     </dt>
@@ -124,7 +142,8 @@
 
 
         <p>
-            @Html.ActionLink("Portfolio", "", new { id = Model.ApplicantId }) |
+            @Html.ActionLink("Back to Index", "") |
+            @Html.ActionLink("Approve as Partner", "CheckApplicant", new { applicantId = Model.ApplicantId, name = Model.Name }) |
             @Html.ActionLink("Delete", "Delete", new { id = Model.ApplicantId })
         </p>
     </div>

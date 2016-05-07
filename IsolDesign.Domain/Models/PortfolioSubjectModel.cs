@@ -26,8 +26,5 @@ namespace IsolDesign.Domain.Models
 
         public string Photo3 { get; set; }
 
-        //public int PartnerId { get; set; } // FK
-
-        //public int ApplicantId { get; set; } // FK
     }
 }

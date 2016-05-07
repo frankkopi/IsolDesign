@@ -115,5 +115,17 @@ namespace IsolDesign.WebUI.Controllers
                 return View();
             }
         }
+
+        public ActionResult CheckApplicant(int applicantId, string name)
+        {
+            ViewBag.ApplicantID = applicantId;
+            ViewBag.ApplicantName = name;
+            return View();
+        }
+
+        public void SaveAsPartner(int applicantId)
+        {
+
+        }
     }
 }
