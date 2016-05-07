@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IsolDesign.Domain.Handlers;
+using IsolDesign.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,19 +22,13 @@ namespace IsolDesign.WebUI.Controllers
             return View();
         }
 
-        // GET: Partners/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Partners/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreatePartner(int applicantId)
         {
             try
             {
                 // TODO: Add insert logic here
+                ICreatePartner_Handler handler = new CreatePartner_Handler(applicantId);
+                handler.CreatePartner();
 
                 return RedirectToAction("Index");
             }

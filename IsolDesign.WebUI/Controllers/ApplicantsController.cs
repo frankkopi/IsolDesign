@@ -21,7 +21,6 @@ namespace IsolDesign.WebUI.Controllers
             {
                 Applicants = applicants
             };
-            
             return View(vm);
         }
 
@@ -104,7 +103,6 @@ namespace IsolDesign.WebUI.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
                 IDelete_Handler handler = new Delete_Handler();
                 handler.DeleteApplicant(id);
 
@@ -123,9 +121,14 @@ namespace IsolDesign.WebUI.Controllers
             return View();
         }
 
-        public void SaveAsPartner(int applicantId)
+        public ActionResult SaveAsPartner(int applicantId)
         {
+            return RedirectToAction("CreatePartner", "Partners", new { applicantId = applicantId});
+        }
 
+        public ActionResult DismissAsPartner()
+        {
+            return RedirectToAction("Index");
         }
     }
 }

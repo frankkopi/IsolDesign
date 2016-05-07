@@ -34,7 +34,7 @@ namespace IsolDesign.Data.Models
 
         public string Homepage { get; set; }
 
-        public int TeamId { get; set; } // FK
+        public int? TeamId { get; set; } // FK
 
 
         public virtual Team Team { get; set; }
