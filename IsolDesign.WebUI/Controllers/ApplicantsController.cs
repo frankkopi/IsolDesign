@@ -5,6 +5,7 @@ using IsolDesign.WebUI.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
+using System.Net;
 
 namespace IsolDesign.WebUI.Controllers
 {
@@ -15,11 +16,11 @@ namespace IsolDesign.WebUI.Controllers
         public ActionResult Index()
         {
             IGetApplicants_Handler handler = new GetApplicants_Handler();
-            var applicants = handler.GetApplicants();
+            var applicantModels = handler.GetApplicants();
 
             ApplicantsIndexViewModel vm = new ApplicantsIndexViewModel
             {
-                Applicants = applicants
+                Applicants = applicantModels
             };
             return View(vm);
         }
@@ -54,7 +55,7 @@ namespace IsolDesign.WebUI.Controllers
                 var images = Request.Files;
                 var applicantModel = model.ApplicantModel;
 
-                ICreateApplicantHandler handler = new CreateApplicantHandler(applicantModel, images, model.PortfolioSubject1, model.PortfolioSubject2, competencyIds);
+                ICreateApplicant_Handler handler = new CreateApplicant_Handler(applicantModel, images, model.PortfolioSubject1, model.PortfolioSubject2, competencyIds);
                 handler.SaveProfileImage();
                 handler.SavePortfolioImages();
                 handler.Execute();
@@ -78,40 +79,35 @@ namespace IsolDesign.WebUI.Controllers
 
         // GET: Applicants/Delete/5
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int applicantId)
         {
-            GetApplicants_Handler handler = new GetApplicants_Handler();
-            var item = handler.GetApplicant(id);
+            IGetApplicants_Handler handler = new GetApplicants_Handler();
+            var applicantModel = handler.GetApplicant(applicantId);
+
             ApplicantDeleteViewModel vm = new ApplicantDeleteViewModel
             {
-                ApplicantId = item.ApplicantId,
-                Name = item.Name,
-                Address = item.Address,
-                City = item.City,
-                Country = item.Country,
-                Phone = item.Phone,
-                Email = item.Email,
-                ProfileImagePath = item.ProfileImagePath,
+                ApplicantId = applicantModel.ApplicantId,
+                Name = applicantModel.Name,
+                Address = applicantModel.Address,
+                City = applicantModel.City,
+                Country = applicantModel.Country,
+                Phone = applicantModel.Phone,
+                Email = applicantModel.Email,
+                ProfileImagePath = applicantModel.ProfileImagePath
             };
             return View(vm);
         }
 
+        // Delete an applicant and his/her portfolio
         // POST: /Students/Delete/id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int applicantId)
         {
-            try
-            {
-                IDelete_Handler handler = new Delete_Handler();
-                handler.DeleteApplicant(id);
+            IDelete_Handler handler = new Delete_Handler();
+            handler.DeleteApplicantAndPortfolio(applicantId);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         public ActionResult CheckApplicant(int applicantId, string name)

@@ -24,7 +24,7 @@ namespace IsolDesign.Data.Models
 
         public int? PartnerId { get; set; } // FK
 
-        public int? ApplicantId { get; set; } // FK
+        public int? ApplicantId { get; set; } // Nullable FK. Entity Framework sets the child foreign key to null when the parent entity is deleted. Remember eager loading for this to work (Include all)
 
 
         public virtual Partner Partner { get; set; }

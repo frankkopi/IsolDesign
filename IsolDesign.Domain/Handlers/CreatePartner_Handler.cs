@@ -4,6 +4,7 @@ using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.Domain.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -22,7 +23,8 @@ namespace IsolDesign.Domain.Handlers
             this._unitOfWork = new UnitOfWork(_context);          
         }
 
-        public void CreatePartner() {
+        public void CreatePartner()
+        {
             _applicant = GetApplicant(_applicantId);
 
             _partner = new Partner()
@@ -46,10 +48,14 @@ namespace IsolDesign.Domain.Handlers
             };
         }
 
+
+        // Get applicant and all the navigation properties
         public Applicant GetApplicant(int applicantId)
         {
-            var applicant = _unitOfWork.Applicants.Get(applicantId);
-            return applicant;
+            var applicant = _unitOfWork.Applicants.AllIncluding(x => x.Portfolio).ToList();
+            var target = applicant.Where(x => x.ApplicantId == applicantId).FirstOrDefault();
+
+            return target;
         }
 
 
@@ -57,7 +63,6 @@ namespace IsolDesign.Domain.Handlers
         {
             _unitOfWork.Partners.Add(_partner);
             _unitOfWork.SaveChanges();
-            _unitOfWork.Dispose();
         }
     }
 }

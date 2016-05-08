@@ -15,7 +15,7 @@ using System.Linq;
 
 namespace IsolDesign.Domain.Handlers
 {
-    public class CreateApplicantHandler : ICreateApplicantHandler
+    public class CreateApplicant_Handler : ICreateApplicant_Handler
     {
         private IApplicantModel _model;
         private ImageHandler _imageHandler;
@@ -25,7 +25,7 @@ namespace IsolDesign.Domain.Handlers
         private static PortfolioSubject _portfolioSubject2;
         private IEnumerable<int> _competencyIds;
 
-        public CreateApplicantHandler(IApplicantModel applicantModel, HttpFileCollectionBase images,
+        public CreateApplicant_Handler(IApplicantModel applicantModel, HttpFileCollectionBase images,
             PortfolioSubjectModel portSubj1, PortfolioSubjectModel portSubj2, IEnumerable<int> competencyIds)
         {
             this._model = applicantModel;
@@ -41,6 +41,7 @@ namespace IsolDesign.Domain.Handlers
                 ImagePath1 = null,
                 ImagePath2 = null,
                 ImagePath3 = null,
+                PartnerId = null
             };
 
             _portfolioSubject2 = new PortfolioSubject
@@ -51,6 +52,7 @@ namespace IsolDesign.Domain.Handlers
                 ImagePath1 = null,
                 ImagePath2 = null,
                 ImagePath3 = null,
+                PartnerId = null
             };
 
             _applicant = new Applicant

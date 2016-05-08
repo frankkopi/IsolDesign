@@ -25,13 +25,13 @@ namespace IsolDesign.Domain.Handlers
             
             if(type == "profile")
             {
-                Applicant applicant = CreateApplicantHandler.GetApplicant();
+                Applicant applicant = CreateApplicant_Handler.GetApplicant();
                 applicant.ProfileImagePath = pathToFile + filename + ".jpg";
                 //ProfileImagePath = pathToFile + filename + ".jpg";
             }
             else if(type == "portfolio1")
             {
-                PortfolioSubject portfolio1 = CreateApplicantHandler.GetPortfolioSubject("portfolio1");
+                PortfolioSubject portfolio1 = CreateApplicant_Handler.GetPortfolioSubject("portfolio1");
                 switch (count)
                 {
                     case 1:
@@ -48,7 +48,7 @@ namespace IsolDesign.Domain.Handlers
             }
             else if (type == "portfolio2")
             {
-                PortfolioSubject portfolio2 = CreateApplicantHandler.GetPortfolioSubject("portfolio2");
+                PortfolioSubject portfolio2 = CreateApplicant_Handler.GetPortfolioSubject("portfolio2");
                 switch (count)
                 {
                     case 4:

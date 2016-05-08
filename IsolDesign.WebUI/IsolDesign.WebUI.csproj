@@ -277,6 +277,7 @@
     <Content Include="Views\Competencies\Index.cshtml" />
     <Content Include="Views\Applicants\CheckApplicant.cshtml" />
     <Content Include="Views\Partners\Index.cshtml" />
+    <Content Include="Views\Partners\ConfirmPartnerCreated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

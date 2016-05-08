@@ -78,7 +78,6 @@ namespace IsolDesign.Domain.Handlers
                 };
                 applicantModels.Push(applicantModel);
             }
-            _unitOfWork.Dispose();
             return applicantModels;
         }
 
@@ -103,7 +102,6 @@ namespace IsolDesign.Domain.Handlers
                 LinkedIn = item.LinkedIn,
                 Homepage = item.Homepage
             };
-            _unitOfWork.Dispose();
             return applicantModel;
         }
     }

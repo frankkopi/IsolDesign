@@ -24,19 +24,19 @@ namespace IsolDesign.WebUI.Controllers
 
         public ActionResult CreatePartner(int applicantId)
         {
-            try
-            {
-                // TODO: Add insert logic here
-                ICreatePartner_Handler handler = new CreatePartner_Handler(applicantId);
-                handler.CreatePartner();
-                handler.Execute();
+            ICreatePartner_Handler handler = new CreatePartner_Handler(applicantId);
+            handler.CreatePartner();
+            handler.Execute();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            IDelete_Handler deleteHandler = new Delete_Handler();
+            deleteHandler.DeleteApplicant(applicantId);
+
+            return RedirectToAction("ConfirmPartnerCreated");
+        }
+
+        public ActionResult ConfirmPartnerCreated()
+        {
+            return View();
         }
 
         // GET: Partners/Edit/5

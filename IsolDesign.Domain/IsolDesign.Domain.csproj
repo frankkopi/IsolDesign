@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Handlers\CreateApplicantHandler.cs" />
+    <Compile Include="Handlers\CreateApplicant_Handler.cs" />
     <Compile Include="Handlers\CreateCompetency_Handler.cs" />
     <Compile Include="Handlers\CreatePartner_Handler.cs" />
     <Compile Include="Handlers\Delete_Handler.cs" />
@@ -52,7 +52,7 @@
     <Compile Include="Handlers\ImageHandler.cs" />
     <Compile Include="Handlers\SavePortfolioImages_Handler.cs" />
     <Compile Include="Helpers\Extensions.cs" />
-    <Compile Include="Interfaces\ICreateApplicantHandler.cs" />
+    <Compile Include="Interfaces\ICreateApplicant_Handler.cs" />
     <Compile Include="Interfaces\ICreateCompetency_Handler.cs" />
     <Compile Include="Interfaces\ICreatePartner_Handler.cs" />
     <Compile Include="Interfaces\IDelete_Handler.cs" />

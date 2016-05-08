@@ -7,9 +7,9 @@ namespace IsolDesign.Domain.Handlers
     public class SavePortfolioImages_Handler
     {
         private HttpFileCollectionBase _images;
-        private CreateApplicantHandler _handler;
+        private CreateApplicant_Handler _handler;
 
-        public SavePortfolioImages_Handler(CreateApplicantHandler handler, HttpFileCollectionBase images)
+        public SavePortfolioImages_Handler(CreateApplicant_Handler handler, HttpFileCollectionBase images)
         {
             this._handler = handler;
             this._images = images;

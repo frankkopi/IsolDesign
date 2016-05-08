@@ -31,7 +31,7 @@ namespace IsolDesign.DataAccess
             this.Teams = new TeamRepository(_context);
         }
 
-        public IApplicantRepository Applicants { get; private set; }
+        public IApplicantRepository Applicants { get; set; }
         public IAssignmentRepository Assignments { get; private set; }       
         public ICompetencyRepository Competencies { get; private set; }
         public ICustomerRepository Customers { get; private set; }

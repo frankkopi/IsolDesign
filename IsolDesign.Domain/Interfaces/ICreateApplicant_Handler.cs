@@ -4,7 +4,7 @@ using System.Web;
 
 namespace IsolDesign.Domain.Interfaces
 {
-    public interface ICreateApplicantHandler
+    public interface ICreateApplicant_Handler
     {
         void SaveProfileImage();
         void SavePortfolioImages();
