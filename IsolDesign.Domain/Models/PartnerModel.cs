@@ -4,14 +4,6 @@ namespace IsolDesign.Domain.Models
 {
     public class PartnerModel
     {
-        public PartnerModel()
-        {
-            this.Competencies = new List<CompetencyModel>();
-            this.Portfolio = new List<PortfolioSubjectModel>();
-            this.Subcontractors = new List<SubcontractorModel>();
-            this.Assignments = new List<PartnerAssignmentModel>();
-        }
-
         public int PartnerId { get; set; }
 
         public string Name { get; set; }
@@ -26,7 +18,7 @@ namespace IsolDesign.Domain.Models
 
         public string Email { get; set; }
 
-        public string Photo { get; set; }
+        public string ProfileImagePath { get; set; }
 
         public string Description { get; set; }
 
@@ -38,8 +30,9 @@ namespace IsolDesign.Domain.Models
 
         public string Homepage { get; set; }
 
-        public int TeamId { get; set; } // FK
+        public int? TeamId { get; set; } // FK
 
+        public virtual TeamModel Team { get; set; }
         public ICollection<CompetencyModel> Competencies { get; set; }
         public ICollection<PortfolioSubjectModel> Portfolio { get; set; }
         public ICollection<SubcontractorModel> Subcontractors { get; set; }

@@ -34,6 +34,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Reflection.Context" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,18 +47,26 @@
     <Compile Include="Handlers\CreateApplicant_Handler.cs" />
     <Compile Include="Handlers\CreateCompetency_Handler.cs" />
     <Compile Include="Handlers\CreatePartner_Handler.cs" />
+    <Compile Include="Handlers\CreateTeam_Handler.cs" />
     <Compile Include="Handlers\Delete_Handler.cs" />
     <Compile Include="Handlers\GetApplicants_Handler.cs" />
     <Compile Include="Handlers\GetCompetencies_Handler.cs" />
+    <Compile Include="Handlers\GetPartners_Handler.cs" />
+    <Compile Include="Handlers\GetProjects_Handler.cs" />
+    <Compile Include="Handlers\GetTeams_Handler.cs" />
     <Compile Include="Handlers\ImageHandler.cs" />
     <Compile Include="Handlers\SavePortfolioImages_Handler.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Interfaces\ICreateApplicant_Handler.cs" />
     <Compile Include="Interfaces\ICreateCompetency_Handler.cs" />
     <Compile Include="Interfaces\ICreatePartner_Handler.cs" />
+    <Compile Include="Interfaces\ICreateTeam_Handler.cs" />
     <Compile Include="Interfaces\IDelete_Handler.cs" />
     <Compile Include="Interfaces\IGetApplicants_Handler.cs" />
     <Compile Include="Interfaces\IGetCompetencies_Handler.cs" />
+    <Compile Include="Interfaces\IGetPartners_Handler.cs" />
+    <Compile Include="Interfaces\IGetProjects_Handler.cs" />
+    <Compile Include="Interfaces\IGetTeams_Handler.cs" />
     <Compile Include="Interfaces\Interfaces Models\IApplicantModel.cs" />
     <Compile Include="Interfaces\Interfaces Models\ICompetencyModel.cs" />
     <Compile Include="Interfaces\Interfaces Models\IPortfolioSubjectModel.cs" />
@@ -67,7 +76,9 @@
     <Compile Include="Models\PartnerAssignmentModel.cs" />
     <Compile Include="Models\PartnerModel.cs" />
     <Compile Include="Models\PortfolioSubjectModel.cs" />
+    <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\SubcontractorModel.cs" />
+    <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
