@@ -56,7 +56,11 @@
     <Compile Include="Handlers\GetTeams_Handler.cs" />
     <Compile Include="Handlers\ImageHandler.cs" />
     <Compile Include="Handlers\SavePortfolioImages_Handler.cs" />
+    <Compile Include="Helpers\ApplicantConverter.cs" />
+    <Compile Include="Helpers\CompetencyConverter.cs" />
     <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\PartnerConverter.cs" />
+    <Compile Include="Helpers\PortfolioConverter.cs" />
     <Compile Include="Interfaces\ICreateApplicant_Handler.cs" />
     <Compile Include="Interfaces\ICreateCompetency_Handler.cs" />
     <Compile Include="Interfaces\ICreatePartner_Handler.cs" />

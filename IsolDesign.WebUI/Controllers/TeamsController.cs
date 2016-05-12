@@ -20,7 +20,10 @@ namespace IsolDesign.WebUI.Controllers
 
             TeamsIndexViewModel vm = new TeamsIndexViewModel
             {
-                Teams = teamModels
+                Teams = teamModels,
+                Team = new TeamModel(),
+                Project = new ProjectModel()
+
             };
             return View(vm);
         }
@@ -35,6 +38,7 @@ namespace IsolDesign.WebUI.Controllers
         public ActionResult Create()
         {
             TeamModel teamModel = new TeamModel();
+            PartnerModel partnerModel = new PartnerModel();
             ICreateTeam_Handler handler = new CreateTeam_Handler();
             var partnerModels = handler.GetPartners();
             var projectModels = handler.GetProjects();
@@ -42,6 +46,7 @@ namespace IsolDesign.WebUI.Controllers
             CreateTeamViewModel vm = new CreateTeamViewModel()
             {
                 Team = teamModel,
+                Partner = partnerModel,
                 Partners = partnerModels,
                 Projects = projectModels
             };
@@ -51,18 +56,20 @@ namespace IsolDesign.WebUI.Controllers
 
         // POST: Teams/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        //public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateTeamViewModel model, IEnumerable<int> partnerIds)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                ICreateTeam_Handler handler = new CreateTeam_Handler();
+                handler.CreateTeam(model.Team, partnerIds);
+                handler.Execute();
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+           
+             return View();
+            
         }
 
         //// GET: Teams/Edit/5

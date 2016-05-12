@@ -42,6 +42,7 @@ namespace IsolDesign.Domain.Handlers
                 ProjectModel projectModel = new ProjectModel
                 {
                     ProjectId = team.Project.ProjectId,
+                    Description = team.Project.Description,
                     Name = team.Project.Name,
                     StartDate = team.Project.StartDate,
                     Deadline = team.Project.Deadline,
@@ -53,57 +54,61 @@ namespace IsolDesign.Domain.Handlers
                     Teams = null
                 };
 
-                // converting Partner to PartnerModel for project leader
-                PartnerModel projectLeader = new PartnerModel
+                // converting Partner to PartnerModel for projectModel.ProjectLeader
+                if (team.Project.ProjectLeader != null)
                 {
-                    PartnerId = team.Project.ProjectLeader.PartnerId,
-                    Name = team.Project.ProjectLeader.Name,
-                    Address = team.Project.ProjectLeader.Address,
-                    City = team.Project.ProjectLeader.City,
-                    Country = team.Project.ProjectLeader.Country,
-                    Phone = team.Project.ProjectLeader.Phone,
-                    Email = team.Project.ProjectLeader.Email,
-                    ProfileImagePath = team.Project.ProjectLeader.ProfileImagePath,
-                    Description = team.Project.ProjectLeader.Description,
-                    SkypeLink = team.Project.ProjectLeader.SkypeLink,
-                    Facebook = team.Project.ProjectLeader.Facebook,
-                    LinkedIn = team.Project.ProjectLeader.LinkedIn,
-                    Homepage = team.Project.ProjectLeader.Homepage,
-                    Portfolio = null,
-                    Competencies = null
-                };
-
-                // transform List<PortfolioSubject> til List<PortfolioSubjectModel> for project leader
-                List<PortfolioSubjectModel> portfolio = new List<PortfolioSubjectModel>();
-                foreach (var portSubject in team.Project.ProjectLeader.Portfolio)
-                {
-                    PortfolioSubjectModel portfolioSubjectModel = new PortfolioSubjectModel
+                    PartnerModel projectLeader = new PartnerModel
                     {
-                        Name = portSubject.Name,
-                        Date = portSubject.Date,
-                        Description = portSubject.Description,
-                        Photo1 = portSubject.ImagePath1,
-                        Photo2 = portSubject.ImagePath2,
-                        Photo3 = portSubject.ImagePath3
+                        PartnerId = team.Project.ProjectLeader.PartnerId,
+                        Name = team.Project.ProjectLeader.Name,
+                        Address = team.Project.ProjectLeader.Address,
+                        City = team.Project.ProjectLeader.City,
+                        Country = team.Project.ProjectLeader.Country,
+                        Phone = team.Project.ProjectLeader.Phone,
+                        Email = team.Project.ProjectLeader.Email,
+                        ProfileImagePath = team.Project.ProjectLeader.ProfileImagePath,
+                        Description = team.Project.ProjectLeader.Description,
+                        SkypeLink = team.Project.ProjectLeader.SkypeLink,
+                        Facebook = team.Project.ProjectLeader.Facebook,
+                        LinkedIn = team.Project.ProjectLeader.LinkedIn,
+                        Homepage = team.Project.ProjectLeader.Homepage,
+                        Portfolio = null,
+                        Competencies = null
                     };
-                    portfolio.Add(portfolioSubjectModel);
-                }
-                projectLeader.Portfolio = portfolio;
 
-                // transform List<Competency> til List<CompetencyModel> for project leader
-                var competencyModels = new List<CompetencyModel>();
-                foreach (var competency in team.Project.ProjectLeader.Competencies)
-                {
-                    CompetencyModel competencyModel = new CompetencyModel
+                    // transform List<PortfolioSubject> til List<PortfolioSubjectModel> for project leaders portfolio
+                    List<PortfolioSubjectModel> portfolio = new List<PortfolioSubjectModel>();
+                    foreach (var portSubject in team.Project.ProjectLeader.Portfolio)
                     {
-                        CompetencyId = competency.CompetencyId,
-                        Name = competency.Name,
-                        Description = competency.Description
-                    };
-                    competencyModels.Add(competencyModel);
+                        PortfolioSubjectModel portfolioSubjectModel = new PortfolioSubjectModel
+                        {
+                            Name = portSubject.Name,
+                            Date = portSubject.Date,
+                            Description = portSubject.Description,
+                            Photo1 = portSubject.ImagePath1,
+                            Photo2 = portSubject.ImagePath2,
+                            Photo3 = portSubject.ImagePath3
+                        };
+                        portfolio.Add(portfolioSubjectModel);
+                    }
+                    projectLeader.Portfolio = portfolio;
+
+                    // transform List<Competency> til List<CompetencyModel> for project leaders competencies
+                    var competencyModels = new List<CompetencyModel>();
+                    foreach (var competency in team.Project.ProjectLeader.Competencies)
+                    {
+                        CompetencyModel competencyModel = new CompetencyModel
+                        {
+                            CompetencyId = competency.CompetencyId,
+                            Name = competency.Name,
+                            Description = competency.Description
+                        };
+                        competencyModels.Add(competencyModel);
+                    }
+                    projectLeader.Competencies = competencyModels;
+                    projectModel.ProjectLeader = projectLeader;
                 }
-                projectLeader.Competencies = competencyModels;
-                projectModel.ProjectLeader = projectLeader;
+
 
                 List<TeamModel> teams = new List<TeamModel>();
                 foreach (var teamInProject in team.Project.Teams)

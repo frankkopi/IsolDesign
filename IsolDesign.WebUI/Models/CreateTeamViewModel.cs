@@ -10,6 +10,8 @@ namespace IsolDesign.WebUI.Models
     {
         public TeamModel Team { get; set; }
 
+        public PartnerModel Partner { get; set; }
+
         public IEnumerable<PartnerModel> Partners { get; set; }
 
         public IEnumerable<ProjectModel> Projects { get; set; }

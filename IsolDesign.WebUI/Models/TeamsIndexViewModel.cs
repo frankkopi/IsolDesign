@@ -9,5 +9,9 @@ namespace IsolDesign.WebUI.Models
     public class TeamsIndexViewModel
     {
         public IEnumerable<TeamModel> Teams { get; set; }
+
+        public TeamModel Team { get; set; }
+
+        public ProjectModel Project { get; set; }
     }
 }

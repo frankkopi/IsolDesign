@@ -1,8 +1,7 @@
 ﻿using IsolDesign.DataAccess;
 using IsolDesign.DataAccess.DBContext;
-using IsolDesign.DataAccess.Interfaces;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
-using IsolDesign.DataAccess.Repositories;
+using IsolDesign.Domain.Helpers;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ namespace IsolDesign.Domain.Handlers
             this._unitOfWork = new UnitOfWork(_context);
         }
 
-        // Get all applicants
+        // Get all applicants and convert them to applicantModels
         public IEnumerable<ApplicantModel> GetApplicants()
         {
             var applicantModels = new Stack<ApplicantModel>();
@@ -28,54 +27,17 @@ namespace IsolDesign.Domain.Handlers
 
             foreach (var applicant in applicantsFromDB)
             {
-                // transform List<PortfolioSubject> til List<PortfolioSubjectModel>
-                var portfolio = new List<PortfolioSubjectModel>();
-                foreach (var portSubject in applicant.Portfolio)
-                {
-                    PortfolioSubjectModel portfolioSubjectModel = new PortfolioSubjectModel
-                    {
-                        Name = portSubject.Name,
-                        Date = portSubject.Date,
-                        Description = portSubject.Description,
-                        Photo1 = portSubject.ImagePath1,
-                        Photo2 = portSubject.ImagePath2,
-                        Photo3 = portSubject.ImagePath3
-                    };
-                    portfolio.Add(portfolioSubjectModel);
-                }
+                // convert Applicant to ApplicantModel
+                var applicantModel = ApplicantConverter.ConvertToApplicantModel(applicant);
 
-                // transform List<Competency> til List<CompetencyModel>
-                var competencyModels = new List<CompetencyModel>();
-                foreach (var competency in applicant.Competencies)
-                {
-                    CompetencyModel competencyModel = new CompetencyModel
-                    {
-                        CompetencyId = competency.CompetencyId,
-                        Name = competency.Name,
-                        Description = competency.Description
-                    };
-                    competencyModels.Add(competencyModel);
-                }
+                // convert List<PortfolioSubject> to List<PortfolioSubjectModel>
+                var portfolio = PortfolioConverter.ConvertToPortfolioSubjectModels(applicant.Portfolio);
+                applicantModel.Portfolio = portfolio;
 
+                // convert List<Competency> to List<CompetencyModel>
+                var competencyModels = CompetencyConverter.ConvertToCompetencyModels(applicant.Competencies);
+                applicantModel.Competencies = competencyModels;
 
-                var applicantModel = new ApplicantModel
-                {
-                    ApplicantId = applicant.ApplicantId,
-                    Name = applicant.Name,
-                    Address = applicant.Address,
-                    City = applicant.City,
-                    Country = applicant.Country,
-                    Phone = applicant.Phone,
-                    Email = applicant.Email,
-                    ProfileImagePath = applicant.ProfileImagePath,
-                    Description = applicant.Description,
-                    SkypeLink = applicant.SkypeLink,
-                    Facebook = applicant.Facebook,
-                    LinkedIn = applicant.LinkedIn,
-                    Homepage = applicant.Homepage,
-                    Portfolio = portfolio,
-                    Competencies = competencyModels
-                };
                 applicantModels.Push(applicantModel);
             }
             return applicantModels;
@@ -84,25 +46,13 @@ namespace IsolDesign.Domain.Handlers
         // Get a single applicant
         public ApplicantModel GetApplicant(int id)
         {
-            var item = _unitOfWork.Applicants.Get(id);
+            var applicant = _unitOfWork.Applicants.Get(id);
 
-            var applicantModel = new ApplicantModel()
-            {
-                ApplicantId = item.ApplicantId,
-                Name = item.Name,
-                Address = item.Address,
-                City = item.City,
-                Country = item.Country,
-                Phone = item.Phone,
-                Email = item.Email,
-                ProfileImagePath = item.ProfileImagePath,
-                Description = item.Description,
-                SkypeLink = item.SkypeLink,
-                Facebook = item.Facebook,
-                LinkedIn = item.LinkedIn,
-                Homepage = item.Homepage
-            };
+            var applicantModel = ApplicantConverter.ConvertToApplicantModel(applicant);
+   
             return applicantModel;
         }
     }
 }
+
+

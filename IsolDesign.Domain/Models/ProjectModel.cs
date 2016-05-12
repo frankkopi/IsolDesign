@@ -12,6 +12,10 @@ namespace IsolDesign.Domain.Models
         [Display(Name = "Name of Project")]
         public string Name { get; set; }
 
+        [Required]
+        [Display(Name = "Project Description")]
+        public string Description { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Project Start Date")]

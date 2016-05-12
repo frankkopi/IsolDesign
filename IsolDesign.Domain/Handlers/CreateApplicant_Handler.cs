@@ -6,8 +6,6 @@ using IsolDesign.Domain.Interfaces.Interfaces_Models;
 using System.Web;
 using System.Web.Hosting;
 using IsolDesign.Domain.Models;
-using System;
-using System.Collections;
 using IsolDesign.Data.Models;
 using System.Collections.Generic;
 using IsolDesign.Domain.Helpers;
@@ -81,7 +79,7 @@ namespace IsolDesign.Domain.Handlers
             SaveImage(profileImage, "profile", null);
         }
 
-        // Save images for portfolioSubject1 and portfolioSubject2
+        // Save all images for portfolioSubject1 and portfolioSubject2
         public void SavePortfolioImages()
         {
             for (int i = 1; i <= 6; i++)

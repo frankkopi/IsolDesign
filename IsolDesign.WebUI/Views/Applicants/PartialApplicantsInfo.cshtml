@@ -10,10 +10,10 @@
             <dd>
                 <img src="../../@Model.ProfileImagePath" class="thumbnail applicantsImageInfo" />
             </dd>
-            <dt>
+            <dt class="addMarginTop">
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
-            <dd>
+            <dd class="addMarginTop">
                 @Html.DisplayFor(model => model.Name)
             </dd>
             <dt>
@@ -64,10 +64,10 @@
             <dd>
                 @Html.DisplayFor(model => model.LinkedIn)
             </dd>
-            <dt>
+            <dt class="addMarginTop">
                 @Html.DisplayNameFor(model => model.Competencies)
             </dt>
-            <dd>
+            <dd class="addMarginTop">
                 <table class="table table-bordered">
                     <tr>
                         <th>Competency</th>
@@ -110,28 +110,28 @@
                     <dd>
                         @portfolioSubject.Name
                     </dd>
-                    <dt>
+                    <dt class="addMarginTop">
                         @Html.DisplayNameFor(x => portfolioSubject.Description)
                     </dt>
-                    <dd>
-                        @portfolioSubject.Description
+                    <dd class="addMarginTop">
+                        @Html.TextAreaFor(model => portfolioSubject.Description, new { @class = "form-control showTextArea", @readonly = "readonly" })
                     </dd>
-                    <dt>
+                    <dt class="addMarginTop">
                         @Html.DisplayNameFor(x => portfolioSubject.Photo1)
                     </dt>
-                    <dd>
+                    <dd class="addMarginTop">
                         <img src="@portfolioSubject.Photo1" />
                     </dd>
-                    <dt>
+                    <dt class="addMarginTop">
                         @Html.DisplayNameFor(x => portfolioSubject.Photo2)
                     </dt>
-                    <dd>
+                    <dd class="addMarginTop">
                         <img src="@portfolioSubject.Photo2" />
                     </dd>
-                    <dt>
+                    <dt class="addMarginTop">
                         @Html.DisplayNameFor(x => portfolioSubject.Photo3)
                     </dt>
-                    <dd>
+                    <dd class="addMarginTop">
                         <img src="@portfolioSubject.Photo3" />
                     </dd>
                 </dl>

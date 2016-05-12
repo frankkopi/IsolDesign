@@ -281,6 +281,7 @@
     <Content Include="Views\Partners\PartialPartnersInfo.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Teams\Create.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

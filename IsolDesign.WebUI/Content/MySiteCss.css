@@ -41,3 +41,7 @@ dl dd .showTextArea {
     height: 400px;
 }
 
+dl dt.addMarginTop, dl dd.addMarginTop {
+    margin-top: 20px;
+}
+

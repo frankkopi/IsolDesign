@@ -30,22 +30,22 @@ namespace IsolDesign.WebUI.Controllers
         //    return View();
         //}
 
-        //public ActionResult CreatePartner(int applicantId)
-        //{
-        //    ICreatePartner_Handler handler = new CreatePartner_Handler(applicantId);
-        //    handler.CreatePartner();
-        //    handler.Execute();
+        public ActionResult CreatePartner(int applicantId)
+        {
+            ICreatePartner_Handler handler = new CreatePartner_Handler(applicantId);
+            handler.CreatePartner();
+            handler.Execute();
 
-        //    IDelete_Handler deleteHandler = new Delete_Handler();
-        //    deleteHandler.DeleteApplicant(applicantId);
+            IDelete_Handler deleteHandler = new Delete_Handler();
+            deleteHandler.DeleteApplicant(applicantId);
 
-        //    return RedirectToAction("ConfirmPartnerCreated");
-        //}
+            return RedirectToAction("ConfirmPartnerCreated");
+        }
 
-        //public ActionResult ConfirmPartnerCreated()
-        //{
-        //    return View();
-        //}
+        public ActionResult ConfirmPartnerCreated()
+        {
+            return View();
+        }
 
         //// GET: Partners/Edit/5
         //public ActionResult Edit(int id)

@@ -39,6 +39,7 @@ namespace IsolDesign.Domain.Handlers
                 ProjectModel projectModel = new ProjectModel()
                 {
                     ProjectId = project.ProjectId,
+                    Description = project.Description,
                     Name = project.Name,
                     StartDate = project.StartDate,
                     Deadline = project.Deadline,
