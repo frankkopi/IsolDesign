@@ -6,6 +6,7 @@ using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using System;
 using System.Collections.Generic;
+using IsolDesign.Domain.Helpers;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,22 +26,10 @@ namespace IsolDesign.Domain.Handlers
 
         public IEnumerable<CompetencyModel> GetCompetencies()
         {
-            var competencyModels = new List<CompetencyModel>();
             var competencies = _unitOfWork.Competencies.GetAll();
             _unitOfWork.Dispose();
 
-            foreach(var competency in competencies)
-            {
-                CompetencyModel competencymodel = new CompetencyModel
-                {
-                    CompetencyId = competency.CompetencyId,
-                    Name = competency.Name,
-                    Description = competency.Description,
-                    Applicants = null,
-                    Partners = null
-                };
-                competencyModels.Add(competencymodel);
-            }
+            var competencyModels = CompetencyConverter.ConvertToCompetencyModels2(competencies);
 
             return competencyModels;
         }

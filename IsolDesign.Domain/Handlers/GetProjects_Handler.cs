@@ -1,14 +1,10 @@
 ﻿using IsolDesign.Domain.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IsolDesign.Data.Models;
 using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.DataAccess;
 using IsolDesign.Domain.Models;
+using IsolDesign.Domain.Helpers;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -36,42 +32,12 @@ namespace IsolDesign.Domain.Handlers
 
             foreach (var project in projectsFromDb)
             {
-                ProjectModel projectModel = new ProjectModel()
-                {
-                    ProjectId = project.ProjectId,
-                    Description = project.Description,
-                    Name = project.Name,
-                    StartDate = project.StartDate,
-                    Deadline = project.Deadline,
-                    PartnerId = project.PartnerId, // a partner is chosen as a project leader
-                    Teams = null,
-                    ProjectLeader = null
-                };
+                ProjectModel projectModel = ProjectConverter.ConvertToProjectModel(project);
 
                 if (project.PartnerId != null)
                 {
-                    // converting Partner to PartnerModel (the project leader)
-                    PartnerModel projectLeader = new PartnerModel
-                    {
-                        PartnerId = project.ProjectLeader.PartnerId,
-                        Name = project.ProjectLeader.Name,
-                        Address = project.ProjectLeader.Address,
-                        City = project.ProjectLeader.City,
-                        Country = project.ProjectLeader.Country,
-                        Phone = project.ProjectLeader.Phone,
-                        Email = project.ProjectLeader.Email,
-                        ProfileImagePath = project.ProjectLeader.ProfileImagePath,
-                        Description = null,
-                        SkypeLink = null,
-                        Facebook = null,
-                        LinkedIn = null,
-                        Homepage = null,
-                        TeamId = null,
-                        Competencies = null,
-                        Portfolio = null,
-                        Subcontractors = null,
-                        Assignments = null
-                    };
+                    // convert Partner to PartnerModel (the project leader)
+                    PartnerModel projectLeader = PartnerConverter.ConvertToPartnerModel2(project.ProjectLeader);
                     projectModel.ProjectLeader = projectLeader;
                 }
 
@@ -96,6 +62,10 @@ namespace IsolDesign.Domain.Handlers
         }
     }
 }
+
+
+
+
 
 
 

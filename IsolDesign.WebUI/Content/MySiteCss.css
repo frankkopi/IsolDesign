@@ -45,3 +45,18 @@ dl dt.addMarginTop, dl dd.addMarginTop {
     margin-top: 20px;
 }
 
+#searchBox {
+    width: 350px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.addToTeamButton {
+    width: 100px;
+    height: 25px;
+    background-color: forestgreen;
+    color: #ffffff;
+    text-align: center;
+    border: 1px solid #333333;
+    border-radius: 3px;
+}

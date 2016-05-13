@@ -32,6 +32,198 @@
             </div>
         </div>
 
+        <!-- *********************** SEARCH FOR PARTNERS AND FILTER COMPETENCIES ********************************* -->
+        <div>
+            @Html.Label("Search Competencies", htmlAttributes: new { @class = "control-label col-md-2", @style="padding-right: 25px;"})
+            <div class="col-md-10" style="padding-left: 5px; margin-bottom: 10px;">
+                <input id="searchBox" type="text" name="searchString" />
+                <div id="filterButton" class="btn btn-default">Filter</div>
+                <div id="getAllButton" class="btn btn-default">Get All</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div style="height:200px; overflow:auto;">
+                    <table id="partnerTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Partner.Name)</th>
+                                <th>@Html.DisplayNameFor(model => model.Partner.City)</th>
+                                <th>@Html.DisplayNameFor(model => model.Partner.Country)</th>
+                                <th>@Html.DisplayNameFor(model => model.Partner.Competencies)</th>
+                                <th>Select Partner</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+
+                            <!-- TABLE CONTENT IS CREATED IN THE SCRIPT -->
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section FilterCompetencies {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            var partners = @Html.Raw(Json.Encode(Model.Partners));
+            console.log(partners);
+            
+            createDefaultTable();
+
+            $("#filterButton").click(function() {
+                emptyAndGetAll();
+                var $searchText = $("#searchBox").val();
+
+                $("table tbody .tableRow .target").each(function() {
+                    if ($(this).html().toLowerCase().indexOf($searchText) >= 0)
+                    {
+                        $("table tbody .tableRow").each(function () {
+                            $(this).toggleClass('hide');
+                        });
+                        $(this).parent().addClass('show');
+                    }
+                });
+            });
+
+
+            $("#getAllButton").click(function() {
+                emptyAndGetAll();
+            });
+
+            function emptyAndGetAll() {
+                $("#tableBody").empty();
+                createDefaultTable();
+            }
+
+            function createDefaultTable() {
+                var $tableBody = $("#tableBody");
+                for (var i = 0; i < partners.length; i++) {
+                    var $competencies = "";
+                    for (var j = 0; j < partners[i].Competencies.length; j++) {
+                        $competencies += partners[i].Competencies[j].Name + ", ";
+                    }
+                    var $rowTemplate = "<tr class='tableRow'>" +
+                                            "<td>" + partners[i].Name + "</td>" +
+                                            "<td>" + partners[i].City + "</td>" +
+                                            "<td>" + partners[i].Country + "</td>" +
+                                            "<td class='target'>" + $competencies + "</td>" +
+                                            "<td><div class='addToTeamButton'>Add To Team</div></td>" +
+                                       "</tr>";
+
+                    $tableBody.append($rowTemplate);
+                }
+            }
+        });
+    </script>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+
+        @*@{
+            foreach (var partner in Model.Partners)
+            {
+                var competencies = "";
+                foreach (var competency in partner.Competencies)
+                {
+                    competencies += competency.Name + ", ";
+                }
+                <tr class="tableRow">
+                    <td>@partner.Name</td>
+                    <td>@partner.City</td>
+                    <td>@partner.Country</td>
+                    <td class="target">@competencies</td>
+                    <td><input type="checkbox" name="partnerIds" value="@partner.PartnerId" /></td>
+                </tr>
+            }
+        }*@
+
+
+        @*//var array = [];
+        //$("table tbody .tableRow .target").each(function (index) {
+        //    array[index] = $(this).html();
+        //});
+        //for (var i = 0; i < array.length; i++) {
+        //    console.log(array[i]);
+        //}*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model IsolDesign.WebUI.Models.CreateTeamViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create A Team</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Team.TeamId)
+
+    <div class="form-horizontal">
+        <hr /><br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Team.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Team.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Team.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Assign Team to Project", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    var selectList = new SelectList(Model.Projects, "ProjectId", "Name");
+                }
+                @Html.DropDownListFor(model => model.Team.ProjectId, selectList, "Choose Project", new { @class = "form-control" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -76,7 +268,7 @@
             </div>
         </div>
     </div>
-}
+                                }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -86,30 +278,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-
-
-
-
-
-@*<div class="form-group">
-        @Html.Label("Assign Team to Project", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Team.ProjectId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Team.ProjectId, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-
-
-
-@*<div class="form-group">
-    @Html.Label("Assign Team to Project", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @{
-            var selectList = new SelectList(Model.Projects, "ProjectId", "Name");
-        }
-        @Html.DropDownListFor(model => model.Team.ProjectId, selectList, "Default label", new { @class = "css-class" })
-    </div>
-</div>*@
-
+    *@

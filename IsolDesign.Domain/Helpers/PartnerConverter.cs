@@ -28,5 +28,33 @@ namespace IsolDesign.Domain.Helpers
             };
             return partnerModel;
         }
+
+
+        // convert Partner to PartnerModel
+        public static PartnerModel ConvertToPartnerModel2(Partner partner)
+        {
+            var partnerModel = new PartnerModel()
+            {
+                PartnerId = partner.PartnerId,
+                Name = partner.Name,
+                Address = partner.Address,
+                City = partner.City,
+                Country = partner.Country,
+                Phone = partner.Phone,
+                Email = partner.Email,
+                ProfileImagePath = partner.ProfileImagePath,
+                Description = null,
+                SkypeLink = null,
+                Facebook = null,
+                LinkedIn = null,
+                Homepage = null,
+                TeamId = null,
+                Competencies = null,
+                Portfolio = null,
+                Subcontractors = null,
+                Assignments = null
+            };
+            return partnerModel;
+        }
     }
 }

@@ -39,6 +39,7 @@ namespace IsolDesign.WebUI.Controllers
         {
             TeamModel teamModel = new TeamModel();
             PartnerModel partnerModel = new PartnerModel();
+
             ICreateTeam_Handler handler = new CreateTeam_Handler();
             var partnerModels = handler.GetPartners();
             var projectModels = handler.GetProjects();

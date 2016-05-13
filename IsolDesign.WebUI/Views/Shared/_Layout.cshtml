@@ -28,6 +28,7 @@
                     <li>@Html.ActionLink("Competencies", "Index", "Competencies")</li>
                     <li>@Html.ActionLink("Partners", "Index", "Partners")</li>
                     <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                    <li>@Html.ActionLink("Teams", "Index", "Teams")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -44,7 +45,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    @RenderSection("MyScripts", required: false)
+    @RenderSection("ApplicantAndPartnerInfo", required: false)
     @RenderSection("ShowPortfolioFields", required: false)
+    @RenderSection("FilterCompetencies", required: false)
 </body>
 </html>

@@ -15,14 +15,26 @@
         <th>@Html.DisplayNameFor(model => model.Project.StartDate)</th>
         <th>@Html.DisplayNameFor(model => model.Project.Deadline)</th>
         <th>@Html.DisplayNameFor(model => model.Project.ProjectLeader)</th>
+        <th>@Html.DisplayNameFor(model => model.Project.Teams)</th>
     </tr>
     
-@foreach (var item in Model.Projects.ToList()) {
+@foreach (var item in Model.Projects.ToList())
+{
     <tr>
         <td>@Html.DisplayFor(model => item.Name)</td>
         <td>@Html.DisplayFor(model => item.StartDate)</td>
         <td>@Html.DisplayFor(model => item.Deadline)</td>
         <td>@Html.DisplayFor(model => item.ProjectLeader.Name)</td>
+        <td>
+            <table border="0" cellspacing="0" cellpadding="0">
+                @foreach (var team in item.Teams)
+                {
+                    <tr>
+                        <td style="border: none; padding: 0;">@Html.DisplayFor(model => team.Name)</td>
+                    </tr>
+                }
+            </table>
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
