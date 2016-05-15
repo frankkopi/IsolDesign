@@ -45,7 +45,7 @@
         <div class="form-group">
             @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div style="height:200px; overflow:auto;">
+                <div style="height:300px; overflow:auto;">
                     <table id="partnerTable" class="table table-bordered">
                         <thead>
                             <tr>
@@ -58,7 +58,7 @@
                         </thead>
                         <tbody id="tableBody">
 
-                            <!-- TABLE CONTENT IS CREATED IN THE SCRIPT -->
+                            <!-- TABLE BODY CONTENT IS CREATED IN THE SCRIPT -->
 
                         </tbody>
                     </table>
@@ -82,22 +82,25 @@
     <script type="text/javascript">
         $(document).ready(function () {
             
-            var partners = @Html.Raw(Json.Encode(Model.Partners));
-            console.log(partners);
+            var $partners = @Html.Raw(Json.Encode(Model.Partners));
+            var $chosenPartners = [];
+            console.log($partners);
             
             createDefaultTable();
+            activateAddToTeamBtns();
 
             $("#filterButton").click(function() {
                 emptyAndGetAll();
+                activateAddToTeamBtns();
                 var $searchText = $("#searchBox").val();
 
                 $("table tbody .tableRow .target").each(function() {
                     if ($(this).html().toLowerCase().indexOf($searchText) >= 0)
                     {
-                        $("table tbody .tableRow").each(function () {
-                            $(this).toggleClass('hide');
-                        });
-                        $(this).parent().addClass('show');
+                        $(this).parent().show();
+                    }
+                    else {
+                        $(this).parent().hide();
                     }
                 });
             });
@@ -105,6 +108,8 @@
 
             $("#getAllButton").click(function() {
                 emptyAndGetAll();
+                activateAddToTeamBtns();
+                $("#searchBox").val("");
             });
 
             function emptyAndGetAll() {
@@ -114,22 +119,51 @@
 
             function createDefaultTable() {
                 var $tableBody = $("#tableBody");
-                for (var i = 0; i < partners.length; i++) {
+                var $clicked = "";
+                for (var i = 0; i < $partners.length; i++) {
+                    if ($partners[i].hasOwnProperty('Chosen')) {
+                        $clicked = "<td><div id='partnerBtn" + i +"' class='addToTeamBtn hasBeenClicked'>Add To Team</div></td>";
+                    }
+                    else {
+                        $clicked = "<td><div id='partnerBtn" + i +"' class='addToTeamBtn hasNotBeenClicked'>Add To Team</div></td>";
+                    }
+
                     var $competencies = "";
-                    for (var j = 0; j < partners[i].Competencies.length; j++) {
-                        $competencies += partners[i].Competencies[j].Name + ", ";
+                    for (var j = 0; j < $partners[i].Competencies.length; j++) {
+                        $competencies += $partners[i].Competencies[j].Name + ", ";
                     }
                     var $rowTemplate = "<tr class='tableRow'>" +
-                                            "<td>" + partners[i].Name + "</td>" +
-                                            "<td>" + partners[i].City + "</td>" +
-                                            "<td>" + partners[i].Country + "</td>" +
+                                            "<td>" + $partners[i].Name + "</td>" +
+                                            "<td>" + $partners[i].City + "</td>" +
+                                            "<td>" + $partners[i].Country + "</td>" +
                                             "<td class='target'>" + $competencies + "</td>" +
-                                            "<td><div class='addToTeamButton'>Add To Team</div></td>" +
+                                            $clicked +
                                        "</tr>";
-
                     $tableBody.append($rowTemplate);
                 }
             }
+
+
+            // activate Add To Team button for every partner
+            function activateAddToTeamBtns() {
+                for (var i = 0; i < $partners.length; i++) {
+                    if ($partners[i].Chosen != true) 
+                    {
+                        function clickHandler(num) {    
+                            $("#partnerBtn" + i).click (function() {
+                                $(this).css('background-color', 'red');
+                                $(this).addClass('hasBeenClicked');
+                                $partners[num]['Chosen'] = true;
+                                console.log($partners[num])
+                                $chosenPartners.push($partners[num]);
+                                console.log($chosenPartners)
+                            })
+                        }
+                        clickHandler(i);
+                    }
+                }
+            }
+
         });
     </script>
 }
