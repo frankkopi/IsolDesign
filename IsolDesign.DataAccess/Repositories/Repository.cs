@@ -2,6 +2,7 @@
 using IsolDesign.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -67,6 +68,12 @@ namespace IsolDesign.DataAccess.Repositories
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().RemoveRange(entities);
+        }
+
+        public void Update(TEntity entity)
+        {
+            Context.Set<TEntity>().Attach(entity);
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         public void DeleteEntity(int id)

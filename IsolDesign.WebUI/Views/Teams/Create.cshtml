@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <!-- *********************** SEARCH FOR PARTNERS AND FILTER COMPETENCIES ********************************* -->
+        <!-- *********************** SEARCH FOR PARTNERS AND FILTER THE COMPETENCIES ********************************* -->
         <div>
             @Html.Label("Search Competencies", htmlAttributes: new { @class = "control-label col-md-2", @style="padding-right: 25px;"})
             <div class="col-md-10" style="padding-left: 5px; margin-bottom: 10px;">
@@ -54,6 +54,8 @@
                                 <th>@Html.DisplayNameFor(model => model.Partner.Country)</th>
                                 <th>@Html.DisplayNameFor(model => model.Partner.Competencies)</th>
                                 <th>Select Partner</th>
+                                <th>Other Team</th>
+                                <th>PL</th> 
                             </tr>
                         </thead>
                         <tbody id="tableBody">
@@ -66,9 +68,15 @@
             </div>
         </div>
 
+        <!-- put the chosen partners ids into the form as a string -->
+        <input id="newTeamMembers" name="partnerIds" type="hidden" value="" />
+
+        <!-- put the id of the chosen project leader into the form -->
+        <input id="projectLeaderId" name="projectLeaderId" type="hidden" value="" />
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input id="submitButton" type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -90,8 +98,10 @@
             activateAddToTeamBtns();
 
             $("#filterButton").click(function() {
+                var $radioBtnId = $("input[type='radio']:checked").attr('id');
                 emptyAndGetAll();
                 activateAddToTeamBtns();
+                activateRadioButton($radioBtnId);
                 var $searchText = $("#searchBox").val();
 
                 $("table tbody .tableRow .target").each(function() {
@@ -107,8 +117,10 @@
 
 
             $("#getAllButton").click(function() {
+                var $radioBtnId = $("input[type='radio']:checked").attr('id');
                 emptyAndGetAll();
                 activateAddToTeamBtns();
+                activateRadioButton($radioBtnId);
                 $("#searchBox").val("");
             });
 
@@ -120,12 +132,21 @@
             function createDefaultTable() {
                 var $tableBody = $("#tableBody");
                 var $clicked = "";
+                var $onOtherTeam = false;
                 for (var i = 0; i < $partners.length; i++) {
+                    
                     if ($partners[i].hasOwnProperty('Chosen')) {
                         $clicked = "<td><div id='partnerBtn" + i +"' class='addToTeamBtn hasBeenClicked'>Add To Team</div></td>";
                     }
                     else {
                         $clicked = "<td><div id='partnerBtn" + i +"' class='addToTeamBtn hasNotBeenClicked'>Add To Team</div></td>";
+                    }
+
+                    if ($partners[i].Team == null) {
+                        $onOtherTeam = "<td>No</td>"
+                    }
+                    else {
+                        $onOtherTeam = "<td>Yes</td>"
                     }
 
                     var $competencies = "";
@@ -138,6 +159,9 @@
                                             "<td>" + $partners[i].Country + "</td>" +
                                             "<td class='target'>" + $competencies + "</td>" +
                                             $clicked +
+                                            $onOtherTeam +
+                                            //"<td><input type='checkbox' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
+                                            "<td><input type='radio' id='radio" + i +"' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
                                        "</tr>";
                     $tableBody.append($rowTemplate);
                 }
@@ -154,7 +178,7 @@
                                 $(this).css('background-color', 'red');
                                 $(this).addClass('hasBeenClicked');
                                 $partners[num]['Chosen'] = true;
-                                console.log($partners[num])
+                                //console.log($partners[num])
                                 $chosenPartners.push($partners[num]);
                                 console.log($chosenPartners)
                             })
@@ -163,6 +187,33 @@
                     }
                 }
             }
+
+            // activate the clicked radio button
+            function activateRadioButton($radioBtnId) {
+                console.log($radioBtnId);
+                if ($radioBtnId != undefined) 
+                {
+                    $('#' + $radioBtnId).attr('checked', true);
+                }
+            }
+
+            
+            $("#submitButton").click(function() { 
+                var $partnerIds = "";
+
+                for (var i = 0; i < $chosenPartners.length; i++) {
+                    function pushHandler(num) {
+                        $partnerIds += num + ",";
+                    }
+                    pushHandler($chosenPartners[i].PartnerId);
+                }
+                console.log($partnerIds);
+                $("#newTeamMembers").val($partnerIds);
+
+                //var test = $("input[type='checkbox']:checked").val();
+                var test = $("input[type='radio']:checked").val();
+                $("#projectLeaderId").val(test);
+            });
 
         });
     </script>

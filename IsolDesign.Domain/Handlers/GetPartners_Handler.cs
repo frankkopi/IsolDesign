@@ -44,6 +44,10 @@ namespace IsolDesign.Domain.Handlers
                 var competencyModels = CompetencyConverter.ConvertToCompetencyModels(partner.Competencies);
                 partnerModel.Competencies = competencyModels;
 
+                // convert Team to TeamModel
+                var teamModel = TeamConverter.ConvertToTeamModel(partner.Team);
+                partnerModel.Team = teamModel;
+
                 partnerModels.Add(partnerModel);
             }
             return partnerModels;

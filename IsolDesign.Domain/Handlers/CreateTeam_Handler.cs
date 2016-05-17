@@ -2,6 +2,7 @@
 using IsolDesign.DataAccess;
 using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
+using IsolDesign.Domain.Helpers;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace IsolDesign.Domain.Handlers
             return allProjects;
         }
 
-        public void CreateTeam(TeamModel teamModel, IEnumerable<int> partnerIds)
+        public void CreateTeam(TeamModel teamModel, string partnerIds)
         {
             _team = new Team
             {
@@ -48,14 +49,15 @@ namespace IsolDesign.Domain.Handlers
             };
         }
 
-        public ICollection<Partner> AssignPartnersToTeam(IEnumerable<int> partnerIds)
+        public ICollection<Partner> AssignPartnersToTeam(string partnerIds)
         {
+            IEnumerable<int> ids = PartnerConverter.ConvertPartnerIds(partnerIds);
             var partnersFromDb = _unitOfWork.Partners.GetAll();
             List<Partner> teamMembers = new List<Partner>();
 
             foreach (var partner in partnersFromDb)
             {
-                if (partnerIds.Contains(partner.PartnerId))
+                if (ids.Contains(partner.PartnerId))
                 {
                     teamMembers.Add(partner);
                 }
@@ -63,8 +65,24 @@ namespace IsolDesign.Domain.Handlers
             return teamMembers;
         }
 
-        public void Execute()
+        public Project UpdateProject(int projectLeaderId)
         {
+            GetProjects_Handler handler = new GetProjects_Handler();
+            var project = handler.GetProject(_team.ProjectId);
+            project.PartnerId = projectLeaderId;
+            return project;
+        }
+
+        public void Execute(int? projectLeaderId)
+        {
+            if (projectLeaderId != null)
+            {
+                var id = projectLeaderId ?? default(int);
+                var updatedProject = UpdateProject(id);
+                _unitOfWork.Projects.Update(updatedProject);
+                //_unitOfWork.SaveChanges();
+            }
+
             _unitOfWork.Teams.Add(this._team);
             _unitOfWork.SaveChanges();
         }

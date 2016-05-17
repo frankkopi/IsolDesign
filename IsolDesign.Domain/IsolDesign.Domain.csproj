@@ -62,6 +62,7 @@
     <Compile Include="Helpers\PartnerConverter.cs" />
     <Compile Include="Helpers\PortfolioConverter.cs" />
     <Compile Include="Helpers\ProjectConverter.cs" />
+    <Compile Include="Helpers\TeamConverter.cs" />
     <Compile Include="Interfaces\ICreateApplicant_Handler.cs" />
     <Compile Include="Interfaces\ICreateCompetency_Handler.cs" />
     <Compile Include="Interfaces\ICreatePartner_Handler.cs" />

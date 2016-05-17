@@ -19,6 +19,8 @@ namespace IsolDesign.DataAccess.Interfaces
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
 
+        void Update(TEntity entity);
+
         void DeleteEntity(int id);
     }
 }

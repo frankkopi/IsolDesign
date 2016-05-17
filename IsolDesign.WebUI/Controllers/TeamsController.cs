@@ -58,19 +58,18 @@ namespace IsolDesign.WebUI.Controllers
         // POST: Teams/Create
         [HttpPost]
         //public ActionResult Create(FormCollection collection)
-        public ActionResult Create(CreateTeamViewModel model, IEnumerable<int> partnerIds)
+        //public ActionResult Create(CreateTeamViewModel model, IEnumerable<int> partnerIds)
+        public ActionResult Create(CreateTeamViewModel model, string partnerIds, int? projectLeaderId)
         {
             if (ModelState.IsValid)
             {
                 ICreateTeam_Handler handler = new CreateTeam_Handler();
                 handler.CreateTeam(model.Team, partnerIds);
-                handler.Execute();
+                handler.Execute(projectLeaderId);
 
                 return RedirectToAction("Index");
             }
-           
              return View();
-            
         }
 
         //// GET: Teams/Edit/5

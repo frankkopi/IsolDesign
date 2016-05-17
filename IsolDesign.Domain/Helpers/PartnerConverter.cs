@@ -1,5 +1,6 @@
 ﻿using IsolDesign.Data.Models;
 using IsolDesign.Domain.Models;
+using System.Collections.Generic;
 
 namespace IsolDesign.Domain.Helpers
 {
@@ -23,6 +24,7 @@ namespace IsolDesign.Domain.Helpers
                 Facebook = partner.Facebook,
                 LinkedIn = partner.LinkedIn,
                 Homepage = partner.Homepage,
+                Team = null,    // *******************************************************************************************
                 Portfolio = null,
                 Competencies = null
             };
@@ -30,7 +32,7 @@ namespace IsolDesign.Domain.Helpers
         }
 
 
-        // convert Partner to PartnerModel
+        // convert Partner to PartnerModel (the project leader)
         public static PartnerModel ConvertToPartnerModel2(Partner partner)
         {
             var partnerModel = new PartnerModel()
@@ -55,6 +57,22 @@ namespace IsolDesign.Domain.Helpers
                 Assignments = null
             };
             return partnerModel;
+        }
+
+        public static IEnumerable<int> ConvertPartnerIds(string partnerIds)
+        {
+            List<int> ids = new List<int>();
+            char[] separator = { ',' };
+            string[] tempIds = partnerIds.Split(separator);
+
+            foreach(var id in tempIds)
+            {
+                int numValue;
+                int.TryParse(id, out numValue);
+                ids.Add(numValue);
+            }
+
+            return ids;
         }
     }
 }

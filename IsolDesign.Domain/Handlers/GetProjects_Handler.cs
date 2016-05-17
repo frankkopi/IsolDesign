@@ -5,6 +5,7 @@ using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.DataAccess;
 using IsolDesign.Domain.Models;
 using IsolDesign.Domain.Helpers;
+using IsolDesign.Data.Models;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -59,6 +60,13 @@ namespace IsolDesign.Domain.Handlers
             }
 
             return projectModels;
+        }
+
+        public Project GetProject(int projectId)
+        {
+            var project = _unitOfWork.Projects.Get(projectId);
+            _unitOfWork.Dispose(); // Dispose context because of: Entity Framework An entity object cannot be referenced by multiple instances of IEntityChangeTracker
+            return project;
         }
     }
 }
