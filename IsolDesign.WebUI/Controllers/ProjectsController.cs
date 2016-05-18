@@ -33,27 +33,40 @@ namespace IsolDesign.WebUI.Controllers
         //    return View();
         //}
 
-        //// GET: Projects/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: Projects/Create
+        public ActionResult Create()
+        {
+            GetPartners_Handler handler = new GetPartners_Handler();
+            var partnerModels = handler.GetPartners();
 
-        //// POST: Projects/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+            List<object> partnersInfo = new List<object>();
+            foreach (var p in partnerModels)
+            {
+                partnersInfo.Add(new {
+                    PartnerId = p.PartnerId,
+                    Info = p.Name + ", " + p.City + ", " + p.Country + ", " + p.Email
+                });
+            }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            CreateProjectViewModel vm = new CreateProjectViewModel()
+            {
+                Project = new ProjectModel(),
+                PartnersInfo = partnersInfo
+            };
+
+            return View(vm);
+        }
+
+        // POST: Projects/Create
+        [HttpPost]
+        public ActionResult Create(CreateProjectViewModel model)
+        {
+            ProjectModel projectModel = model.Project;
+            ICreateProject_Handler handler = new CreateProject_Handler();
+            handler.CreateProject(projectModel);
+
+            return RedirectToAction("Index");
+        }
 
         //// GET: Projects/Edit/5
         //public ActionResult Edit(int id)
