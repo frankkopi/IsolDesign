@@ -21,8 +21,8 @@ namespace IsolDesign.DataAccess
             this.Customers = new CustomerRepository(_context);
             this.DevMethods = new DevMethodRepository(_context);
             this.Economies = new EconomyRepository(_context);
-            this.OrderedAssignments = new OrderedAssignmentRepository(_context);
-            this.PartnerAssignments = new PartnerAssignmentRepository(_context);
+            //this.OrderedAssignments = new OrderedAssignmentRepository(_context);
+            //this.PartnerAssignments = new PartnerAssignmentRepository(_context);
             this.Partners = new PartnerRepository(_context);
             this.Patents = new PatentRepository(_context);
             this.PortfolioSubjects = new PortfolioSubjectRepository(_context);

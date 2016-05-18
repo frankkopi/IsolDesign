@@ -1,0 +1,63 @@
+﻿@model IsolDesign.WebUI.Models.AssignmentsIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment.WorkTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment.Drawing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment.Video)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Assignments) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Drawing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Video)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AssignmentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AssignmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AssignmentId })
+        </td>
+    </tr>
+}
+
+</table>

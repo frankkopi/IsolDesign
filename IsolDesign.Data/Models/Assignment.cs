@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace IsolDesign.Data.Models
 {
+    public enum AssignmentType
+    {
+        PartnerAssignment = 1,
+        OrderedAssignment = 2
+    }
+
+
     // Assignment is parent class for PartnerAssignment and OrderedAssignment
     public abstract class Assignment
     {
@@ -13,7 +16,7 @@ namespace IsolDesign.Data.Models
 
         public string WorkTitle { get; set; }
 
-        public string Type { get; set; }
+        public AssignmentType Type { get; set; }
 
         public string Description { get; set; }
 

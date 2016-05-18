@@ -51,6 +51,7 @@
     <Compile Include="Handlers\CreateTeam_Handler.cs" />
     <Compile Include="Handlers\Delete_Handler.cs" />
     <Compile Include="Handlers\GetApplicants_Handler.cs" />
+    <Compile Include="Handlers\GetAssignments_Handler.cs" />
     <Compile Include="Handlers\GetCompetencies_Handler.cs" />
     <Compile Include="Handlers\GetPartners_Handler.cs" />
     <Compile Include="Handlers\GetProjects_Handler.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Interfaces\ICreateTeam_Handler.cs" />
     <Compile Include="Interfaces\IDelete_Handler.cs" />
     <Compile Include="Interfaces\IGetApplicants_Handler.cs" />
+    <Compile Include="Interfaces\IGetAssignments_Handler.cs" />
     <Compile Include="Interfaces\IGetCompetencies_Handler.cs" />
     <Compile Include="Interfaces\IGetPartners_Handler.cs" />
     <Compile Include="Interfaces\IGetProjects_Handler.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Interfaces\Interfaces Models\ICompetencyModel.cs" />
     <Compile Include="Interfaces\Interfaces Models\IPortfolioSubjectModel.cs" />
     <Compile Include="Models\ApplicantModel.cs" />
+    <Compile Include="Models\AssignmentModel.cs" />
     <Compile Include="Models\CompetencyModel.cs" />
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\PartnerAssignmentModel.cs" />
