@@ -10,7 +10,7 @@ namespace IsolDesign.WebUI.Models
     {
         public ProjectModel Project { get; set; }
 
-        public IEnumerable<object> PartnersInfo { get; set; }
+        public IEnumerable<object> PartnersInfo { get; set; } // for finding project leader
 
     }
 }

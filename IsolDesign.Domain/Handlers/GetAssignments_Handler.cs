@@ -1,13 +1,10 @@
-﻿using IsolDesign.DataAccess;
+﻿using IsolDesign.Data.Models;
+using IsolDesign.DataAccess;
 using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -33,12 +30,24 @@ namespace IsolDesign.Domain.Handlers
                 {
                     AssignmentId = assignment.AssignmentId,
                     WorkTitle = assignment.WorkTitle,
-                    Type = assignment.Type,
+                    Type = null,
                     Description = assignment.Description,
                     Photo = assignment.Photo,
                     Drawing = assignment.Drawing,
                     Video = assignment.Video
                 };
+                if (assignment.Type == AssignmentType.PartnerAssignment)
+                {
+                    assModel.Type = "Partner Assignment";
+                }
+                else if (assignment.Type == AssignmentType.OrderedAssignment)
+                {
+                    assModel.Type = "Ordered Assignment";
+                }
+                else
+                {
+                    assModel.Type = "No Assignment";
+                }
                 assignmentModels.Add(assModel);
             }
 

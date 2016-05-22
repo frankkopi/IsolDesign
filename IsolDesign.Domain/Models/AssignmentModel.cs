@@ -1,21 +1,7 @@
-﻿using IsolDesign.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace IsolDesign.Domain.Models
 {
-    public enum AssignmentType
-    {
-        [Display(Name = "Partner Assignment")]
-        PartnerAssignment = 1,
-
-        [Display(Name = "Ordered Assignment")]
-        OrderedAssignment = 2
-    }
 
     public class AssignmentModel
     {
@@ -23,7 +9,7 @@ namespace IsolDesign.Domain.Models
 
         public string WorkTitle { get; set; }
 
-        public AssignmentType Type { get; set; }
+        public string Type { get; set; }
 
         public string Description { get; set; }
 

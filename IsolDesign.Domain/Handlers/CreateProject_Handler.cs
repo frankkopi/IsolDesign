@@ -16,6 +16,7 @@ namespace IsolDesign.Domain.Handlers
     {
         private ApplicationDbContext _context;
         private IUnitOfWork _unitOfWork;
+        private Project _project;
 
         public CreateProject_Handler()
         {
@@ -23,9 +24,9 @@ namespace IsolDesign.Domain.Handlers
             this._unitOfWork = new UnitOfWork(_context);
         }
 
-        public void CreateProject(ProjectModel projectModel)
+        public void CreateProject(ProjectModel projectModel, int assignmentId)
         {
-            Project project = new Project()
+            _project = new Project()
             {
                 ProjectId = 0,
                 Name = projectModel.Name,
@@ -35,8 +36,14 @@ namespace IsolDesign.Domain.Handlers
                 PartnerId = projectModel.PartnerId,
                 DevMethodId = null,
                 EconomyId = null,
-                AssignmentId = projectModel.AssignmentId
+                AssignmentId = assignmentId
             };
+        }
+
+        public void Execute()
+        {
+            _unitOfWork.Projects.Add(_project);
+            _unitOfWork.SaveChanges();
         }
     }
 }

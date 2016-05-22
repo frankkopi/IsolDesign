@@ -48,10 +48,14 @@ namespace IsolDesign.WebUI.Controllers
                 });
             }
 
+            IGetAssignments_Handler assHandler = new GetAssignments_Handler();
+            var assignmentModels = assHandler.GetAssignments();
+            ViewBag.Assignments = new SelectList(assignmentModels, "AssignmentId", "WorkTitle");
+
             CreateProjectViewModel vm = new CreateProjectViewModel()
             {
                 Project = new ProjectModel(),
-                PartnersInfo = partnersInfo
+                PartnersInfo = partnersInfo,
             };
 
             return View(vm);
@@ -59,11 +63,14 @@ namespace IsolDesign.WebUI.Controllers
 
         // POST: Projects/Create
         [HttpPost]
-        public ActionResult Create(CreateProjectViewModel model)
+        public ActionResult Create(CreateProjectViewModel model, int assignmentId)
         {
             ProjectModel projectModel = model.Project;
+            //projectModel.AssignmentId = assignmentId;
+
             ICreateProject_Handler handler = new CreateProject_Handler();
-            handler.CreateProject(projectModel);
+            handler.CreateProject(projectModel, assignmentId);
+            handler.Execute();
 
             return RedirectToAction("Index");
         }
