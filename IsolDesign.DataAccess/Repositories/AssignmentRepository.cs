@@ -18,10 +18,16 @@ namespace ISolDesign.DataAccess.Repositories
 
         public IEnumerable<Assignment> GetAllAss()
         {
-            IQueryable<Assignment> linqQuery = from a in Context.Assignments select a;
+            IQueryable<Assignment> linqQuery = from a in ApplicationDbContext.Assignments select a;
             List<Assignment> assignments = linqQuery.ToList();
 
             return assignments;
+        }
+
+        // casting the Context we inherit from the Repository<TEntity> to ApplicationDbContext
+        public ApplicationDbContext ApplicationDbContext
+        {
+            get { return Context as ApplicationDbContext; }
         }
 
     }

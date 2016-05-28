@@ -4,8 +4,6 @@ using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Linq;
-using System.Net;
 
 namespace IsolDesign.WebUI.Controllers
 {

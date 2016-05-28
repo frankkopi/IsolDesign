@@ -1,15 +1,10 @@
-﻿using IsolDesign.Data.Models;
-using IsolDesign.DataAccess;
+﻿using IsolDesign.DataAccess;
 using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
-using System;
 using System.Collections.Generic;
 using IsolDesign.Domain.Helpers;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IsolDesign.Domain.Handlers
 {

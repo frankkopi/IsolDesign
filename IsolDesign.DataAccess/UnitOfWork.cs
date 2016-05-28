@@ -21,8 +21,6 @@ namespace IsolDesign.DataAccess
             this.Customers = new CustomerRepository(_context);
             this.DevMethods = new DevMethodRepository(_context);
             this.Economies = new EconomyRepository(_context);
-            //this.OrderedAssignments = new OrderedAssignmentRepository(_context);
-            //this.PartnerAssignments = new PartnerAssignmentRepository(_context);
             this.Partners = new PartnerRepository(_context);
             this.Patents = new PatentRepository(_context);
             this.PortfolioSubjects = new PortfolioSubjectRepository(_context);
@@ -32,19 +30,19 @@ namespace IsolDesign.DataAccess
         }
 
         public IApplicantRepository Applicants { get; set; }
-        public IAssignmentRepository Assignments { get; private set; }       
-        public ICompetencyRepository Competencies { get; private set; }
-        public ICustomerRepository Customers { get; private set; }
-        public IDevMethodRepository DevMethods { get; private set; }
-        public IEconomyRepository Economies { get; private set; }
-        public IOrderedAssignmentRepository OrderedAssignments { get; private set; }
-        public IPartnerAssignmentRepository PartnerAssignments { get; private set; }
-        public IPartnerRepository Partners { get; private set; }
-        public IPatentRepository Patents { get; private set; }
-        public IPortfolioSubjectRepository PortfolioSubjects { get; private set; }
-        public IProjectRepository Projects { get; private set; }
-        public ISubcontractorRepository Subcontractors { get; private set; }
-        public ITeamRepository Teams { get; private set; }
+        public IAssignmentRepository Assignments { get; set; }       
+        public ICompetencyRepository Competencies { get; set; }
+        public ICustomerRepository Customers { get; set; }
+        public IDevMethodRepository DevMethods { get; set; }
+        public IEconomyRepository Economies { get; set; }
+        public IOrderedAssignmentRepository OrderedAssignments { get; set; }
+        public IPartnerAssignmentRepository PartnerAssignments { get; set; }
+        public IPartnerRepository Partners { get; set; }
+        public IPatentRepository Patents { get; set; }
+        public IPortfolioSubjectRepository PortfolioSubjects { get; set; }
+        public IProjectRepository Projects { get; set; }
+        public ISubcontractorRepository Subcontractors { get; set; }
+        public ITeamRepository Teams { get; set; }
 
         public int SaveChanges()
         {
@@ -55,5 +53,6 @@ namespace IsolDesign.DataAccess
         {
             _context.Dispose();
         }
+       
     }
 }

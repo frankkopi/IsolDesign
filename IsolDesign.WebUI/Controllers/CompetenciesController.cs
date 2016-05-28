@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using IsolDesign.Data.Models;
-using IsolDesign.DataAccess.DBContext;
+﻿using System.Web.Mvc;
 using IsolDesign.WebUI.Models;
 using IsolDesign.Domain.Models;
 using IsolDesign.Domain.Interfaces.Interfaces_Models;

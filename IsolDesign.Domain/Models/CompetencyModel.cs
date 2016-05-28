@@ -1,8 +1,6 @@
 ﻿using IsolDesign.Domain.Interfaces.Interfaces_Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using IsolDesign.Data.Models;
-using System;
 
 namespace IsolDesign.Domain.Models
 {

@@ -24,7 +24,7 @@ namespace IsolDesign.Domain.Helpers
                 Facebook = partner.Facebook,
                 LinkedIn = partner.LinkedIn,
                 Homepage = partner.Homepage,
-                Team = null,    // *******************************************************************************************
+                Team = null,
                 Portfolio = null,
                 Competencies = null
             };

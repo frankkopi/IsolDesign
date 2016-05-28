@@ -27,9 +27,7 @@ namespace IsolDesign.DataAccess.DBContext
         public DbSet<Customer> Customers { get; set; }
         public DbSet<DevMethod> DevMethods { get; set; }
         public DbSet<Economy> Economies { get; set; }
-        //public DbSet<OrderedAssignment> OrderedAssignments { get; set; } **************************
         public DbSet<Partner> Partners { get; set; }
-        //public DbSet<PartnerAssignment> PartnerAssignments { get; set; } **************************
         public DbSet<Patent> Patents { get; set; }
         public DbSet<PortfolioSubject> PortfolioSubjects { get; set; }
         public DbSet<Project> Projects { get; set; }

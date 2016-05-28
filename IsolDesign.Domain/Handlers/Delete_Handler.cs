@@ -1,9 +1,7 @@
 ﻿using IsolDesign.DataAccess;
 using IsolDesign.DataAccess.DBContext;
-using IsolDesign.DataAccess.Interfaces;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.Data.Models;
-using IsolDesign.DataAccess.Repositories;
 using IsolDesign.Domain.Interfaces;
 using System.Linq;
 using System.Collections.Generic;
@@ -32,23 +30,27 @@ namespace IsolDesign.Domain.Handlers
 
         }
 
+
         // First delete the applicants portfoliosubjects and then delete the applicant from DB 
         public void DeleteApplicantAndPortfolio(int id)
         {
             var portfolio = _unitOfWork.PortfolioSubjects.GetAll();
             List<PortfolioSubject> targets = new List<PortfolioSubject>();
-            
+
             foreach (var portfolioSubject in portfolio)
             {
-                if(portfolioSubject.ApplicantId == id)
+                if (portfolioSubject.ApplicantId == id)
                 {
                     targets.Add(portfolioSubject);
                 }
             }
 
             _unitOfWork.PortfolioSubjects.RemoveRange(targets);
-            _unitOfWork.Applicants.DeleteEntity(id);
+            var applicant = _unitOfWork.Applicants.Get(id);
+            _unitOfWork.Applicants.Remove(applicant);
             _unitOfWork.SaveChanges();
         }
+
     }
 }
+

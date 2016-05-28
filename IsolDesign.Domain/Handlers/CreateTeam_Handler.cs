@@ -65,26 +65,18 @@ namespace IsolDesign.Domain.Handlers
             return teamMembers;
         }
 
-        public Project UpdateProject(int projectLeaderId)
-        {
-            GetProjects_Handler handler = new GetProjects_Handler();
-            var project = handler.GetProject(_team.ProjectId);
-            project.PartnerId = projectLeaderId;
-            return project;
-        }
-
         public void Execute(int? projectLeaderId)
         {
             if (projectLeaderId != null)
             {
-                var id = projectLeaderId ?? default(int);
-                var updatedProject = UpdateProject(id);
-                _unitOfWork.Projects.Update(updatedProject);
-                //_unitOfWork.SaveChanges();
+                var project = _unitOfWork.Projects.Get(_team.ProjectId);
+                project.PartnerId = projectLeaderId; // updating the Project to have a Project Leader
             }
 
             _unitOfWork.Teams.Add(this._team);
             _unitOfWork.SaveChanges();
         }
+
     }
 }
+

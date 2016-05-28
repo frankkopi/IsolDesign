@@ -31,7 +31,6 @@ namespace IsolDesign.Domain.Models
             image.Dispose();
             image = null;
             newImage.Save(savePath + fileName + ".jpg", ImageFormat.Jpeg);
-            //image.Dispose();
             newImage.Dispose();
         }
     }

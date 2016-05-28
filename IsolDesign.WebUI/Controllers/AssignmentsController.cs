@@ -2,10 +2,6 @@
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
