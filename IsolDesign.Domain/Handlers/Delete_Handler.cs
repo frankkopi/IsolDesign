@@ -20,6 +20,7 @@ namespace IsolDesign.Domain.Handlers
         }
 
         // Delete applicant and set foreign key in PortfolioSubject to null
+        // This is used if an Applicant becomes Partner
         public void DeleteApplicant(int id)
         {
             var applicant = _unitOfWork.Applicants.AllIncluding(x => x.Portfolio).ToList();
@@ -34,21 +35,77 @@ namespace IsolDesign.Domain.Handlers
         // First delete the applicants portfoliosubjects and then delete the applicant from DB 
         public void DeleteApplicantAndPortfolio(int id)
         {
-            var portfolio = _unitOfWork.PortfolioSubjects.GetAll();
-            List<PortfolioSubject> targets = new List<PortfolioSubject>();
+            //var portfolio = _unitOfWork.PortfolioSubjects.GetAll();
+            //List<PortfolioSubject> targets = new List<PortfolioSubject>();
 
-            foreach (var portfolioSubject in portfolio)
-            {
-                if (portfolioSubject.ApplicantId == id)
-                {
-                    targets.Add(portfolioSubject);
-                }
-            }
+            //foreach (var portfolioSubject in portfolio)
+            //{
+            //    if (portfolioSubject.ApplicantId == id)
+            //    {
+            //        targets.Add(portfolioSubject);
+            //    }
+            //}
 
-            _unitOfWork.PortfolioSubjects.RemoveRange(targets);
+            var portfolio = GetPortfolioSubjectsForTheEntity(id, "applicant");
+
+            //_unitOfWork.PortfolioSubjects.RemoveRange(targets);
+            _unitOfWork.PortfolioSubjects.RemoveRange(portfolio);
+
             var applicant = _unitOfWork.Applicants.Get(id);
             _unitOfWork.Applicants.Remove(applicant);
             _unitOfWork.SaveChanges();
+        }
+
+        // First delete the Partners portfolio, then set PartnerId to null in Projects where Partner is project leader
+        // then delete the Partner from DB
+        public void DeletePartnerAndPortfolio(int partnerId)
+        {
+            var portfolio = GetPortfolioSubjectsForTheEntity(partnerId, "Partner");
+            _unitOfWork.PortfolioSubjects.RemoveRange(portfolio);
+
+            // if partner is project leader on any project, set the reference to null
+            var projects = _unitOfWork.Projects.GetAll();
+            foreach (var project in projects)
+            {
+                if (project.PartnerId == partnerId)
+                {
+                    project.PartnerId = null;
+                }
+            }
+
+            var partner = _unitOfWork.Partners.Get(partnerId);
+            _unitOfWork.Partners.Remove(partner);
+            _unitOfWork.SaveChanges();
+        }
+
+
+        // returns the PortfolioSubjects that belongs to an Applicant or a Partner
+        public IEnumerable<PortfolioSubject> GetPortfolioSubjectsForTheEntity(int id, string type)
+        {
+            var portfolio = _unitOfWork.PortfolioSubjects.GetAll();
+            List<PortfolioSubject> targets = new List<PortfolioSubject>();
+
+            if (type.ToLower() == "applicant")
+            {
+                foreach (var portfolioSubject in portfolio)
+                {
+                    if (portfolioSubject.ApplicantId == id)
+                    {
+                        targets.Add(portfolioSubject);
+                    }
+                }
+            }
+            else if (type.ToLower() == "partner")
+            {
+                foreach (var portfolioSubject in portfolio)
+                {
+                    if (portfolioSubject.PartnerId == id)
+                    {
+                        targets.Add(portfolioSubject);
+                    }
+                }
+            }
+            return targets;
         }
 
     }

@@ -1,270 +1,275 @@
 ﻿@model IsolDesign.WebUI.Models.CreateTeamViewModel
 
-@{
-    ViewBag.Title = "Create";
-}
+    @{
+        ViewBag.Title = "Create";
+    }
 
-<h2>Create A Team</h2>
+    <h2>Create A Team</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Team.TeamId)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Team.TeamId)
 
-    <div class="form-horizontal">
-        <hr /><br />
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.Team.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Team.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Team.Name, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <hr /><br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Team.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Team.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Team.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.Label("Assign Team to Project", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @{
-                    var selectList = new SelectList(Model.Projects, "ProjectId", "Name");
-                }
-                @Html.DropDownListFor(model => model.Team.ProjectId, selectList, "Choose Project", new { @class = "form-control" })
+            <div class="form-group">
+                @Html.Label("Assign Team to Project", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @{
+                        var selectList = ViewBag.ProjectList;
+                    }
+                    @Html.DropDownList("ProjectId", (SelectList)selectList, "Choose Project", new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
-        <!-- *********************** SEARCH FOR PARTNERS AND FILTER THE COMPETENCIES ********************************* -->
-        <div>
-            @Html.Label("Search Competencies", htmlAttributes: new { @class = "control-label col-md-2", @style="padding-right: 25px;"})
-            <div class="col-md-10" style="padding-left: 5px; margin-bottom: 10px;">
-                <input id="searchBox" type="text" name="searchString" />
-                <div id="filterButton" class="btn btn-default">Filter</div>
-                <div id="getAllButton" class="btn btn-default">Get All</div>
+
+            @*<div class="form-group">
+                @Html.Label("Assign Team to Project", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @{
+                        var selectList = new SelectList(Model.Projects, "ProjectId", "Name");
+                    }
+                    @Html.DropDownListFor(model => model.Team.ProjectId, selectList, "Choose Project", new { @class = "form-control" })
+                </div>
+            </div>*@
+
+            <!-- *********************** SEARCH FOR PARTNERS AND FILTER THE COMPETENCIES ********************************* -->
+            <div>
+                @Html.Label("Search Competencies", htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-right: 25px;" })
+                <div class="col-md-10" style="padding-left: 5px; margin-bottom: 10px;">
+                    <input id="searchBox" type="text" name="searchString" />
+                    <div id="filterButton" class="btn btn-default">Filter</div>
+                    <div id="getAllButton" class="btn btn-default">Get All</div>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div style="height:300px; overflow:auto;">
-                    <table id="partnerTable" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>@Html.DisplayNameFor(model => model.Partner.Name)</th>
-                                <th>@Html.DisplayNameFor(model => model.Partner.City)</th>
-                                <th>@Html.DisplayNameFor(model => model.Partner.Country)</th>
-                                <th>@Html.DisplayNameFor(model => model.Partner.Competencies)</th>
-                                <th>Select Partner</th>
-                                <th>Other Team</th>
-                                <th>PL</th> 
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
+            <div class="form-group">
+                @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div style="height:300px; overflow:auto;">
+                        <table id="partnerTable" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.Partner.Name)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Partner.City)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Partner.Country)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Partner.Competencies)</th>
+                                    <th>Select</th>
+                                    <th>PL</th>
+                                    <th>Other Team</th>
+                                    <th>Already PL</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
 
-                            <!-- TABLE BODY CONTENT IS CREATED IN THE SCRIPT -->
+                                <!-- TABLE BODY CONTENT IS CREATED IN THE SCRIPT -->
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- put the chosen partners ids into the form as a string -->
+            <input id="newTeamMembers" name="partnerIds" type="hidden" value="" />
+
+            <!-- put the id of the chosen project leader into the form -->
+            <input id="projectLeaderId" name="projectLeaderId" type="hidden" value="" />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="submitButton" type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
+                        }
 
-        <!-- put the chosen partners ids into the form as a string -->
-        <input id="newTeamMembers" name="partnerIds" type="hidden" value="" />
-
-        <!-- put the id of the chosen project leader into the form -->
-        <input id="projectLeaderId" name="projectLeaderId" type="hidden" value="" />
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="submitButton" type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    @section FilterCompetencies {
 
-@section FilterCompetencies {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            
-            var $partners = @Html.Raw(Json.Encode(Model.Partners));
-            var $chosenPartners = [];
-            console.log($partners);
-            
-            createDefaultTable();
-            activateAddToTeamBtns();
+        <script type="text/javascript">
+            $(document).ready(function () {
 
-            $("#filterButton").click(function() {
-                var $radioBtnId = $("input[type='radio']:checked").attr('id');
-                emptyAndGetAll();
-                activateAddToTeamBtns();
-                activateRadioButton($radioBtnId);
-                var $searchText = $("#searchBox").val();
-
-                $("table tbody .tableRow .target").each(function() {
-                    if ($(this).html().toLowerCase().indexOf($searchText) >= 0)
-                    {
-                        $(this).parent().show();
-                    }
-                    else {
-                        $(this).parent().hide();
-                    }
-                });
-            });
-
-
-            $("#getAllButton").click(function() {
-                var $radioBtnId = $("input[type='radio']:checked").attr('id');
-                emptyAndGetAll();
-                activateAddToTeamBtns();
-                activateRadioButton($radioBtnId);
-                $("#searchBox").val("");
-            });
-
-            function emptyAndGetAll() {
-                $("#tableBody").empty();
-                createDefaultTable();
-            }
-
-            function createDefaultTable() {
-                var $tableBody = $("#tableBody");
-                var $clicked = "";
-                var $onOtherTeam = false;
+                var $partners = @Html.Raw(Json.Encode(Model.Partners));
                 for (var i = 0; i < $partners.length; i++) {
-                    
-                    if ($partners[i].hasOwnProperty('Chosen')) {
-                        $clicked = "<td><div id='partnerBtn" + i +"' class='addToTeamBtn hasBeenClicked'>Add To Team</div></td>";
-                    }
-                    else {
-                        $clicked = "<td><div id='partnerBtn" + i +"' class='addToTeamBtn hasNotBeenClicked'>Add To Team</div></td>";
-                    }
-
-                    if ($partners[i].Team == null) {
-                        $onOtherTeam = "<td>No</td>"
-                    }
-                    else {
-                        $onOtherTeam = "<td>Yes</td>"
-                    }
-
-                    var $competencies = "";
-                    for (var j = 0; j < $partners[i].Competencies.length; j++) {
-                        $competencies += $partners[i].Competencies[j].Name + ", ";
-                    }
-                    var $rowTemplate = "<tr class='tableRow'>" +
-                                            "<td>" + $partners[i].Name + "</td>" +
-                                            "<td>" + $partners[i].City + "</td>" +
-                                            "<td>" + $partners[i].Country + "</td>" +
-                                            "<td class='target'>" + $competencies + "</td>" +
-                                            $clicked +
-                                            $onOtherTeam +
-                                            //"<td><input type='checkbox' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
-                                            "<td><input type='radio' id='radio" + i +"' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
-                                       "</tr>";
-                    $tableBody.append($rowTemplate);
+                    $partners[i].Chosen = false;
                 }
-            }
+                var $projects = @Html.Raw(Json.Encode(Model.Projects));
+
+                createDefaultTable();
+                activateAddToTeamBtns();
+
+                $("#filterButton").click(function() {
+                    var $radioBtnId = $("input[type='radio']:checked").attr('id');
+                    emptyAndGetAll();
+                    activateAddToTeamBtns();
+                    activateRadioButton($radioBtnId);
+                    var $searchText = $("#searchBox").val().toLowerCase();
+
+                    $("table tbody .tableRow .target").each(function() {
+                        if ($(this).html().toLowerCase().indexOf($searchText) >= 0)
+                        {
+                            $(this).parent().show();
+                        }
+                        else {
+                            $(this).parent().hide();
+                        }
+                    });
+                });
 
 
-            // activate Add To Team button for every partner
-            function activateAddToTeamBtns() {
-                for (var i = 0; i < $partners.length; i++) {
-                    if ($partners[i].Chosen != true) 
-                    {
-                        function clickHandler(num) {    
-                            $("#partnerBtn" + i).click (function() {
-                                $(this).css('background-color', 'red');
-                                $(this).addClass('hasBeenClicked');
-                                $partners[num]['Chosen'] = true;
-                                //console.log($partners[num])
-                                $chosenPartners.push($partners[num]);
-                                console.log($chosenPartners)
-                            })
+                $("#getAllButton").click(function() {
+                    var $radioBtnId = $("input[type='radio']:checked").attr('id');
+                    emptyAndGetAll();
+                    activateAddToTeamBtns();
+                    activateRadioButton($radioBtnId);
+                    $("#searchBox").val("");
+                });
+
+                function emptyAndGetAll() {
+                    $("#tableBody").empty();
+                    createDefaultTable();
+                }
+
+                function createDefaultTable() {
+                    var $tableBody = $("#tableBody");
+                    var $clicked = "";
+                    var $onOtherTeam = false;
+                    var $projectLeaderOnOtherTeams = "";
+
+                    for (var i = 0; i < $partners.length; i++) {
+                        // check if partner has already been chosen for the team
+                        if ($partners[i].hasOwnProperty('Chosen') && $partners[i].Chosen === true) {
+                            $clicked = "hasBeenClicked";
+                        }
+                        else if ($partners[i].hasOwnProperty('Chosen') && $partners[i].Chosen === false) {
+                            $clicked = "hasNotBeenClicked";
+                        }
+                        else {
+                            console.log("something went wrong!");
+                        }
+
+                        // check if partner is working on another team
+                        if ($partners[i].Team == null) {
+                            $onOtherTeam = "<td>No</td>"
+                        }
+                        else {
+                            $onOtherTeam = "<td>Yes</td>"
+                        }
+
+                        // get the competencies of the partner
+                        var $competencies = "";
+                        for (var j = 0; j < $partners[i].Competencies.length; j++) {
+                            $competencies += $partners[i].Competencies[j].Name + ", ";
+                        }
+
+                        // check if partner is project leader on another team
+                        for (var k = 0; k < $projects.length; k++) {
+                            if ($projects[k].PartnerId === $partners[i].PartnerId) {
+                                $projectLeaderOnOtherTeams += $projects[k].Name + ", ";
+                            }
+                        }
+                        if ($projectLeaderOnOtherTeams.length <= 0) {
+                            $projectLeaderOnOtherTeams = "Not a Project Leader";
+                        }
+                        
+                        // create table row for a partner
+                        var $rowTemplate = "<tr class='tableRow'>" +
+                                                "<td>" + $partners[i].Name + "</td>" +
+                                                "<td>" + $partners[i].City + "</td>" +
+                                                "<td>" + $partners[i].Country + "</td>" +
+                                                "<td class='target'>" + $competencies + "</td>" +
+                                                "<td><div id='partnerBtn" + i +"' class='addToTeamBtn " + $clicked + "'>Add To Team</div></td>" +
+                                                "<td><input type='radio' id='radio" + i +"' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
+                                                $onOtherTeam +
+                                                "<td><div>" + $projectLeaderOnOtherTeams + "</div></td>" + 
+                                                //"<td><input type='checkbox' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
+                                           "</tr>";
+                        $tableBody.append($rowTemplate);
+                        $projectLeaderOnOtherTeams = "";
+                    }
+                }
+
+
+                // activate Add To Team button for every partner
+                function activateAddToTeamBtns() {
+                    for (var i = 0; i < $partners.length; i++) {
+                        
+                        function clickHandler(num) {
+                            $("#partnerBtn" + num).click (function() {
+                            //$(document).on('click', '#partnerBtn' + i, function() {
+                                // Choose a Partner
+                                if ($partners[num].Chosen === false) {
+                                    $partners[num].Chosen = true;
+                                    $(this).removeClass('hasNotBeenClicked');
+                                    $(this).addClass('hasBeenClicked');
+                                    console.log($partners[num].Chosen);
+                                }
+                                    // Unchoose a Partner
+                                else if ($partners[num].Chosen === true) {
+                                    $partners[num].Chosen = false;
+                                    $(this).removeClass('hasBeenClicked');
+                                    $(this).addClass('hasNotBeenClicked');
+                                    console.log($partners[num].Chosen);
+                                }
+                            });
                         }
                         clickHandler(i);
                     }
                 }
-            }
 
-            // activate the clicked radio button
-            function activateRadioButton($radioBtnId) {
-                console.log($radioBtnId);
-                if ($radioBtnId != undefined) 
-                {
-                    $('#' + $radioBtnId).attr('checked', true);
-                }
-            }
 
-            
-            $("#submitButton").click(function() { 
-                var $partnerIds = "";
-
-                for (var i = 0; i < $chosenPartners.length; i++) {
-                    function pushHandler(num) {
-                        $partnerIds += num + ",";
+                // activate the clicked radio button
+                function activateRadioButton($radioBtnId) {
+                    //console.log($radioBtnId);
+                    if ($radioBtnId != undefined)
+                    {
+                        $('#' + $radioBtnId).attr('checked', true);
                     }
-                    pushHandler($chosenPartners[i].PartnerId);
                 }
-                console.log($partnerIds);
-                $("#newTeamMembers").val($partnerIds);
 
-                //var test = $("input[type='checkbox']:checked").val();
-                var test = $("input[type='radio']:checked").val();
-                $("#projectLeaderId").val(test);
-            });
 
+                $("#submitButton").click(function() {
+                    var $partnerIds = "";
+
+                    for (var i = 0; i < $partners.length; i++) {
+                        if ($partners[i].Chosen === true) {
+                            function pushHandler(num) {
+                                $partnerIds += num + ",";
+                            }
+                            pushHandler($partners[i].PartnerId);
+                        }
+                    }
+                    //console.log($partnerIds);
+                    // put the partners on to the form
+                    $("#newTeamMembers").val($partnerIds);
+
+                    var test = $("input[type='radio']:checked").val();
+                    // put the project leader on to the form
+                    $("#projectLeaderId").val(test);
+                });
+            
         });
-    </script>
-}
+        </script>
+    }
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-
-
-
-
-
-
-        @*@{
-            foreach (var partner in Model.Partners)
-            {
-                var competencies = "";
-                foreach (var competency in partner.Competencies)
-                {
-                    competencies += competency.Name + ", ";
-                }
-                <tr class="tableRow">
-                    <td>@partner.Name</td>
-                    <td>@partner.City</td>
-                    <td>@partner.Country</td>
-                    <td class="target">@competencies</td>
-                    <td><input type="checkbox" name="partnerIds" value="@partner.PartnerId" /></td>
-                </tr>
-            }
-        }*@
-
-
-        @*//var array = [];
-        //$("table tbody .tableRow .target").each(function (index) {
-        //    array[index] = $(this).html();
-        //});
-        //for (var i = 0; i < array.length; i++) {
-        //    console.log(array[i]);
-        //}*@
-
-
-
-
-
-
-
-
-
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 
 
 
@@ -309,11 +314,21 @@
             </div>
         </div>
 
+        <!-- *********************** SEARCH FOR PARTNERS AND FILTER THE COMPETENCIES ********************************* -->
+        <div>
+            @Html.Label("Search Competencies", htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-right: 25px;" })
+            <div class="col-md-10" style="padding-left: 5px; margin-bottom: 10px;">
+                <input id="searchBox" type="text" name="searchString" />
+                <div id="filterButton" class="btn btn-default">Filter</div>
+                <div id="getAllButton" class="btn btn-default">Get All</div>
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div style="height:200px; overflow:auto;">
-                    <table class="table table-bordered">
+                <div style="height:300px; overflow:auto;">
+                    <table id="partnerTable" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>@Html.DisplayNameFor(model => model.Partner.Name)</th>
@@ -321,46 +336,199 @@
                                 <th>@Html.DisplayNameFor(model => model.Partner.Country)</th>
                                 <th>@Html.DisplayNameFor(model => model.Partner.Competencies)</th>
                                 <th>Select Partner</th>
+                                <th>Other Team</th>
+                                <th>PL</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @{
-                                foreach (var partner in Model.Partners)
-                                {
-                                    var competencies = "";
-                                    foreach (var competency in partner.Competencies)
-                                    {
-                                        competencies += competency.Name + ", ";
-                                    }
-                                    <tr>
-                                        <td>@partner.Name</td>
-                                        <td>@partner.City</td>
-                                        <td>@partner.Country</td>
-                                        <td>@competencies</td>
-                                        <td><input type="checkbox" name="partnerIds" value="@partner.PartnerId" /></td>
-                                    </tr>
-                                }
-                            }
+                        <tbody id="tableBody">
+
+                            <!-- TABLE BODY CONTENT IS CREATED IN THE SCRIPT -->
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
+        <!-- put the chosen partners ids into the form as a string -->
+        <input id="newTeamMembers" name="partnerIds" type="hidden" value="" />
+
+        <!-- put the id of the chosen project leader into the form -->
+        <input id="projectLeaderId" name="projectLeaderId" type="hidden" value="" />
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input id="submitButton" type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-                                }
+                    }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+@section FilterCompetencies {
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+
+                var $partners = @Html.Raw(Json.Encode(Model.Partners));
+                for (var k = 0; k < $partners.length; k++) {
+                    $partners[k].Chosen = false;
+                }
+                //var $chosenPartners = [];
+                //console.log("partners");
+                //console.log($partners);
+
+                createDefaultTable();
+                activateAddToTeamBtns();
+
+                $("#filterButton").click(function() {
+                    var $radioBtnId = $("input[type='radio']:checked").attr('id');
+                    emptyAndGetAll();
+                    activateAddToTeamBtns();
+                    activateRadioButton($radioBtnId);
+                    var $searchText = $("#searchBox").val().toLowerCase();
+
+                    $("table tbody .tableRow .target").each(function() {
+                        if ($(this).html().toLowerCase().indexOf($searchText) >= 0)
+                        {
+                            $(this).parent().show();
+                        }
+                        else {
+                            $(this).parent().hide();
+                        }
+                    });
+                });
+
+
+                $("#getAllButton").click(function() {
+                    var $radioBtnId = $("input[type='radio']:checked").attr('id');
+                    emptyAndGetAll();
+                    activateAddToTeamBtns();
+                    activateRadioButton($radioBtnId);
+                    $("#searchBox").val("");
+                });
+
+                function emptyAndGetAll() {
+                    $("#tableBody").empty();
+                    createDefaultTable();
+                }
+
+                function createDefaultTable() {
+                    var $tableBody = $("#tableBody");
+                    var $clicked = "";
+                    var $onOtherTeam = false;
+                    for (var i = 0; i < $partners.length; i++) {
+
+                        if ($partners[i].hasOwnProperty('Chosen') && $partners[i].Chosen === true) {
+                            $clicked = "hasBeenClicked";
+                        }
+                        else if ($partners[i].hasOwnProperty('Chosen') && $partners[i].Chosen === false) {
+                            $clicked = "hasNotBeenClicked";
+                        }
+                        else {
+                            console.log("something went wrong!");
+                        }
+
+                        if ($partners[i].Team == null) {
+                            $onOtherTeam = "<td>No</td>"
+                        }
+                        else {
+                            $onOtherTeam = "<td>Yes</td>"
+                        }
+
+                        var $competencies = "";
+                        for (var j = 0; j < $partners[i].Competencies.length; j++) {
+                            $competencies += $partners[i].Competencies[j].Name + ", ";
+                        }
+                        var $rowTemplate = "<tr class='tableRow'>" +
+                                                "<td>" + $partners[i].Name + "</td>" +
+                                                "<td>" + $partners[i].City + "</td>" +
+                                                "<td>" + $partners[i].Country + "</td>" +
+                                                "<td class='target'>" + $competencies + "</td>" +
+                                                "<td><div id='partnerBtn" + i +"' class='addToTeamBtn " + $clicked + "'>Add To Team</div></td>" +
+                                                $onOtherTeam +
+                                                //"<td><input type='checkbox' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
+                                                "<td><input type='radio' id='radio" + i +"' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
+                                           "</tr>";
+                        $tableBody.append($rowTemplate);
+                    }
+                }
+
+
+                // activate Add To Team button for every partner
+                function activateAddToTeamBtns() {
+                    for (var i = 0; i < $partners.length; i++) {
+
+                        function clickHandler(num) {
+                            $("#partnerBtn" + num).click (function() {
+                            //$(document).on('click', '#partnerBtn' + i, function() {
+                                // Choose a Partner
+                                if ($partners[num].Chosen === false) {
+                                    $partners[num].Chosen = true;
+                                    $(this).removeClass('hasNotBeenClicked');
+                                    $(this).addClass('hasBeenClicked');
+                                    console.log($partners[num].Chosen);
+                                }
+                                    // Unchoose a Partner
+                                else if ($partners[num].Chosen === true) {
+                                    $partners[num].Chosen = false;
+                                    $(this).removeClass('hasBeenClicked');
+                                    $(this).addClass('hasNotBeenClicked');
+                                    console.log($partners[num].Chosen);
+                                }
+                            });
+                        }
+                        clickHandler(i);
+                    }
+                }
+
+
+                // activate the clicked radio button
+                function activateRadioButton($radioBtnId) {
+                    //console.log($radioBtnId);
+                    if ($radioBtnId != undefined)
+                    {
+                        $('#' + $radioBtnId).attr('checked', true);
+                    }
+                }
+
+
+                $("#submitButton").click(function() {
+                    var $partnerIds = "";
+
+                    for (var i = 0; i < $partners.length; i++) {
+                        if ($partners[i].Chosen === true) {
+                            function pushHandler(num) {
+                                $partnerIds += num + ",";
+                            }
+                            pushHandler($partners[i].PartnerId);
+                        }
+                    }
+                    //console.log($partnerIds);
+                    // put the partners on to the form
+                    $("#newTeamMembers").val($partnerIds);
+
+                    var test = $("input[type='radio']:checked").val();
+                    // put the project leader on to the form
+                    $("#projectLeaderId").val(test);
+                });
+
+        });
+    </script>
+}
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
-    *@
+}*@
+
+
+
+
+
+
+
+

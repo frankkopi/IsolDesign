@@ -53,6 +53,18 @@ namespace IsolDesign.Domain.Handlers
             return partnerModels;
 
         }
+
+        // get a single partner
+        public PartnerModel GetPartner(int partnerId)
+        {
+            var partner = _unitOfWork.Partners.Get(partnerId);
+            var partnerModel = PartnerConverter.ConvertToPartnerModel(partner);
+
+            var teamModel = TeamConverter.ConvertToTeamModel(partner.Team);
+            partnerModel.Team = teamModel;
+
+            return partnerModel;
+        }
     }
 }
 

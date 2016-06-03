@@ -38,13 +38,13 @@ namespace IsolDesign.Domain.Handlers
             return allProjects;
         }
 
-        public void CreateTeam(TeamModel teamModel, string partnerIds)
+        public void CreateTeam(TeamModel teamModel, string partnerIds, int projectId)
         {
             _team = new Team
             {
                 TeamId = 0,
                 Name = teamModel.Name,
-                ProjectId = teamModel.ProjectId,
+                ProjectId = projectId,
                 Partners = AssignPartnersToTeam(partnerIds)
             };
         }

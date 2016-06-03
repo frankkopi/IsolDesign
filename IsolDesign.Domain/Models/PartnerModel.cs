@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace IsolDesign.Domain.Models
 {
@@ -18,6 +19,7 @@ namespace IsolDesign.Domain.Models
 
         public string Email { get; set; }
 
+        [Display(Name = "Profile Image")]
         public string ProfileImagePath { get; set; }
 
         public string Description { get; set; }

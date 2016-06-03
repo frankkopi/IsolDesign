@@ -1,10 +1,6 @@
 ﻿using IsolDesign.Domain.Handlers;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.WebUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
@@ -24,11 +20,6 @@ namespace IsolDesign.WebUI.Controllers
             return View(vm);
         }
 
-        //// GET: Partners/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
 
         public ActionResult CreatePartner(int applicantId)
         {
@@ -69,26 +60,33 @@ namespace IsolDesign.WebUI.Controllers
         //    }
         //}
 
-        //// GET: Partners/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Partners/Delete/5
+        public ActionResult Delete(int partnerId)
+        {
+            GetPartners_Handler handler = new GetPartners_Handler();
+            var partnerModel = handler.GetPartner(partnerId);
+            
+            return View(partnerModel);
+        }
 
-        //// POST: Partners/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+        // Delete a Partner and his portfolio and set PartnerId to null in Project if Partner is project leader
+        // POST: Partners/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int partnerId)
+        {
+            try
+            {
+                Delete_Handler handler = new Delete_Handler();
+                handler.DeletePartnerAndPortfolio(partnerId);
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                GetPartners_Handler handler = new GetPartners_Handler();
+                var partnerModel = handler.GetPartner(partnerId);
+                return View(partnerModel);
+            }
+        }
     }
 }

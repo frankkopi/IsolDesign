@@ -10,7 +10,7 @@ namespace IsolDesign.Domain.Interfaces
 
         IEnumerable<ProjectModel> GetProjects();
 
-        void CreateTeam(TeamModel teamModel, string partnerIds);
+        void CreateTeam(TeamModel teamModel, string partnerIds, int projectId);
 
         ICollection<Partner> AssignPartnersToTeam(string partnerIds);
 

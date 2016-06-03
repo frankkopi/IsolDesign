@@ -15,7 +15,8 @@ namespace IsolDesign.Data.Models
 
         public DateTime Deadline { get; set; }
 
-        public int? PartnerId { get; set; } // FK Project Leader
+        // FK Project Leader
+        public int? PartnerId { get; set; }
 
         public int? DevMethodId { get; set; } // FK
 

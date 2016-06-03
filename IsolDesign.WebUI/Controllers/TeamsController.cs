@@ -1,4 +1,5 @@
 ﻿using IsolDesign.Domain.Handlers;
+using IsolDesign.Domain.Helpers;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
@@ -52,19 +53,22 @@ namespace IsolDesign.WebUI.Controllers
                 Projects = projectModels
             };
 
+            var list = Dropdownlist_Helper.PopulateProjectsList(projectModels);
+
+            ViewBag.ProjectList = new SelectList(list, "ProjectId", "ProjectLeader");
+
             return View(vm);
         }
 
         // POST: Teams/Create
         [HttpPost]
         //public ActionResult Create(FormCollection collection)
-        //public ActionResult Create(CreateTeamViewModel model, IEnumerable<int> partnerIds)
-        public ActionResult Create(CreateTeamViewModel model, string partnerIds, int? projectLeaderId)
+        public ActionResult Create(CreateTeamViewModel model, string partnerIds, int projectId, int? projectLeaderId)
         {
             if (ModelState.IsValid)
             {
                 ICreateTeam_Handler handler = new CreateTeam_Handler();
-                handler.CreateTeam(model.Team, partnerIds);
+                handler.CreateTeam(model.Team, partnerIds, projectId);
                 handler.Execute(projectLeaderId);
 
                 return RedirectToAction("Index");

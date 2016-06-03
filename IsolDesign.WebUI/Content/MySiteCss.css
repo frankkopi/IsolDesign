@@ -64,17 +64,20 @@ dl dt.addMarginTop, dl dd.addMarginTop {
 .addToTeamBtn {
     width: 100px;
     height: 25px;
-    /*background-color: forestgreen;*/
     color: #ffffff;
     text-align: center;
     border: 1px solid #333333;
     border-radius: 3px;
-    /*cursor: pointer;*/
 }
+
+/*.hasBeenClicked {
+    background-color: red;
+    pointer-events: none;
+}*/
 
 .hasBeenClicked {
     background-color: red;
-    pointer-events: none;
+    cursor: pointer;
 }
 
 .hasNotBeenClicked {
