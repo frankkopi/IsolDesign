@@ -108,6 +108,14 @@ namespace IsolDesign.Domain.Handlers
             return targets;
         }
 
+        // Delete a Team
+        public void DeleteTeam(int teamId)
+        {
+            var team = _unitOfWork.Teams.Get(teamId);
+            _unitOfWork.Teams.Remove(team);
+            _unitOfWork.SaveChanges();
+        }
+
     }
 }
 

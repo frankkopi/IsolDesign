@@ -290,6 +290,8 @@
     <Content Include="Views\Projects\Create.cshtml" />
     <Content Include="Views\Assignments\Index.cshtml" />
     <Content Include="Views\Partners\Delete.cshtml" />
+    <Content Include="Views\Teams\Delete.cshtml" />
+    <Content Include="Views\Teams\ConfirmTeamDeleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

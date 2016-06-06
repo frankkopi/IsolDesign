@@ -91,6 +91,14 @@ namespace IsolDesign.Domain.Handlers
 
             return teamModels;
         }
+
+        public TeamModel GetTeam(int teamId)
+        {
+            var team = _unitOfWork.Teams.Get(teamId);
+            var teamModel = TeamConverter.ConvertToTeamModel(team);
+
+            return teamModel;
+        }
     }
 }
 

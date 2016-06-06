@@ -98,26 +98,33 @@ namespace IsolDesign.WebUI.Controllers
         //    }
         //}
 
-        //// GET: Teams/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Teams/Delete/5
+        public ActionResult Delete(int id)
+        {
+            GetTeams_Handler handler = new GetTeams_Handler();
+            var teamModel = handler.GetTeam(id);
+            return View(teamModel);
+        }
 
-        //// POST: Teams/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+        // POST: Teams/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, string Name, FormCollection collection)
+        {
+            try
+            {
+                Delete_Handler handler = new Delete_Handler();
+                handler.DeleteTeam(id);
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                ViewBag.TeamName = Name;
+                return View("ConfirmTeamDeleted");
+                //return RedirectToAction("Index");
+            }
+            catch
+            {
+                GetTeams_Handler handler = new GetTeams_Handler();
+                var teamModel = handler.GetTeam(id);
+                return View(teamModel);
+            }
+        }
     }
 }
