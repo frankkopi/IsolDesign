@@ -35,20 +35,7 @@ namespace IsolDesign.Domain.Handlers
         // First delete the applicants portfoliosubjects and then delete the applicant from DB 
         public void DeleteApplicantAndPortfolio(int id)
         {
-            //var portfolio = _unitOfWork.PortfolioSubjects.GetAll();
-            //List<PortfolioSubject> targets = new List<PortfolioSubject>();
-
-            //foreach (var portfolioSubject in portfolio)
-            //{
-            //    if (portfolioSubject.ApplicantId == id)
-            //    {
-            //        targets.Add(portfolioSubject);
-            //    }
-            //}
-
             var portfolio = GetPortfolioSubjectsForTheEntity(id, "applicant");
-
-            //_unitOfWork.PortfolioSubjects.RemoveRange(targets);
             _unitOfWork.PortfolioSubjects.RemoveRange(portfolio);
 
             var applicant = _unitOfWork.Applicants.Get(id);
@@ -108,14 +95,25 @@ namespace IsolDesign.Domain.Handlers
             return targets;
         }
 
+
         // Delete a Team
         public void DeleteTeam(int teamId)
         {
-            var team = _unitOfWork.Teams.Get(teamId);
+            var teams = _unitOfWork.Teams.AllIncluding(x => x.Partners);
+            var team = teams.Where(x => x.TeamId == teamId).FirstOrDefault();
+
             _unitOfWork.Teams.Remove(team);
             _unitOfWork.SaveChanges();
         }
 
+
+        // Delete a Competency
+        public void DeleteCompetency(int competencyId)
+        {
+            var competency = _unitOfWork.Competencies.Get(competencyId);
+            _unitOfWork.Competencies.Remove(competency);
+            _unitOfWork.SaveChanges();
+        }
     }
 }
 

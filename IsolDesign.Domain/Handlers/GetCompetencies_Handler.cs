@@ -5,6 +5,7 @@ using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using System.Collections.Generic;
 using IsolDesign.Domain.Helpers;
+using System;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -27,6 +28,15 @@ namespace IsolDesign.Domain.Handlers
             var competencyModels = CompetencyConverter.ConvertToCompetencyModels2(competencies);
 
             return competencyModels;
+        }
+
+        public CompetencyModel GetCompetency(int? competencyId)
+        {
+            var id = Convert.ToInt32(competencyId);
+            var competency = _unitOfWork.Competencies.Get(id);
+
+            var competencyModel = CompetencyConverter.ConvertToCompetencyModel(competency);
+            return competencyModel;
         }
     }
 }

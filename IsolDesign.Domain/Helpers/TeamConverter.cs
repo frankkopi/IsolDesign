@@ -21,11 +21,15 @@ namespace IsolDesign.Domain.Helpers
                 var projectModel = ProjectConverter.ConvertToProjectModel(team.Project);
                 teamModel.Project = projectModel;
 
+                var partnerModels = PartnerConverter.ConvertToPartnerModels(team.Partners);
+                teamModel.Partners = partnerModels;
+
                 return teamModel;
             }
 
             return null;
         }
+
 
 
         //public static TeamModel ConvertToTeamModel(Team team)
@@ -40,10 +44,16 @@ namespace IsolDesign.Domain.Helpers
         //            Project = null,
         //            Partners = null
         //        };
+
+        //        var projectModel = ProjectConverter.ConvertToProjectModel(team.Project);
+        //        teamModel.Project = projectModel;
+
         //        return teamModel;
         //    }
 
         //    return null;
         //}
+
+
     }
 }

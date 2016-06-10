@@ -44,5 +44,18 @@ namespace IsolDesign.Domain.Helpers
             }
             return convertedCompetencies;
         }
+
+        // convert a Competency to a CompetencyModel
+        public static CompetencyModel ConvertToCompetencyModel(Competency competency)
+        {
+            CompetencyModel competencyModel = new CompetencyModel
+            {
+                CompetencyId = competency.CompetencyId,
+                Name = competency.Name,
+                Description = competency.Description
+            };
+
+            return competencyModel;
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IsolDesign.Data.Models.Competency
+﻿@model IsolDesign.Domain.Models.CompetencyModel
 
 @{
     ViewBag.Title = "Details";
@@ -18,12 +18,12 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
+        <dt class="addMarginTop">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
+        <dd class="addMarginTop">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control showTextArea", @readonly = "readonly" } )
         </dd>
 
     </dl>

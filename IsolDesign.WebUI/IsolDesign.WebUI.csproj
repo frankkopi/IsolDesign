@@ -204,9 +204,12 @@
     <Compile Include="Models\CreateCompetencyViewModel.cs" />
     <Compile Include="Models\CreateProjectViewModel.cs" />
     <Compile Include="Models\CreateTeamViewModel.cs" />
+    <Compile Include="Models\DeleteTeamViewModel.cs" />
+    <Compile Include="Models\EditTeamViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PartnersIndexViewModel.cs" />
     <Compile Include="Models\ProjectsIndexViewModel.cs" />
+    <Compile Include="Models\TeamDetailViewModel.cs" />
     <Compile Include="Models\TeamsIndexViewModel.cs" />
     <Compile Include="Models\ThanxForApplicationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -292,6 +295,10 @@
     <Content Include="Views\Partners\Delete.cshtml" />
     <Content Include="Views\Teams\Delete.cshtml" />
     <Content Include="Views\Teams\ConfirmTeamDeleted.cshtml" />
+    <Content Include="Views\Teams\Details.cshtml" />
+    <Content Include="Views\Teams\Edit.cshtml" />
+    <Content Include="Views\Shared\_SearchForPartnersPartial.cshtml" />
+    <Content Include="Views\Shared\_ShowPartnersOnTeamPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,40 @@
+﻿@model IsolDesign.Domain.Models.TeamModel
+
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Partner</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var p in Model.Partners)
+                {
+                    <tr>
+                        <td><img src="../../@p.ProfileImagePath" width="50" height="80" /></td>
+                        <td>@p.Name</td>
+                        <td>@p.City</td>
+                        <td>@p.Country</td>
+                        <td>@p.Phone</td>
+                        <td>@p.Email</td>
+                        @{
+                            var str = p.Description;
+                            var shortString = str.Substring(0, 20);
+                        }
+                        <td class="expandText">@shortString .....</td>
+                    </tr>
+                    <tr class="hide">
+                        <td colspan="7" class="description">@p.Description</td>
+                    </tr>
+                            }
+            }
+        </tbody>
+    </table>
+</div>

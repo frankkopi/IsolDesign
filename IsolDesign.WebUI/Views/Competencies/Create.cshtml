@@ -7,7 +7,7 @@
 <h2>Create new Competency</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Competencies", FormMethod.Post, new { @id = "myForm" }))
 {
     @Html.AntiForgeryToken()
     
@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompetencyModel.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompetencyModel.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.CompetencyModel.Description, new { @class = "form-control showTextArea" })
                 @Html.ValidationMessageFor(model => model.CompetencyModel.Description, "", new { @class = "text-danger" })
             </div>
         </div>

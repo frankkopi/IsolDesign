@@ -50,6 +50,8 @@
     <Compile Include="Handlers\CreateProject_Handler.cs" />
     <Compile Include="Handlers\CreateTeam_Handler.cs" />
     <Compile Include="Handlers\Delete_Handler.cs" />
+    <Compile Include="Handlers\EditCompetency_Handler.cs" />
+    <Compile Include="Handlers\EditTeam_Handler.cs" />
     <Compile Include="Handlers\GetApplicants_Handler.cs" />
     <Compile Include="Handlers\GetAssignments_Handler.cs" />
     <Compile Include="Handlers\GetCompetencies_Handler.cs" />
@@ -72,6 +74,8 @@
     <Compile Include="Interfaces\ICreateProject_Handler.cs" />
     <Compile Include="Interfaces\ICreateTeam_Handler.cs" />
     <Compile Include="Interfaces\IDelete_Handler.cs" />
+    <Compile Include="Interfaces\IEditCompetency_Handler.cs" />
+    <Compile Include="Interfaces\IEditTeam_Handler.cs" />
     <Compile Include="Interfaces\IGetApplicants_Handler.cs" />
     <Compile Include="Interfaces\IGetAssignments_Handler.cs" />
     <Compile Include="Interfaces\IGetCompetencies_Handler.cs" />

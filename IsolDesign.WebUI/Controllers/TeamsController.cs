@@ -3,10 +3,6 @@ using IsolDesign.Domain.Helpers;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
@@ -29,11 +25,14 @@ namespace IsolDesign.WebUI.Controllers
             return View(vm);
         }
 
-        //// GET: Teams/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Teams/Details/5
+        public ActionResult Details(int id)
+        {
+            GetTeams_Handler handler = new GetTeams_Handler();
+            var teamModel = handler.GetTeam(id);
+
+            return View(teamModel);
+        }
 
         // GET: Teams/Create
         public ActionResult Create()
@@ -48,13 +47,12 @@ namespace IsolDesign.WebUI.Controllers
             CreateTeamViewModel vm = new CreateTeamViewModel()
             {
                 Team = teamModel,
-                Partner = partnerModel,
+                PartnerModel = partnerModel,
                 Partners = partnerModels,
                 Projects = projectModels
             };
 
             var list = Dropdownlist_Helper.PopulateProjectsList(projectModels);
-
             ViewBag.ProjectList = new SelectList(list, "ProjectId", "ProjectLeader");
 
             return View(vm);
@@ -76,54 +74,89 @@ namespace IsolDesign.WebUI.Controllers
              return View();
         }
 
-        //// GET: Teams/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Teams/Edit/5
+        public ActionResult Edit(int id)
+        {
+            GetTeams_Handler handler = new GetTeams_Handler();
+            var teamModel = handler.GetTeam(id);
 
-        //// POST: Teams/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
+            GetProjects_Handler handler2 = new GetProjects_Handler();
+            var projectModels = handler2.GetProjects();
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            var list = Dropdownlist_Helper.PopulateProjectsList(projectModels);
+
+            var partnerModel = new PartnerModel();
+
+            GetPartners_Handler handler3 = new GetPartners_Handler();
+            var partnerModels = handler3.GetPartners();
+
+            EditTeamViewModel vm = new EditTeamViewModel()
+            {
+                Team = teamModel,
+                ProjectsSelectList = new SelectList(list, "ProjectId", "ProjectLeader", teamModel.ProjectId),
+                PartnerModel = partnerModel,
+                Partners = partnerModels,
+                Projects = projectModels
+            };
+
+            return View(vm);
+        }
+
+        // POST: Teams/Edit/5
+        [HttpPost]
+        public ActionResult Edit(EditTeamViewModel model, string partnerIds, int projectId, int? projectLeaderId)
+        {
+            try
+            {
+                IEditTeam_Handler handler = new EditTeam_Handler();
+                
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // GET: Teams/Delete/5
         public ActionResult Delete(int id)
         {
             GetTeams_Handler handler = new GetTeams_Handler();
             var teamModel = handler.GetTeam(id);
-            return View(teamModel);
+
+            DeleteTeamViewModel vm = new DeleteTeamViewModel()
+            {
+                Team = teamModel
+            };
+            return View(vm);
         }
 
         // POST: Teams/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, string Name, FormCollection collection)
+        //public ActionResult Delete(int id, string Name, FormCollection collection)
+        public ActionResult Delete(DeleteTeamViewModel model)
         {
+            var teamId = model.Team.TeamId;
+            var teamName = model.Team.Name;
+            ViewBag.TeamName = teamName;
             try
             {
                 Delete_Handler handler = new Delete_Handler();
-                handler.DeleteTeam(id);
+                handler.DeleteTeam(teamId);
 
-                ViewBag.TeamName = Name;
                 return View("ConfirmTeamDeleted");
-                //return RedirectToAction("Index");
             }
             catch
             {
                 GetTeams_Handler handler = new GetTeams_Handler();
-                var teamModel = handler.GetTeam(id);
-                return View(teamModel);
+                var teamModel = handler.GetTeam(teamId);
+                DeleteTeamViewModel vm = new DeleteTeamViewModel()
+                {
+                    Team = teamModel
+                };
+                return View(vm);
             }
         }
     }

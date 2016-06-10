@@ -5,6 +5,7 @@ using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using System.Collections.Generic;
 using IsolDesign.Domain.Helpers;
+using System.Linq;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -92,13 +93,23 @@ namespace IsolDesign.Domain.Handlers
             return teamModels;
         }
 
+        // Get team including Partners and Project
         public TeamModel GetTeam(int teamId)
         {
-            var team = _unitOfWork.Teams.Get(teamId);
+            var teams = _unitOfWork.Teams.AllIncluding(x => x.Partners);
+            var team = teams.Where(x => x.TeamId == teamId).FirstOrDefault();
             var teamModel = TeamConverter.ConvertToTeamModel(team);
 
             return teamModel;
         }
+
+        //public TeamModel GetTeam(int teamId)
+        //{
+        //    var team = _unitOfWork.Teams.Get(teamId);
+        //    var teamModel = TeamConverter.ConvertToTeamModel(team);
+
+        //    return teamModel;
+        //}
     }
 }
 

@@ -1,8 +1,5 @@
 ﻿using IsolDesign.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace IsolDesign.WebUI.Models
 {
@@ -10,7 +7,7 @@ namespace IsolDesign.WebUI.Models
     {
         public TeamModel Team { get; set; }
 
-        public PartnerModel Partner { get; set; }
+        public PartnerModel PartnerModel { get; set; }
 
         public IEnumerable<PartnerModel> Partners { get; set; }
 

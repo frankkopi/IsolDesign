@@ -4,6 +4,7 @@ using IsolDesign.Domain.Models;
 using IsolDesign.Domain.Interfaces.Interfaces_Models;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Handlers;
+using System.Net;
 
 namespace IsolDesign.WebUI.Controllers
 {
@@ -18,20 +19,22 @@ namespace IsolDesign.WebUI.Controllers
             return View(competencies);
         }
 
-        //// GET: Competencies/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Competency competency = db.Competencies.Find(id);
-        //    if (competency == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(competency);
-        //}
+        // GET: Competencies/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GetCompetencies_Handler handler = new GetCompetencies_Handler();
+            CompetencyModel competencyModel = handler.GetCompetency(id);
+
+            if (competencyModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(competencyModel);
+        }
 
         // GET: Competencies/Create
         public ActionResult Create()
@@ -61,70 +64,65 @@ namespace IsolDesign.WebUI.Controllers
             return View(model);
         }
 
-        //// GET: Competencies/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Competency competency = db.Competencies.Find(id);
-        //    if (competency == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(competency);
-        //}
+        // GET: Competencies/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GetCompetencies_Handler handler = new GetCompetencies_Handler();
+            CompetencyModel competencyModel = handler.GetCompetency(id);
+            if (competencyModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(competencyModel);
+        }
 
-        //// POST: Competencies/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "CompetencyId,Name,Description")] Competency competency)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(competency).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(competency);
-        //}
+        // POST: Competencies/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "CompetencyId,Name,Description")] CompetencyModel competencyModel)
+        {
+            if (ModelState.IsValid)
+            {
+                EditCompetency_Handler handler = new EditCompetency_Handler();
+                handler.EditCompetency(competencyModel);
 
-        //// GET: Competencies/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Competency competency = db.Competencies.Find(id);
-        //    if (competency == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(competency);
-        //}
+                return RedirectToAction("Index");
+            }
+            return View(competencyModel);
+        }
 
-        //// POST: Competencies/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Competency competency = db.Competencies.Find(id);
-        //    db.Competencies.Remove(competency);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        // GET: Competencies/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GetCompetencies_Handler handler = new GetCompetencies_Handler();
+            var competencyModel = handler.GetCompetency(id);
+            if (competencyModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(competencyModel);
+        }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        // POST: Competencies/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Delete_Handler handler = new Delete_Handler();
+            handler.DeleteCompetency(id);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -103,3 +103,9 @@ dl dt.addMarginTop, dl dd.addMarginTop {
     font-size: 40px;
     margin-bottom: 20px;
 }
+
+.description {
+    white-space: pre-wrap;
+    background-color: #f6f6f6;
+    font-size: 20px;
+}

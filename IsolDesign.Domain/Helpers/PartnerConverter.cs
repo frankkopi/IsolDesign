@@ -74,5 +74,36 @@ namespace IsolDesign.Domain.Helpers
 
             return ids;
         }
+
+        // convert a List<Partner> to List<PartnerModels>
+        public static List<PartnerModel> ConvertToPartnerModels(IEnumerable<Partner> partners)
+        {
+            List<PartnerModel> list = new List<PartnerModel>();
+
+            foreach (var partner in partners)
+            {
+                PartnerModel partnerModel = new PartnerModel()
+                {
+                    PartnerId = partner.PartnerId,
+                    Name = partner.Name,
+                    Address = partner.Address,
+                    City = partner.City,
+                    Country = partner.Country,
+                    Phone = partner.Phone,
+                    Email = partner.Email,
+                    ProfileImagePath = partner.ProfileImagePath,
+                    Description = partner.Description,
+                    SkypeLink = partner.SkypeLink,
+                    Facebook = partner.Facebook,
+                    LinkedIn = partner.LinkedIn,
+                    Homepage = partner.Homepage,
+                    Team = null,
+                    Portfolio = null,
+                    Competencies = null
+                };
+                list.Add(partnerModel);
+            }
+            return list;
+        }
     }
 }
