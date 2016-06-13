@@ -109,8 +109,7 @@ namespace IsolDesign.WebUI.Controllers
             try
             {
                 IEditTeam_Handler handler = new EditTeam_Handler();
-                
-                // TODO: Add update logic here
+                handler.EditTeam(model.Team, partnerIds, projectId, projectLeaderId);
 
                 return RedirectToAction("Index");
             }

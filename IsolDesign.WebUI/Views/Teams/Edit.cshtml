@@ -33,10 +33,11 @@
             </div>
         </div>
 
-        <!-- *********************** SEARCH FOR PARTNERS AND FILTER THE COMPETENCIES ********************************* -->
+        <!-- ******************* SEARCH FOR PARTNERS AND FILTER THE COMPETENCIES (Partial View) ********************** -->
         @Html.Partial("_SearchForPartnersPartial", Model.PartnerModel)
 
-        <!-- ************************************ DELETE PARTNERS FROM TEAM *******************************************-->
+
+        <!-- ******************************* SHOW PARTNERS ALREADY ON THIS TEAM (Partial View) ********************************-->
         <br />
         <div class="form-group">
             @Html.Label("Partners On This Team", new { @class = "control-label col-md-2" })
@@ -45,7 +46,6 @@
             </div>
 
         </div>
-
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -86,10 +86,17 @@
         $(document).ready(function () {
 
             var $partners = @Html.Raw(Json.Encode(Model.Partners));
+            console.log($partners);
             var teamId = @Model.Team.TeamId;
+            console.log("teamId : " + teamId);
             for (var i = 0; i < $partners.length; i++) {
-                if ($partners[i].Team.TeamId === teamId) {
-                    $partners[i].Chosen = true;
+                if ($partners[i].Team != null) {
+                    if ($partners[i].Team.TeamId === teamId) {
+                        $partners[i].Chosen = true;
+                    }
+                    else {
+                        $partners[i].Chosen = false;
+                    }
                 }
                 else {
                     $partners[i].Chosen = false;
@@ -161,10 +168,11 @@
 
                     // check if partner is working on another team
                     if ($partners[i].Team == null) {
-                        $onOtherTeam = "<td>No</td>"
+                        $onOtherTeam = "<td class='NoTeam'>No Team</td>"
                     }
                     else {
-                        $onOtherTeam = "<td>Yes</td>"
+                        $teamName = $partners[i].Team.Name;
+                        $onOtherTeam = "<td class='OnTeam'>" + $teamName + "</td>"
                     }
 
                     // get the competencies of the partner
@@ -284,3 +292,49 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+
+
+@*<div>
+        @Html.Label("Search Competencies", htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-right: 25px;" })
+        <div class="col-md-10" style="padding-left: 5px; margin-bottom: 10px;">
+            <input id="searchBox" type="text" name="searchString" />
+            <div id="filterButton" class="btn btn-info">Filter</div>
+            <div id="getAllButton" class="btn btn-success">Get All</div>
+            <div id="resetRadioButtons" class="btn btn-warning">Reset PL</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div style="height:300px; overflow:auto;">
+                <table id="partnerTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.PartnerModel.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.PartnerModel.City)</th>
+                            <th>@Html.DisplayNameFor(model => model.PartnerModel.Country)</th>
+                            <th>@Html.DisplayNameFor(model => model.PartnerModel.Competencies)</th>
+                            <th>Select</th>
+                            <th>PL</th>
+                            <th>Currently On Team</th>
+                            <th>Already PL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+
+                        <!-- TABLE BODY CONTENT IS CREATED IN THE SCRIPT -->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- put the chosen partners ids into the form as a string -->
+    <input id="newTeamMembers" name="partnerIds" type="hidden" value="" />
+
+    <!-- put the id of the chosen project leader into the form -->
+    <input id="projectLeaderId" name="projectLeaderId" type="hidden" value="" />*@

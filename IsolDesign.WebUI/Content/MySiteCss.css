@@ -109,3 +109,11 @@ dl dt.addMarginTop, dl dd.addMarginTop {
     background-color: #f6f6f6;
     font-size: 20px;
 }
+
+.NoTeam {
+    color: forestgreen;
+}
+
+.OnTeam {
+    color: red;
+}

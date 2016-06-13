@@ -124,10 +124,11 @@
 
                         // check if partner is working on another team
                         if ($partners[i].Team == null) {
-                            $onOtherTeam = "<td>No</td>"
+                            $onOtherTeam = "<td class='NoTeam'>No Team</td>"
                         }
                         else {
-                            $onOtherTeam = "<td>Yes</td>"
+                            $teamName = $partners[i].Team.Name;
+                            $onOtherTeam = "<td class='OnTeam'>" + $teamName + "</td>"
                         }
 
                         // get the competencies of the partner
