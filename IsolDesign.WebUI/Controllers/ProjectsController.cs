@@ -97,26 +97,42 @@ namespace IsolDesign.WebUI.Controllers
         //    }
         //}
 
-        //// GET: Projects/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Projects/Delete/5
+        public ActionResult Delete(int id)
+        {
+            GetProjects_Handler handler = new GetProjects_Handler();
+            var projectModel = handler.GetProjectModel(id);
 
-        //// POST: Projects/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+            DeleteProjectViewModel vm = new DeleteProjectViewModel()
+            {
+                ProjectModel = projectModel
+            };
+            return View(vm);
+        }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: Projects/Delete/5
+        [HttpPost]
+        public ActionResult Delete(DeleteProjectViewModel model)
+        {
+            try
+            {
+                var id = model.ProjectModel.ProjectId;
+                Delete_Handler handler = new Delete_Handler();
+                handler.DeleteProjectAndTeams(id);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                GetProjects_Handler handler = new GetProjects_Handler();
+                var projectModel = handler.GetProjectModel(model.ProjectModel.ProjectId);
+
+                DeleteProjectViewModel vm = new DeleteProjectViewModel()
+                {
+                    ProjectModel = projectModel
+                };
+                return View(vm);
+            }
+        }
     }
 }

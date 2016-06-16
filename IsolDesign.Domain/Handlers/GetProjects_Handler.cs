@@ -68,6 +68,14 @@ namespace IsolDesign.Domain.Handlers
             _unitOfWork.Dispose(); // Dispose context because of: Entity Framework An entity object cannot be referenced by multiple instances of IEntityChangeTracker
             return project;
         }
+
+        public ProjectModel GetProjectModel(int id)
+        {
+            var project = _unitOfWork.Projects.Get(id);
+            var projectModel = ProjectConverter.ConvertToProjectModel2(project);
+
+            return projectModel;
+        }
     }
 }
 

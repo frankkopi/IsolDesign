@@ -43,5 +43,27 @@ namespace IsolDesign.DataAccess.DBContext
         {
             return new ApplicationDbContext();
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Project>()
+        //        .HasMany(x => x.Teams)
+        //        .WithOptional()
+        //        .WillCascadeOnDelete(true);
+        //}
+
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Order>()
+
+        //        .HasOptional(a => a.OrderDetail)
+
+        //        .WithOptionalDependent()
+
+        //        .WillCascadeOnDelete(true);
+
+        //}
     }
+
 }

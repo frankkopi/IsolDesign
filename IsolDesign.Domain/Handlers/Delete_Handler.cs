@@ -114,6 +114,39 @@ namespace IsolDesign.Domain.Handlers
             _unitOfWork.Competencies.Remove(competency);
             _unitOfWork.SaveChanges();
         }
+
+        // Delete a Project
+        public void DeleteProjectAndTeams(int projectId)
+        {
+            var project = _unitOfWork.Projects.Get(projectId);
+
+            if (project.Teams.Count >= 1)
+            {
+                var teams = _unitOfWork.Teams.AllIncluding(x => x.Partners);
+                List<Team> targets = new List<Team>();
+
+                foreach (var team in teams)
+                {
+                    if (team.ProjectId == projectId)
+                    {
+                        targets.Add(team);
+                    }
+                }
+                _unitOfWork.Teams.RemoveRange(targets);
+            }
+
+            _unitOfWork.Projects.Remove(project);
+            _unitOfWork.SaveChanges();
+        }
     }
 }
 
+//// Delete a Project
+//public void DeleteProjectAndTeams(int projectId)
+//{
+//    var projects = _unitOfWork.Projects.AllIncluding(x => x.Teams);
+//    var project = projects.Where(x => x.ProjectId == projectId).FirstOrDefault();
+
+//    _unitOfWork.Projects.Remove(project);
+//    _unitOfWork.SaveChanges();
+//}

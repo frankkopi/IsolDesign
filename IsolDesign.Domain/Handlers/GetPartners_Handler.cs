@@ -21,42 +21,7 @@ namespace IsolDesign.Domain.Handlers
 
         }
 
-        //public IEnumerable<PartnerModel> GetPartners()
-        //{
-        //    var allPartners = GetAllPartners(_unitOfWork);
-        //    return allPartners;
-        //}
 
-        //public IEnumerable<PartnerModel> GetAllPartners(IUnitOfWork unitOfWork)
-        //{
-        //    var partnersFromDb = unitOfWork.Partners.GetAll();
-        //    List<PartnerModel> partnerModels = new List<PartnerModel>();
-
-        //    foreach (var partner in partnersFromDb)
-        //    {
-        //        // convert Partner to PartnerModel
-        //        var partnerModel = PartnerConverter.ConvertToPartnerModel(partner);
-
-        //        // convert List<PortfolioSubject> to List<PortfolioSubjectModel>
-        //        var portfolio = PortfolioConverter.ConvertToPortfolioSubjectModels(partner.Portfolio);
-        //        partnerModel.Portfolio = portfolio;
-
-        //        // convert List<Competency> to List<CompetencyModel>
-        //        var competencyModels = CompetencyConverter.ConvertToCompetencyModels(partner.Competencies);
-        //        partnerModel.Competencies = competencyModels;
-
-        //        // convert Team to TeamModel
-        //        var teamModel = TeamConverter.ConvertToTeamModel(partner.Team);
-        //        partnerModel.Team = teamModel;
-
-        //        partnerModels.Add(partnerModel);
-        //    }
-        //    return partnerModels;
-        //}
-
-
-
-        // Testing stuff out *********************************************************************************************
         public IEnumerable<PartnerModel> GetPartners()
         {
             var allPartners = GetAllPartners(_unitOfWork);
@@ -88,9 +53,8 @@ namespace IsolDesign.Domain.Handlers
                 partnerModels.Add(partnerModel);
             }
             return partnerModels;
-
         }
-        // testing done **************************************************************************************************
+
 
         // get a single partner
         public PartnerModel GetPartner(int partnerId)
@@ -106,3 +70,37 @@ namespace IsolDesign.Domain.Handlers
     }
 }
 
+
+
+//public IEnumerable<PartnerModel> GetPartners()
+//{
+//    var allPartners = GetAllPartners(_unitOfWork);
+//    return allPartners;
+//}
+
+//public IEnumerable<PartnerModel> GetAllPartners(IUnitOfWork unitOfWork)
+//{
+//    var partnersFromDb = unitOfWork.Partners.GetAll();
+//    List<PartnerModel> partnerModels = new List<PartnerModel>();
+
+//    foreach (var partner in partnersFromDb)
+//    {
+//        // convert Partner to PartnerModel
+//        var partnerModel = PartnerConverter.ConvertToPartnerModel(partner);
+
+//        // convert List<PortfolioSubject> to List<PortfolioSubjectModel>
+//        var portfolio = PortfolioConverter.ConvertToPortfolioSubjectModels(partner.Portfolio);
+//        partnerModel.Portfolio = portfolio;
+
+//        // convert List<Competency> to List<CompetencyModel>
+//        var competencyModels = CompetencyConverter.ConvertToCompetencyModels(partner.Competencies);
+//        partnerModel.Competencies = competencyModels;
+
+//        // convert Team to TeamModel
+//        var teamModel = TeamConverter.ConvertToTeamModel(partner.Team);
+//        partnerModel.Team = teamModel;
+
+//        partnerModels.Add(partnerModel);
+//    }
+//    return partnerModels;
+//}

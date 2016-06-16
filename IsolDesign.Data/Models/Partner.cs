@@ -30,7 +30,7 @@ namespace IsolDesign.Data.Models
 
         public string Homepage { get; set; }
 
-        public int? TeamId { get; set; } // FK
+        public int? TeamId { get; set; } // FK (TeamId is set to null when a Team is deleted)
 
 
         public virtual Team Team { get; set; }
