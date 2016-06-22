@@ -1,5 +1,4 @@
 ﻿using IsolDesign.Domain.Models;
-using System.Collections.Generic;
 
 namespace IsolDesign.WebUI.Models
 {

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AssignmentsController : Controller
     {
         // GET: Assignments

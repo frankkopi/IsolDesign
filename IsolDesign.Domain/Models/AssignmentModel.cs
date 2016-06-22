@@ -7,6 +7,7 @@ namespace IsolDesign.Domain.Models
     {
         public int AssignmentId { get; set; }
 
+        [Display(Name = "Assignment Work Title")]
         public string WorkTitle { get; set; }
 
         public string Type { get; set; }

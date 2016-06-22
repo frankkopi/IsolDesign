@@ -2,14 +2,12 @@
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProjectsController : Controller
     {
         // GET: Projects
@@ -27,11 +25,18 @@ namespace IsolDesign.WebUI.Controllers
             return View(vm);
         }
 
-        //// GET: Projects/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Projects/Details/5
+        public ActionResult Details(int id)
+        {
+            GetProjects_Handler handler = new GetProjects_Handler();
+            var projectModel = handler.GetProjectModel(id);
+
+            ProjectDetailViewModel vm = new ProjectDetailViewModel()
+            {
+                ProjectModel = projectModel
+            };
+            return View(vm);
+        }
 
         // GET: Projects/Create
         public ActionResult Create()

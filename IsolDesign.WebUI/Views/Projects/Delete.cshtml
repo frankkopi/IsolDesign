@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            <label style="margin-bottom:0px;">Teams On Project</label>
+            <label style="margin-bottom:0">Teams On Project</label>
         </dt>
 
         <dd>
@@ -45,7 +45,6 @@
                 if (Model.ProjectModel.Teams != null)
                 {
                     <span>@Model.ProjectModel.Teams.ElementAt(0).Name</span>
-                    //foreach (var team in Model.Teams)
                     for (var i = 1; i < Model.ProjectModel.Teams.Count; i++)
                     {
                         <span>, @Model.ProjectModel.Teams.ElementAt(i).Name</span>

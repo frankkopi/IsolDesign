@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ApplicantsController : Controller
     {
 
@@ -24,6 +25,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         // GET: Applicants/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             IGetCompetencies_Handler handler = new GetCompetencies_Handler();
@@ -45,6 +47,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         // POST: Applicants/Create
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Create(CreateApplicantViewModel model, IEnumerable<int> competencyIds)
         {
@@ -70,6 +73,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
 
+        [AllowAnonymous]
         public ActionResult ThanxForApplication(ThanxForApplicationViewModel vm)
         {           
             return View(vm);

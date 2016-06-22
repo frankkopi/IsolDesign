@@ -61,6 +61,7 @@
     <Compile Include="Handlers\ImageHandler.cs" />
     <Compile Include="Handlers\SavePortfolioImages_Handler.cs" />
     <Compile Include="Helpers\ApplicantConverter.cs" />
+    <Compile Include="Helpers\AssignmentConverter.cs" />
     <Compile Include="Helpers\CompetencyConverter.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\PartnerConverter.cs" />

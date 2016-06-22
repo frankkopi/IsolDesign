@@ -8,6 +8,7 @@ using System.Net;
 
 namespace IsolDesign.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CompetenciesController : Controller
     {
         // GET: Competencies

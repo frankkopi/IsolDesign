@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TeamsController : Controller
     {
         // GET: Teams

@@ -209,6 +209,7 @@
     <Compile Include="Models\EditTeamViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PartnersIndexViewModel.cs" />
+    <Compile Include="Models\ProjectDetailViewModel.cs" />
     <Compile Include="Models\ProjectsIndexViewModel.cs" />
     <Compile Include="Models\TeamDetailViewModel.cs" />
     <Compile Include="Models\TeamsIndexViewModel.cs" />
@@ -301,6 +302,7 @@
     <Content Include="Views\Shared\_SearchForPartnersPartial.cshtml" />
     <Content Include="Views\Shared\_ShowPartnersOnTeamPartial.cshtml" />
     <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,7 +38,7 @@ namespace IsolDesign.Domain.Models
         //public virtual DevMethodModel DevMethod { get; set; }
         //public virtual EconomyModel Economy { get; set; }
         //public virtual ICollection<PatentModel> Patents { get; set; }
-        //public virtual AssignmentModel Assignment { get; set; }
+        public virtual AssignmentModel Assignment { get; set; }
         public virtual ICollection<TeamModel> Teams { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PartnersController : Controller
     {
         // GET: Partners
