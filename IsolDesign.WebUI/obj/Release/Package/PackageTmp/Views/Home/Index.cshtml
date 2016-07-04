@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div id="index" class="row">
+    <div class="col-md-6">
+        <div class="logo">
+            <img src="~/Images/Logos/logo1.png" />
+        </div>
+    </div>
+    <div id="applyText" class="col-md-6">
+        <h2>Apply for Partnership</h2>
+        <a id="apply" href="@Url.Action("Create", "Applicants")">
+            <div id="applyBtn">Apply</div>
+        </a>
+    </div>
+</div>
+
+
+
+

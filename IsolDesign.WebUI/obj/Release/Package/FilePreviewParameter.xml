@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="isoldesign.dk" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Lenovo\\Documents\\Visual\ Studio\ 2015\\Projects\\Eksamen\\IsolDesign\\IsolDesign\.WebUI\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Lenovo\\Documents\\Visual\ Studio\ 2015\\Projects\\Eksamen\\IsolDesign\\IsolDesign\.WebUI\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=mssql6.unoeuro.com;Initial Catalog=isoldesign_dk_db;User ID=isoldesign_dk;Password=rknb9tx6" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Lenovo\\Documents\\Visual\ Studio\ 2015\\Projects\\Eksamen\\IsolDesign\\IsolDesign\.WebUI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

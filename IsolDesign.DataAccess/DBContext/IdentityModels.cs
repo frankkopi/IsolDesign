@@ -34,9 +34,10 @@ namespace IsolDesign.DataAccess.DBContext
         public DbSet<Subcontractor> Subcontractors { get; set; }
         public DbSet<Team> Teams { get; set; }
 
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
+            //Database.SetInitializer<YourDbContext>(null);
+            Database.SetInitializer<ApplicationDbContext>(null);
         }
 
         public static ApplicationDbContext Create()
@@ -44,26 +45,6 @@ namespace IsolDesign.DataAccess.DBContext
             return new ApplicationDbContext();
         }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Project>()
-        //        .HasMany(x => x.Teams)
-        //        .WithOptional()
-        //        .WillCascadeOnDelete(true);
-        //}
-
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Order>()
-
-        //        .HasOptional(a => a.OrderDetail)
-
-        //        .WithOptionalDependent()
-
-        //        .WillCascadeOnDelete(true);
-
-        //}
     }
 
 }

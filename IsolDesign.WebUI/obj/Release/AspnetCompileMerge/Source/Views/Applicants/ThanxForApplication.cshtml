@@ -1,0 +1,20 @@
+﻿@model IsolDesign.WebUI.Models.ThanxForApplicationViewModel
+
+@{
+    ViewBag.Title = "ThanxForApplication";
+}
+
+<div>
+    <h2>Thank you @Model.Name for your Application</h2>
+</div>
+
+
+<div>
+    <p>We will answer your application as soon as possible</p>
+    <p>We will send our answer to this email-address: @Model.Email</p>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Homepage", "Index", "Home")  
+</div>
+

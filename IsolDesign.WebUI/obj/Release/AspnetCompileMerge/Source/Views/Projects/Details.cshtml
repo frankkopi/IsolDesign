@@ -1,0 +1,114 @@
+﻿@model IsolDesign.WebUI.Models.ProjectDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*
+        <dt>
+            @Html.DisplayNameFor(model => model.DevMethod.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DevMethod.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Economy.EconomyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Economy.EconomyId)
+        </dd>*@
+
+
+        <dt>
+            <label style="margin-bottom:0;">Project Leader</label>
+        </dt>
+
+        <dd>
+            @{
+                if (Model.ProjectModel.ProjectLeader == null)
+                {
+                    <span>No Project Leader</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.ProjectModel.ProjectLeader.Name)
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectModel.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectModel.Name)
+        </dd>
+
+        <dt>
+            <label style="margin-bottom:0">Teams On Project</label>
+        </dt>
+
+        <dd>
+            @{
+                if (Model.ProjectModel.Teams != null)
+                {
+                    <span>@Model.ProjectModel.Teams.ElementAt(0).Name</span>
+                    for (var i = 1; i < Model.ProjectModel.Teams.Count; i++)
+                    {
+                        <span>, @Model.ProjectModel.Teams.ElementAt(i).Name</span>
+                    }
+                }
+                else
+                {
+                    <span>***No Teams***</span>
+                }
+            }
+        </dd>
+
+        <dt class="addMarginTop">
+            @Html.DisplayNameFor(model => model.ProjectModel.Description)
+        </dt>
+
+        <dd class="addMarginTop">
+            @Html.TextAreaFor(model => model.ProjectModel.Description, new { @class = "form-control showTextArea", @readonly = "readonly" })
+        </dd>
+
+        <dt class="addMarginTop">
+            @Html.DisplayNameFor(model => model.ProjectModel.Assignment.WorkTitle)
+        </dt>
+
+        <dd class="addMarginTop">
+            @Html.DisplayFor(model => model.ProjectModel.Assignment.WorkTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectModel.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectModel.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectModel.Deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectModel.Deadline)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectModel.ProjectId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

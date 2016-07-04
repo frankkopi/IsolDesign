@@ -1,0 +1,41 @@
+﻿@model IsolDesign.WebUI.Models.DeleteTeamViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Team</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Team.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Team.Project.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team.Project.Name)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Team.TeamId)
+        @Html.HiddenFor(model => model.Team.Name)
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

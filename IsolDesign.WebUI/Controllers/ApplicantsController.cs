@@ -2,6 +2,7 @@
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -33,7 +34,9 @@ namespace IsolDesign.WebUI.Controllers
 
             ApplicantModel applicantModel = new ApplicantModel();
             PortfolioSubjectModel port1 = new PortfolioSubjectModel();
+            port1.Date = DateTime.Today;
             PortfolioSubjectModel port2 = new PortfolioSubjectModel();
+            port2.Date = DateTime.Today;
 
             CreateApplicantViewModel vm = new CreateApplicantViewModel()
             {

@@ -1,0 +1,47 @@
+﻿@model IsolDesign.WebUI.Models.ProjectsIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index of Projects</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Project.Name)</th>
+        <th>@Html.DisplayNameFor(model => model.Project.StartDate)</th>
+        <th>@Html.DisplayNameFor(model => model.Project.Deadline)</th>
+        <th>@Html.DisplayNameFor(model => model.Project.ProjectLeader)</th>
+        <th>@Html.DisplayNameFor(model => model.Project.Teams)</th>
+    </tr>
+    
+@foreach (var item in Model.Projects.ToList())
+{
+    <tr>
+        <td>@Html.DisplayFor(model => item.Name)</td>
+        <td>@Html.DisplayFor(model => item.StartDate)</td>
+        <td>@Html.DisplayFor(model => item.Deadline)</td>
+        <td>@Html.DisplayFor(model => item.ProjectLeader.Name)</td>
+        <td>
+            <table border="0" cellspacing="0" cellpadding="0">
+                @foreach (var team in item.Teams)
+                {
+                    <tr>
+                        <td style="border: none; padding: 0;">@Html.DisplayFor(model => team.Name)</td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+        </td>
+    </tr>
+}
+    
+</table>
+

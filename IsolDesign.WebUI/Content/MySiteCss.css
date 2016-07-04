@@ -25,10 +25,11 @@
     text-decoration: none;
 }
 
+
 .applicantsIndex {
-    display: inline;
-    padding-bottom: 20px;
+
 }
+    
 
 .applicantsInfo {
     display: none;
@@ -36,6 +37,7 @@
 
 .applicantsImage {
     cursor: pointer;
+    margin-bottom: 40px;
 }
 
 /* Override width on a text area */
@@ -70,10 +72,6 @@ dl dt.addMarginTop, dl dd.addMarginTop {
     border-radius: 3px;
 }
 
-/*.hasBeenClicked {
-    background-color: red;
-    pointer-events: none;
-}*/
 
 .hasBeenClicked {
     background-color: red;

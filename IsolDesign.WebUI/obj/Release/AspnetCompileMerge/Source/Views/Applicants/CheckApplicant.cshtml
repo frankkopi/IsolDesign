@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Check Applicant";
+}
+
+<br />
+<h1>Approve @ViewBag.ApplicantName as Partner</h1>
+<h2>Are you sure?</h2>
+<hr />
+
+<input type="button" class="btn btn-lg btn-success" value="Approve" 
+       onclick="location.href='@Url.Action("SaveAsPartner", new { applicantId = ViewBag.ApplicantID})'" />
+
+<input type="button" class="btn btn-lg btn-danger" value="Dismiss" 
+       onclick="location.href='@Url.Action("DismissAsPartner")'" />
+

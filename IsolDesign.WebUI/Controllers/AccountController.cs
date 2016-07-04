@@ -13,8 +13,8 @@ using IsolDesign.DataAccess.DBContext;
 
 namespace IsolDesign.WebUI.Controllers
 {
-    //[Authorize]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
+    //[Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -136,18 +136,18 @@ namespace IsolDesign.WebUI.Controllers
             }
         }
 
-        ////
-        //// GET: /Account/Register
-        //[Authorize(Roles = "Admin")]
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -176,7 +176,7 @@ namespace IsolDesign.WebUI.Controllers
 
         //
         // GET: /Account/ConfirmEmail
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -189,7 +189,7 @@ namespace IsolDesign.WebUI.Controllers
 
         //
         // GET: /Account/ForgotPassword
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
             return View();
@@ -198,7 +198,7 @@ namespace IsolDesign.WebUI.Controllers
         //
         // POST: /Account/ForgotPassword
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
@@ -225,7 +225,7 @@ namespace IsolDesign.WebUI.Controllers
 
         //
         // GET: /Account/ForgotPasswordConfirmation
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -233,7 +233,7 @@ namespace IsolDesign.WebUI.Controllers
 
         //
         // GET: /Account/ResetPassword
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
@@ -242,7 +242,7 @@ namespace IsolDesign.WebUI.Controllers
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -267,7 +267,7 @@ namespace IsolDesign.WebUI.Controllers
 
         //
         // GET: /Account/ResetPasswordConfirmation
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
@@ -276,7 +276,7 @@ namespace IsolDesign.WebUI.Controllers
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
@@ -286,7 +286,7 @@ namespace IsolDesign.WebUI.Controllers
 
         //
         // GET: /Account/SendCode
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
@@ -302,7 +302,7 @@ namespace IsolDesign.WebUI.Controllers
         //
         // POST: /Account/SendCode
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
@@ -321,7 +321,7 @@ namespace IsolDesign.WebUI.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -352,7 +352,7 @@ namespace IsolDesign.WebUI.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {

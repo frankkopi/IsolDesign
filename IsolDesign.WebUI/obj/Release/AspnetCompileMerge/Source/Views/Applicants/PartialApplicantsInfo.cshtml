@@ -1,0 +1,153 @@
+﻿@model IsolDesign.Domain.Models.ApplicantModel
+
+@{
+    ViewBag.Title = "Test";
+}
+<div class="panel">
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt></dt>
+            <dd>
+                <img src="../../@Model.ProfileImagePath" class="thumbnail applicantsImageInfo" />
+            </dd>
+            <dt class="addMarginTop">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="addMarginTop">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SkypeLink)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SkypeLink)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Facebook)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Facebook)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LinkedIn)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LinkedIn)
+            </dd>
+            <dt class="addMarginTop">
+                @Html.DisplayNameFor(model => model.Competencies)
+            </dt>
+            <dd class="addMarginTop">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Competency</th>
+                        <th>Description of Competency</th>
+                    </tr>
+                    @{
+                        foreach (var competency in Model.Competencies)
+                        {
+                            <tr>
+                                <td>@competency.Name</td>
+                                <td>@competency.Description</td>
+                            </tr>
+                        }
+                    }
+                </table>
+
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control showTextArea", @readonly = "readonly" })
+            </dd>
+        </dl>
+
+        @{
+            var count = 1;
+
+            foreach (var portfolioSubject in Model.Portfolio)
+            {
+                <dl class="dl-horizontal">
+                    <dt>
+                    </dt>
+                    <dd>
+                        <h1>Project @count From Applicant</h1>
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(x => portfolioSubject.Name)
+                    </dt>
+                    <dd>
+                        @portfolioSubject.Name
+                    </dd>
+                    <dt class="addMarginTop">
+                        @Html.DisplayNameFor(x => portfolioSubject.Description)
+                    </dt>
+                    <dd class="addMarginTop">
+                        @Html.TextAreaFor(model => portfolioSubject.Description, new { @class = "form-control showTextArea", @readonly = "readonly" })
+                    </dd>
+                    <dt class="addMarginTop">
+                        @Html.DisplayNameFor(x => portfolioSubject.Photo1)
+                    </dt>
+                    <dd class="addMarginTop">
+                        <img src="@portfolioSubject.Photo1" />
+                    </dd>
+                    <dt class="addMarginTop">
+                        @Html.DisplayNameFor(x => portfolioSubject.Photo2)
+                    </dt>
+                    <dd class="addMarginTop">
+                        <img src="@portfolioSubject.Photo2" />
+                    </dd>
+                    <dt class="addMarginTop">
+                        @Html.DisplayNameFor(x => portfolioSubject.Photo3)
+                    </dt>
+                    <dd class="addMarginTop">
+                        <img src="@portfolioSubject.Photo3" />
+                    </dd>
+                </dl>
+
+                count++;
+            }
+        }
+
+
+        <p>
+            @Html.ActionLink("Back to Index", "") |
+            @Html.ActionLink("Approve as Partner", "CheckApplicant", new { applicantId = Model.ApplicantId, name = Model.Name }) |
+            @Html.ActionLink("Delete Applicant", "Delete", new { applicantId = Model.ApplicantId })
+        </p>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,340 @@
+﻿@model IsolDesign.WebUI.Models.EditTeamViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Team: @Model.Team.Name</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Team.TeamId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Team.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Team.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Team.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Team.ProjectId, "ProjectId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProjectId", Model.ProjectsSelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Team.ProjectId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- ******************* SEARCH FOR PARTNERS AND FILTER THE COMPETENCIES (Partial View) ********************** -->
+        @Html.Partial("_SearchForPartnersPartial", Model.PartnerModel)
+
+
+        <!-- ******************************* SHOW PARTNERS ALREADY ON THIS TEAM (Partial View) ********************************-->
+        <br />
+        <div class="form-group">
+            @Html.Label("Partners On This Team", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Partial("_ShowPartnersOnTeamPartial", Model.Team)
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="submitButton" type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+
+
+@section ExpandDescription {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".expandText").click(function (event) {
+                event.preventDefault();
+                console.log($(this).html());
+                $(this).parent().next().toggleClass('hide');
+            })
+        });
+    </script>
+}
+
+
+
+@section FilterCompetencies {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var $partners = @Html.Raw(Json.Encode(Model.Partners));
+            console.log($partners);
+            var teamId = @Model.Team.TeamId;
+            console.log("teamId : " + teamId);
+            for (var i = 0; i < $partners.length; i++) {
+                if ($partners[i].Team != null) {
+                    if ($partners[i].Team.TeamId === teamId) {
+                        $partners[i].Chosen = true;
+                    }
+                    else {
+                        $partners[i].Chosen = false;
+                    }
+                }
+                else {
+                    $partners[i].Chosen = false;
+                }
+            }
+
+            var $projects = @Html.Raw(Json.Encode(Model.Projects));
+
+            createDefaultTable();
+            activateAddToTeamBtns();
+            radioButtonListener();
+
+            $("#filterButton").click(function() {
+                var $radioBtnId = $("input[type='radio']:checked").attr('id');
+                emptyAndGetAll();
+                activateAddToTeamBtns();
+                activateRadioButton($radioBtnId);
+                radioButtonListener();
+                var $searchText = $("#searchBox").val().toLowerCase();
+
+                $("table tbody .tableRow .target").each(function() {
+                    if ($(this).html().toLowerCase().indexOf($searchText) >= 0)
+                    {
+                        $(this).parent().show();
+                    }
+                    else {
+                        $(this).parent().hide();
+                    }
+                });
+            });
+
+
+            $("#getAllButton").click(function() {
+                var $radioBtnId = $("input[type='radio']:checked").attr('id');
+                emptyAndGetAll();
+                activateAddToTeamBtns();
+                activateRadioButton($radioBtnId);
+                radioButtonListener();
+                $("#searchBox").val("");
+            });
+
+            function emptyAndGetAll() {
+                $("#tableBody").empty();
+                createDefaultTable();
+            }
+
+            $("#resetRadioButtons").click(function() {
+                console.log("test");
+                $(':radio').prop('checked', false);
+            });
+
+            function createDefaultTable() {
+                var $tableBody = $("#tableBody");
+                var $clicked = "";
+                var $onOtherTeam = false;
+                var $projectLeaderOnOtherTeams = "";
+
+                for (var i = 0; i < $partners.length; i++) {
+                    // check if partner has already been chosen for the team
+                    if ($partners[i].hasOwnProperty('Chosen') && $partners[i].Chosen === true) {
+                        $clicked = "hasBeenClicked";
+                    }
+                    else if ($partners[i].hasOwnProperty('Chosen') && $partners[i].Chosen === false) {
+                        $clicked = "hasNotBeenClicked";
+                    }
+                    else {
+                        console.log("something went wrong!");
+                    }
+
+                    // check if partner is working on another team
+                    if ($partners[i].Team == null) {
+                        $onOtherTeam = "<td class='NoTeam'>No Team</td>"
+                    }
+                    else {
+                        $teamName = $partners[i].Team.Name;
+                        $onOtherTeam = "<td class='OnTeam'>" + $teamName + "</td>"
+                    }
+
+                    // get the competencies of the partner
+                    var $competencies = "";
+                    for (var j = 0; j < $partners[i].Competencies.length; j++) {
+                        $competencies += $partners[i].Competencies[j].Name + ", ";
+                    }
+
+                    // check if partner is project leader on another team
+                    for (var k = 0; k < $projects.length; k++) {
+                        if ($projects[k].PartnerId === $partners[i].PartnerId) {
+                            $projectLeaderOnOtherTeams += $projects[k].Name + ", ";
+                        }
+                    }
+                    if ($projectLeaderOnOtherTeams.length <= 0) {
+                        $projectLeaderOnOtherTeams = "Not a Project Leader";
+                    }
+
+                    // create table row for a partner
+                    var $rowTemplate = "<tr class='tableRow'>" +
+                                            "<td>" + $partners[i].Name + "</td>" +
+                                            "<td>" + $partners[i].City + "</td>" +
+                                            "<td>" + $partners[i].Country + "</td>" +
+                                            "<td class='target'>" + $competencies + "</td>" +
+                                            "<td><div id='partnerBtn" + i +"' class='addToTeamBtn " + $clicked + "'>Add To Team</div></td>" +
+                                            "<td><input type='radio' id='radio" + i +"' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
+                                            $onOtherTeam +
+                                            "<td><div>" + $projectLeaderOnOtherTeams + "</div></td>" +
+                                            //"<td><input type='checkbox' name='projectLeader' value='" + $partners[i].PartnerId + "'/></td>" +
+                                       "</tr>";
+                    $tableBody.append($rowTemplate);
+                    $projectLeaderOnOtherTeams = "";
+                }
+            }
+
+
+            // activate Add To Team button for every partner
+            function activateAddToTeamBtns() {
+                for (var i = 0; i < $partners.length; i++) {
+
+                    function clickHandler(num) {
+                        $("#partnerBtn" + num).click (function() {
+                            //$(document).on('click', '#partnerBtn' + i, function() {
+                            // Choose a Partner
+                            if ($partners[num].Chosen === false) {
+                                $partners[num].Chosen = true;
+                                $(this).removeClass('hasNotBeenClicked');
+                                $(this).addClass('hasBeenClicked');
+                                //console.log($partners[num].Chosen);
+                                console.log($partners);
+                            }
+                                // Unchoose a Partner
+                            else if ($partners[num].Chosen === true) {
+                                $partners[num].Chosen = false;
+                                $(this).removeClass('hasBeenClicked');
+                                $(this).addClass('hasNotBeenClicked');
+                                //console.log($partners[num].Chosen);
+                                console.log($partners);
+                            }
+                        });
+                    }
+                    clickHandler(i);
+                }
+            }
+
+
+            // activate the clicked radio button
+            function activateRadioButton($radioBtnId) {
+                //console.log($radioBtnId);
+                if ($radioBtnId != undefined)
+                {
+                    $('#' + $radioBtnId).attr('checked', true);
+                }
+            }
+
+            // listen if radio button is clicked
+            function radioButtonListener() {
+                $('input:radio').on('change', function(){
+                    //access value of changed radio group with $(this).val()
+                    var $value = $(this).attr('id');
+                    var $index = $value.substring(5, $value.length);
+                    $partners[$index].Chosen = true;
+                    $('#partnerBtn' + $index).removeClass('hasNotBeenClicked');
+                    $('#partnerBtn' + $index).addClass('hasBeenClicked');
+                });
+            }
+
+
+            // click the submit button
+            $("#submitButton").click(function() {
+                var $partnerIds = "";
+
+                for (var i = 0; i < $partners.length; i++) {
+                    if ($partners[i].Chosen === true) {
+                        function pushHandler(num) {
+                            $partnerIds += num + ",";
+                        }
+                        pushHandler($partners[i].PartnerId);
+                    }
+                }
+                //console.log($partnerIds);
+                // put the partners on to the form
+                $("#newTeamMembers").val($partnerIds);
+
+                var test = $("input[type='radio']:checked").val();
+                // put the project leader on to the form
+                $("#projectLeaderId").val(test);
+            });
+
+
+        });
+    </script>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+@*<div>
+        @Html.Label("Search Competencies", htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-right: 25px;" })
+        <div class="col-md-10" style="padding-left: 5px; margin-bottom: 10px;">
+            <input id="searchBox" type="text" name="searchString" />
+            <div id="filterButton" class="btn btn-info">Filter</div>
+            <div id="getAllButton" class="btn btn-success">Get All</div>
+            <div id="resetRadioButtons" class="btn btn-warning">Reset PL</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div style="height:300px; overflow:auto;">
+                <table id="partnerTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.PartnerModel.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.PartnerModel.City)</th>
+                            <th>@Html.DisplayNameFor(model => model.PartnerModel.Country)</th>
+                            <th>@Html.DisplayNameFor(model => model.PartnerModel.Competencies)</th>
+                            <th>Select</th>
+                            <th>PL</th>
+                            <th>Currently On Team</th>
+                            <th>Already PL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+
+                        <!-- TABLE BODY CONTENT IS CREATED IN THE SCRIPT -->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- put the chosen partners ids into the form as a string -->
+    <input id="newTeamMembers" name="partnerIds" type="hidden" value="" />
+
+    <!-- put the id of the chosen project leader into the form -->
+    <input id="projectLeaderId" name="projectLeaderId" type="hidden" value="" />*@

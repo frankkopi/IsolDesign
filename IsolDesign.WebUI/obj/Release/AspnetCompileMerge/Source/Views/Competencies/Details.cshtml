@@ -1,0 +1,34 @@
+﻿@model IsolDesign.Domain.Models.CompetencyModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Competency</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="addMarginTop">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd class="addMarginTop">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control showTextArea", @readonly = "readonly" } )
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompetencyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

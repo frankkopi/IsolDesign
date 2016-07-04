@@ -10,6 +10,7 @@ namespace IsolDesign.DataAccess.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true; // You may want this also, but be careful.
         }
 
         protected override void Seed(IsolDesign.DataAccess.DBContext.ApplicationDbContext context)

@@ -1,0 +1,49 @@
+﻿@model IsolDesign.Domain.Models.PartnerModel
+
+            <!-- *********************** SEARCH FOR PARTNERS AND FILTER THE COMPETENCIES ********************************* -->
+<div>
+    @Html.Label("Search Competencies", htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-right: 25px;" })
+    <div class="col-md-10" style="padding-left: 5px; margin-bottom: 10px;">
+        <input id="searchBox" type="text" name="searchString" />
+        <div id="filterButton" class="btn btn-info">Filter</div>
+        <div id="getAllButton" class="btn btn-success">Get All</div>
+        <div id="resetRadioButtons" class="btn btn-warning">Reset PL</div>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.Label("Choose Team members", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div style="height:300px; overflow:auto;">
+            <table id="partnerTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.City)</th>
+                        <th>@Html.DisplayNameFor(model => model.Country)</th>
+                        <th>@Html.DisplayNameFor(model => model.Competencies)</th>
+                        <th>Select</th>
+                        <th>PL</th>
+                        <th>Currently On Team</th>
+                        <th>Already PL</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+
+                    <!-- TABLE BODY CONTENT IS CREATED IN THE SCRIPT -->
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- put the chosen partners ids into the form as a string -->
+<input id="newTeamMembers" name="partnerIds" type="hidden" value="" />
+
+<!-- put the id of the chosen project leader into the form -->
+<input id="projectLeaderId" name="projectLeaderId" type="hidden" value="" />
+
+
+
+
