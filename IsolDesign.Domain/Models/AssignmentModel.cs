@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IsolDesign.Domain.Interfaces.Interfaces_Models;
 
 namespace IsolDesign.Domain.Models
 {
@@ -10,7 +11,7 @@ namespace IsolDesign.Domain.Models
         OrderedAssignment = 2,
     }
 
-    public class AssignmentModel
+    public class AssignmentModel : IAssignmentModel
     {
         public int AssignmentId { get; set; }
 

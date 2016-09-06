@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -61,3 +58,13 @@
 }
 
 </table>
+
+<br />
+<div class="row">
+    <div class="col-md-offset-1 col-md-5">
+        @Html.ActionLink("Create New Partner Assignment", "CreatePartnerAssignment", null, new { @class = "btn btn-lg btn-primary"})
+    </div>
+    <div class="col-md-6">
+        @Html.ActionLink("Create New Ordered Assignment", "CreateOrderedAssignment", null, new { @class = "btn btn-lg btn-primary"})
+    </div>
+</div>

@@ -4,5 +4,6 @@ namespace IsolDesign.DataAccess.Interfaces
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
+
     }
 }

@@ -43,7 +43,10 @@ namespace IsolDesign.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                var images = Request.Files;
+                var assignmentModel = vm.Assignment;
 
+                ICreateAssignment_Handler handler = new CreateAssignment_Handler(assignmentModel, images);
             }
             try
             {
@@ -55,6 +58,20 @@ namespace IsolDesign.WebUI.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public ActionResult CreatePartnerAssignment()
+        {
+            CreatePartnerAssignmentViewModel vm = new CreatePartnerAssignmentViewModel();
+            return View(vm);
+        }
+
+        [HttpGet]
+        public ActionResult CreateOrderedAssignment()
+        {
+            CreateOrderedAssignmentViewModel vm = new CreateOrderedAssignmentViewModel();
+            return View(vm);
         }
 
         //// GET: Assignments/Edit/5

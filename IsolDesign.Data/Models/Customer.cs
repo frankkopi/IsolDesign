@@ -1,19 +1,8 @@
 ﻿using System.Collections.Generic;
+using IsolDesign.Data.Enums;
 
 namespace IsolDesign.Data.Models
 {
-
-    public enum CategoryType
-    {
-        //[Display(Name = "High Level")]
-        high = 1,
-
-        //[Display(Name = "Mid Level")]
-        middel = 2,
-        //[Display(Name = "Low Level")]
-        low = 3
-    }
-
     public class Customer
     {
         public int CustomerId { get; set; }

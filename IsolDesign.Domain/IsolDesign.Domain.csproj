@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\CreateApplicant_Handler.cs" />
+    <Compile Include="Handlers\CreateAssignment_Handler.cs" />
     <Compile Include="Handlers\CreateCompetency_Handler.cs" />
     <Compile Include="Handlers\CreatePartner_Handler.cs" />
     <Compile Include="Handlers\CreateProject_Handler.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Handlers\GetApplicants_Handler.cs" />
     <Compile Include="Handlers\GetAssignments_Handler.cs" />
     <Compile Include="Handlers\GetCompetencies_Handler.cs" />
+    <Compile Include="Handlers\GetCustomers_Handler.cs" />
     <Compile Include="Handlers\GetPartners_Handler.cs" />
     <Compile Include="Handlers\GetProjects_Handler.cs" />
     <Compile Include="Handlers\GetTeams_Handler.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Helpers\ProjectConverter.cs" />
     <Compile Include="Helpers\TeamConverter.cs" />
     <Compile Include="Interfaces\ICreateApplicant_Handler.cs" />
+    <Compile Include="Interfaces\ICreateAssignment_Handler.cs" />
     <Compile Include="Interfaces\ICreateCompetency_Handler.cs" />
     <Compile Include="Interfaces\ICreatePartner_Handler.cs" />
     <Compile Include="Interfaces\ICreateProject_Handler.cs" />
@@ -80,16 +83,22 @@
     <Compile Include="Interfaces\IGetApplicants_Handler.cs" />
     <Compile Include="Interfaces\IGetAssignments_Handler.cs" />
     <Compile Include="Interfaces\IGetCompetencies_Handler.cs" />
+    <Compile Include="Interfaces\IGetCustomers_Handler.cs" />
     <Compile Include="Interfaces\IGetPartners_Handler.cs" />
     <Compile Include="Interfaces\IGetProjects_Handler.cs" />
     <Compile Include="Interfaces\IGetTeams_Handler.cs" />
     <Compile Include="Interfaces\Interfaces Models\IApplicantModel.cs" />
+    <Compile Include="Interfaces\Interfaces Models\IAssignmentModel.cs" />
     <Compile Include="Interfaces\Interfaces Models\ICompetencyModel.cs" />
+    <Compile Include="Interfaces\Interfaces Models\IOrderedAssignmentModel.cs" />
+    <Compile Include="Interfaces\Interfaces Models\IPartnerAssignmentModel.cs" />
     <Compile Include="Interfaces\Interfaces Models\IPortfolioSubjectModel.cs" />
     <Compile Include="Models\ApplicantModel.cs" />
     <Compile Include="Models\AssignmentModel.cs" />
     <Compile Include="Models\CompetencyModel.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\ImageModel.cs" />
+    <Compile Include="Models\OrderedAssignmentModel.cs" />
     <Compile Include="Models\PartnerAssignmentModel.cs" />
     <Compile Include="Models\PartnerModel.cs" />
     <Compile Include="Models\PortfolioSubjectModel.cs" />
