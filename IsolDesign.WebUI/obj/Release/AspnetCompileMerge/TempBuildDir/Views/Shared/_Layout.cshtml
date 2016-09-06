@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -46,8 +46,9 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @RenderSection("ApplicantAndPartnerInfo", required: false)
-    @RenderSection("ShowPortfolioFields", required: false)
     @RenderSection("FilterCompetencies", required: false)
     @RenderSection("ExpandDescription", required: false)
+    @RenderSection("ScriptForDatePicker", required: false)
+    @RenderSection("ToggleInstructions", required: false)
 </body>
 </html>

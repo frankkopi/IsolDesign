@@ -201,6 +201,7 @@
     <Compile Include="Models\ApplicantDeleteViewModel.cs" />
     <Compile Include="Models\AssignmentsIndexViewModel.cs" />
     <Compile Include="Models\CreateApplicantViewModel.cs" />
+    <Compile Include="Models\CreateAssignmentViewModel.cs" />
     <Compile Include="Models\CreateCompetencyViewModel.cs" />
     <Compile Include="Models\CreateProjectViewModel.cs" />
     <Compile Include="Models\CreateTeamViewModel.cs" />
@@ -231,6 +232,7 @@
     <Content Include="Images\Logos\logo1.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\IsolDesign.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -307,6 +309,7 @@
     <Content Include="Views\Shared\_ShowPartnersOnTeamPartial.cshtml" />
     <Content Include="Views\Projects\Delete.cshtml" />
     <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Assignments\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

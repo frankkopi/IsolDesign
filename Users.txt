@@ -1,9 +1,23 @@
-Administrator 
-
+Admin in deployed version 
 poul erik
-username: sapeaps@gmail.com
+username: sapeaps@msn.com
 password: Pe_1234
 
 frank hansen
 username: frankkopi@yahoo.dk
 password: P_assword!1
+
+
+Admin in development version
+username: sapeaps@gmail.com
+password: Pe_1234
+
+
+
+Data Source=mssql6.unoeuro.com;Initial Catalog=isoldesign_dk_db;User ID=isoldesign_dk;Password=	rknb9tx6
+
+            AutomaticMigrationDataLossAllowed = true; // You may want this also, but be careful.
+
+
+            //Database.SetInitializer<YourDbContext>(null);
+            Database.SetInitializer<ApplicationDbContext>(null);

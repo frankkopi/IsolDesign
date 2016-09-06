@@ -6,6 +6,20 @@
 
 <h2>Apply for Partnership with Isol Design</h2>
 
+<div id="instructionsButton" class="btn btn-sm btn-default">Instructions</div>
+
+<div id="instructions" class="hide">
+    <h4>
+        Please fill out the form below.<br />
+        We need a personal description together with two projects from your portfolio.<br /><br />
+        The form consist of three sections:<br /><br />
+        The first section are input fields for your personal information like name, address, contact-info etc.<br /><br />
+        The second section are input fields for a project from your portfolio. We need this to see what kind of projects you have worked on.<br /><br />
+        We need to see two projects from your portfolio. The third section are therefore also input fields for a project you have worked on.<br /><br />
+        All fields are required. Thank you for applying!
+    </h4>
+</div>
+
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", @id = "myForm" }))
 {
     @Html.AntiForgeryToken()
@@ -132,7 +146,7 @@
                                     @competency.Description
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="competencyIds" value="@competency.CompetencyId"/>
+                                    <input type="checkbox" name="competencyIds" value="@competency.CompetencyId" />
                                 </td>
                             </tr>
                         }
@@ -142,11 +156,9 @@
         </div>
 
 
-        <!-- ************************ Hidden input elements for first case in portfolio ******************************* -->
-
-        <div id="firstCaseButton" class="showFormFields btn btn-lg  btn-primary col-md-12 col-md-offset-2">Add a project from your portfolio</div>
-        <div id="firstPortfolioSubject" class="hide">
-
+        <!-- ************************ Input elements for first project in portfolio ******************************* -->
+        <h2 class="projectHeader">Please add your first project from your portfolio</h2>
+        <div>
             <div class="form-group">
                 @Html.LabelFor(model => model.PortfolioSubject1.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -158,7 +170,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.PortfolioSubject1.Date, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PortfolioSubject1.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.PortfolioSubject1.Date, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.PortfolioSubject1.Date, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -200,10 +212,10 @@
         </div>
 
 
-        <!-- ************************ Hidden input elements for Second case in portfolio ******************************* -->
+        <!-- ************************ Input elements for the Second project in portfolio ******************************* -->
 
-        <div id="secondCaseButton" class="showFormFields hide btn btn-lg btn-primary col-md-12 col-md-offset-2">Add a second project from your portfolio</div>
-        <div id="secondPortfolioSubject" class="hide">
+        <h2 class="projectHeader">Please add your second project from your portfolio</h2>
+        <div>
             <div class="form-group">
                 @Html.LabelFor(model => model.PortfolioSubject2.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -256,13 +268,12 @@
             </div>
         </div>
 
-
         <div class="form-group" id="submitButton">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Send your application" class="btn btn-lg btn-success" />
-                </div>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Send your application" class="btn btn-lg btn-success" />
             </div>
         </div>
+    </div>
 }
 
 <div>
@@ -270,21 +281,36 @@
 </div>
 
 
-@section ShowPortfolioFields {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#firstCaseButton").click(function () {
-                $("#firstPortfolioSubject").toggleClass('show');
-                $("#secondCaseButton").toggleClass('show');
-            });
-
-            $("#secondCaseButton").click(function () {
-                $("#secondPortfolioSubject").toggleClass('show');
-            });
-        });
-    </script>
-}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+@section ToggleInstructions {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#instructionsButton").click(function () {
+                $("#instructions").toggleClass('show');
+            });
+        });
+    </script>
+
+}
+
+@section ScriptForDatePicker {
+    <script src="~/Scripts/jquery-ui.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            (function () {
+                var elem = document.createElement('input');
+                elem.setAttribute('type', 'date');
+
+                if (elem.type === 'text') {
+                    $('#PortfolioSubject1_Date').datepicker();
+                    $('#PortfolioSubject2_Date').datepicker();
+                }
+            })();
+        });
+    </script>
+}
+

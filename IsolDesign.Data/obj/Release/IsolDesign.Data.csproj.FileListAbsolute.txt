@@ -1,0 +1,14 @@
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\IsolDesign.Data.dll.config
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\IsolDesign.Data.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\IsolDesign.Data.pdb
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\EntityFramework.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\EntityFramework.xml
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Release\IsolDesign.Data.csprojResolveAssemblyReference.cache
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Release\IsolDesign.Data.dll
+C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Release\IsolDesign.Data.pdb

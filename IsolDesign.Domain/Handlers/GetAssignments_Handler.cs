@@ -36,17 +36,19 @@ namespace IsolDesign.Domain.Handlers
                     Drawing = assignment.Drawing,
                     Video = assignment.Video
                 };
-                if (assignment.Type == AssignmentType.PartnerAssignment)
+                if (assignment.Type == IsolDesign.Data.Models.AssignmentType.PartnerAssignment)
+                //if (assignment.Type == AssignmentType.PartnerAssignment)
                 {
-                    assModel.Type = "Partner Assignment";
+                    assModel.Type = IsolDesign.Domain.Models.AssignmentType.PartnerAssignment;
+                    //assModel.Type = "Partner Assignment";
                 }
-                else if (assignment.Type == AssignmentType.OrderedAssignment)
+                else if (assignment.Type == IsolDesign.Data.Models.AssignmentType.OrderedAssignment)
                 {
-                    assModel.Type = "Ordered Assignment";
+                    assModel.Type = IsolDesign.Domain.Models.AssignmentType.OrderedAssignment;
                 }
                 else
                 {
-                    assModel.Type = "No Assignment";
+                    assModel.Type = null;
                 }
                 assignmentModels.Add(assModel);
             }

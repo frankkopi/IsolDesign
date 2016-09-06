@@ -1,6 +1,5 @@
 ﻿using IsolDesign.Domain.Models;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace IsolDesign.WebUI.Models
 {

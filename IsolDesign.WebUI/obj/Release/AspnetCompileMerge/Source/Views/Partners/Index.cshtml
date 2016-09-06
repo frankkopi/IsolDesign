@@ -9,13 +9,13 @@
 <div>
     @foreach (var item in Model.Partners.ToList())
     {
-        <div class="row applicantsIndex">
+        <div class="row">
             <div class="col-md-2">
-                <img src="../../@item.ProfileImagePath" class="thumbnail applicantsImageIndex" />
+                <img src="../../@item.ProfileImagePath" class="thumbnail applicantsImage" />
             </div>
             <div class="col-md-8">
                 <p>Name: @item.Name</p>
-                <p>Contry: @item.Country</p>
+                <p>Country: @item.Country</p>
                 <div>
                     <div class="col-md-12" style="padding: 0;">
                         <table class="table table-bordered">
@@ -39,9 +39,9 @@
         </div>
 
         <!-- ************************ This section is hidden until applicant image is clicked ***************************** -->
-                                <div class="row applicantsInfo">
-                                    @Html.Partial("PartialPartnersInfo", item)
-                                </div>
+        <div class="row applicantsInfo">
+            @Html.Partial("PartialPartnersInfo", item)
+        </div>
     }
 </div>
 
@@ -49,31 +49,24 @@
 @section ApplicantAndPartnerInfo {
     <script type="text/javascript">
         $(document).ready(function () {
-            // clicking an applicants image in the Index view
-            $(".applicantsImageIndex").click(function () {
-                $(".applicantsIndex").css('display', 'inline');
+            // clicking a partners image in the Index view
+            $(".applicantsImage").click(function () {
                 $(this).parent().parent().addClass('notShowingInIndex'); // notShowingInIndex is a reference to the now hidden default presentation
                 $(this).parent().parent().css('display', 'none');
-                $('.applicantsInfo').css('display', 'none');
-                $(this).parent().parent().next().addClass('showingApplicantsInfo'); // showingApplicantsInfo is a reference to activated applicants info view
+                $(this).parent().parent().next().addClass('showingApplicantsInfo'); // showingApplicantsInfo is a reference to activated partners info view
                 $(this).parent().parent().next().css('display', 'inline');
             });
 
-            // clicking an applicants image after the applicant has been activated and the info view is showing
+            // clicking a partners image after the partner has been activated and the info view is showing
             $(".applicantsImageInfo").click(function () {
                 $(".showingApplicantsInfo").css('display', 'none');
                 $(".showingApplicantsInfo").removeClass('showingApplicantsInfo');
-                $(".notShowingInIndex").css('display', 'inline');
+                $(".notShowingInIndex").show();
                 $(".notShowingInIndex").removeClass('notShowingInIndex');
             });
         });
     </script>
 }
-
-
-
-
-
 
 
 

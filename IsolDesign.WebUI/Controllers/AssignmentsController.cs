@@ -30,27 +30,32 @@ namespace IsolDesign.WebUI.Controllers
         //    return View();
         //}
 
-        //// GET: Assignments/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: Assignments/Create
+        public ActionResult Create()
+        {
+            CreateAssignmentViewModel vm = new CreateAssignmentViewModel();
+            return View(vm);
+        }
 
-        //// POST: Assignments/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+        // POST: Assignments/Create
+        [HttpPost]
+        public ActionResult Create(CreateAssignmentViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            }
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         //// GET: Assignments/Edit/5
         //public ActionResult Edit(int id)
