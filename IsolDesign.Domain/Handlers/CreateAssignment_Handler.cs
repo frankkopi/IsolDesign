@@ -6,19 +6,22 @@ using IsolDesign.Data.Models;
 using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.DataAccess;
+using IsolDesign.Data.Enums;
+using System.Web.Hosting;
 
 namespace IsolDesign.Domain.Handlers
 {
     public class CreateAssignment_Handler : ICreateAssignment_Handler
     {
-        private ImageHandler imageHandler;
+        private ImageHandler _imageHandler;
         private HttpFileCollectionBase _images;
         private ApplicationDbContext _context;
         private IUnitOfWork _unitOfWork;
+        private static Assignment _assignment;
 
         public CreateAssignment_Handler(HttpFileCollectionBase images)
         {
-            this.imageHandler = new ImageHandler();
+            this._imageHandler = new ImageHandler();
             this._images = images;
             this._context = new ApplicationDbContext();
             this._unitOfWork = new UnitOfWork(_context);
@@ -37,9 +40,10 @@ namespace IsolDesign.Domain.Handlers
                 Drawing = null,
                 Video = null,
                 Credits = assignmentModel.Credits,
-                PartnerId = assignmentModel.PartnerId // TODO Get id from logged in user and get the partnerid
+                PartnerId = GetPartnerId(userName)
             };
-
+            _assignment = partnerAssignment;
+            SaveImages();
             Execute(partnerAssignment);
         }
 
@@ -58,14 +62,48 @@ namespace IsolDesign.Domain.Handlers
                 Deadline = assignmentModel.Deadline,
                 CustomerId = assignmentModel.CustomerId
             };
-
+            _assignment = orderedAssignment;
+            SaveImages();
             Execute(orderedAssignment);
         }
 
-        public int GetPartnerId()
+        // Get Id from partner which is currently logged in as user. userName is the email.
+        public int GetPartnerId(string userName)
         {
-            //string userId = HttpContext.Current.User.Identity.GetUserId();
-            return -1;
+            GetPartners_Handler handler = new GetPartners_Handler();
+            int id = handler.GetPartnerId(userName);
+            return id;
+        }
+
+        public void SaveImages()
+        {
+            string applicationPath = HostingEnvironment.ApplicationPhysicalPath;
+
+            for (int i = 0; i < _images.Count; i++)
+            {
+                var image = _images.Get(i);
+                if (i == 0)
+                {
+                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentsImages\\", "assignmentPhoto", null);
+                }
+                else if (i == 1)
+                {
+                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentsImages\\", "assignmentDrawing", null);
+                }
+                else if (i == 2)
+                {
+                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentsVideos\\", "assignmentVideo", null);
+                }
+                else
+                {
+                    return;  // TODO **************************************************************************************
+                }
+            }
+        }
+
+        public static Assignment GetAssignment()
+        {
+            return _assignment;
         }
 
         public void Execute(Assignment assignment)

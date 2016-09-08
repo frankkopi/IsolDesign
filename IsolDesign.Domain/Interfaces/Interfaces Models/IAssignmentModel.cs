@@ -1,4 +1,5 @@
 ﻿using IsolDesign.Domain.Models;
+using IsolDesign.Data.Enums;
 
 namespace IsolDesign.Domain.Interfaces.Interfaces_Models
 {

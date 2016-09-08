@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace IsolDesign.Data.Enums
 {
@@ -16,6 +12,15 @@ namespace IsolDesign.Data.Enums
         Middel = 2,
         //[Display(Name = "Low Level")]
         Low = 3
+    }
+
+    // enum used to describe the type of assignments
+    public enum AssignmentType
+    {
+        [Display(Name = "Partner Assignment")]
+        PartnerAssignment = 1,
+        [Display(Name = "Ordered Assignment")]
+        OrderedAssignment = 2,
     }
 
     class MyEnums

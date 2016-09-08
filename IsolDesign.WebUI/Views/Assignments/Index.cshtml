@@ -41,7 +41,8 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Photo)
+            @*@Html.DisplayFor(modelItem => item.Photo)*@
+            <img src="../../@item.Photo" class="thumbnail applicantsImage" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Drawing)
@@ -62,9 +63,9 @@
 <br />
 <div class="row">
     <div class="col-md-offset-1 col-md-5">
-        @Html.ActionLink("Create New Partner Assignment", "CreatePartnerAssignment", null, new { @class = "btn btn-lg btn-primary"})
+        @Html.ActionLink("Upload Partner Assignment", "CreatePartnerAssignment", null, new { @class = "btn btn-lg btn-primary"})
     </div>
     <div class="col-md-6">
-        @Html.ActionLink("Create New Ordered Assignment", "CreateOrderedAssignment", null, new { @class = "btn btn-lg btn-primary"})
+        @Html.ActionLink("Upload Ordered Assignment", "CreateOrderedAssignment", null, new { @class = "btn btn-lg btn-primary"})
     </div>
 </div>

@@ -5,10 +5,10 @@ using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class PartnersController : Controller
     {
         // GET: Partners
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Index()
         {
             IGetPartners_Handler handler = new GetPartners_Handler();
@@ -21,7 +21,7 @@ namespace IsolDesign.WebUI.Controllers
             return View(vm);
         }
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult CreatePartner(int applicantId)
         {
             ICreatePartner_Handler handler = new CreatePartner_Handler(applicantId);
@@ -65,6 +65,7 @@ namespace IsolDesign.WebUI.Controllers
         //}
 
         // GET: Partners/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int partnerId)
         {
             GetPartners_Handler handler = new GetPartners_Handler();
@@ -76,6 +77,7 @@ namespace IsolDesign.WebUI.Controllers
         // Delete a Partner and his portfolio and set PartnerId to null in Project if Partner is project leader
         // POST: Partners/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int partnerId)
         {
             try
@@ -94,7 +96,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult ConfirmPartnerCreated()
         {
             return View();

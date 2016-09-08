@@ -9,7 +9,7 @@ namespace IsolDesign.Domain.Interfaces
 
         void CreateOrderedAssignment(IOrderedAssignmentModel assignmentModel);
 
-        int GetPartnerId();
+        int GetPartnerId(string userName);
 
         void Execute(Assignment assignment);
     }

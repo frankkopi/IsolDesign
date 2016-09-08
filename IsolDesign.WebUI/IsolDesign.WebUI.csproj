@@ -319,6 +319,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\AssignmentImages\" />
+    <Folder Include="Images\AssignmentsVideos\" />
     <Folder Include="Images\PortfolioImages\" />
     <Folder Include="Images\ProfileImages\" />
     <Folder Include="Views\PortfolioSubjects\" />

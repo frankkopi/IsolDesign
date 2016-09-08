@@ -177,10 +177,7 @@ namespace IsolDesign.WebUI.Controllers
 
 
         // ******************************  Code written by Frank Hansen  ***********************************************
-        //[HttpPost]
-        //[AllowAnonymous]
         [Authorize(Roles = "Admin")]
-        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterPartner(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -189,6 +186,9 @@ namespace IsolDesign.WebUI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //Assign Role to user Here. Partners a given the role "User" when they are created.    
+                    //await this.UserManager.AddToRoleAsync(user.Id, "User");
+                    UserManager.AddToRole(user.Id, "User");
                     return RedirectToAction("ConfirmPartnerCreated", "Partners");
                 }
                 AddErrors(result);

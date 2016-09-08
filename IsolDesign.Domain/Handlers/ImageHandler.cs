@@ -58,6 +58,22 @@ namespace IsolDesign.Domain.Handlers
                         break;
                 }
             }
+            else if (type.StartsWith("assignment"))
+            {
+                Assignment assignment = CreateAssignment_Handler.GetAssignment();
+                if (type == "assignmentPhoto")
+                {
+                    assignment.Photo = pathToFile + filename + ".jpg";
+                }
+                else if (type == "assignmentDrawing")
+                {
+                    assignment.Drawing = pathToFile + filename + ".jpg";
+                }
+                else if (type == "assignmentVideo")
+                {
+                    assignment.Video = pathToFile + filename + ".jpg";
+                }
+            }
 
         }
     }

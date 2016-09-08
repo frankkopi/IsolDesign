@@ -9,7 +9,6 @@ password: P_assword!1
 
 
 Admin in development version
-username: sapeaps@gmail.com
 username: poul@erik.dk
 password: Pe_1234
 
@@ -25,3 +24,8 @@ Data Source=mssql6.unoeuro.com;Initial Catalog=isoldesign_dk_db;User ID=isoldesi
 
             //Database.SetInitializer<YourDbContext>(null);
             Database.SetInitializer<ApplicationDbContext>(null);
+
+
+A generic error occurred in GDI+.
+in ImageModel
+newImage.Save(savePath + fileName + ".jpg", ImageFormat.Jpeg);

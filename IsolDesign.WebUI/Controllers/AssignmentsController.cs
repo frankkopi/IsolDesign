@@ -4,15 +4,15 @@ using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using System;
 
 namespace IsolDesign.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, User")]
     public class AssignmentsController : Controller
     {
         // GET: Assignments
         public ActionResult Index()
-
         {
             IGetAssignments_Handler handler = new GetAssignments_Handler();
             var assignments = handler.GetAssignments();
@@ -45,10 +45,9 @@ namespace IsolDesign.WebUI.Controllers
         [HttpPost]
         public ActionResult CreatePartnerAssignment(CreatePartnerAssignmentViewModel vm)
         {
-
             if (ModelState.IsValid)
             {
-                string userName = User.Identity.GetUserName();
+                string userName = User.Identity.GetUserName(); // gets the userName from logged in User. userName is the email.
                 var images = Request.Files;
                 var assignmentModel = vm.partnerAssignmentModel;
 
@@ -60,7 +59,6 @@ namespace IsolDesign.WebUI.Controllers
         }
 
 
-
         [HttpGet]
         public ActionResult CreateOrderedAssignment()
         {
@@ -68,7 +66,13 @@ namespace IsolDesign.WebUI.Controllers
             var customerModels = handler.GetAllCustomers();
             ViewBag.Customers = new SelectList(customerModels, "CustomerId", "Name");
 
-            CreateOrderedAssignmentViewModel vm = new CreateOrderedAssignmentViewModel();
+            OrderedAssignmentModel assignmentModel = new OrderedAssignmentModel();
+            assignmentModel.Deadline = DateTime.Today;
+
+            CreateOrderedAssignmentViewModel vm = new CreateOrderedAssignmentViewModel()
+            {
+                orderedAssignmentModel = assignmentModel
+            };
             return View(vm);
         }
 

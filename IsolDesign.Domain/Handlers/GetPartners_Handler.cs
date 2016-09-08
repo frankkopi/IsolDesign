@@ -67,6 +67,13 @@ namespace IsolDesign.Domain.Handlers
 
             return partnerModel;
         }
+
+        // returns the partner id from the Partner logged in as User. userName is the email.
+        public int GetPartnerId(string userName)
+        {
+            var partner = _unitOfWork.Partners.GetAll().Where(x => x.Email == userName).First();
+            return partner.PartnerId;
+        }
     }
 }
 

@@ -1,15 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using IsolDesign.Domain.Interfaces.Interfaces_Models;
+using IsolDesign.Data.Enums;
 
 namespace IsolDesign.Domain.Models
 {
-    public enum AssignmentType
-    {
-        [Display(Name = "Partner Assignment")]
-        PartnerAssignment = 1,
-        [Display(Name = "Ordered Assignment")]
-        OrderedAssignment = 2,
-    }
 
     public class AssignmentModel : IAssignmentModel
     {

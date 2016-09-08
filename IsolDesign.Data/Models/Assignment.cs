@@ -1,13 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IsolDesign.Data.Enums;
 
 namespace IsolDesign.Data.Models
 {
-    public enum AssignmentType
-    {
-        PartnerAssignment = 1,
-        OrderedAssignment = 2
-    }
-
 
     // Assignment is parent class for PartnerAssignment and OrderedAssignment
     public abstract class Assignment
@@ -20,11 +15,11 @@ namespace IsolDesign.Data.Models
 
         public string Description { get; set; }
 
-        public string Photo { get; set; }
+        public string Photo { get; set; } // path to photo
 
-        public string Drawing { get; set; }
+        public string Drawing { get; set; } // path to drawing
 
-        public string Video { get; set; }
+        public string Video { get; set; } // path to video
 
     }
 }
