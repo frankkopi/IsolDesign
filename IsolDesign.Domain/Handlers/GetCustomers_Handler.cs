@@ -22,7 +22,7 @@ namespace IsolDesign.Domain.Handlers
         public IEnumerable<CustomerModel> GetAllCustomers()
         {
             var customersFromDb = _unitOfWork.Customers.GetAll();
-            List<CustomerModel> customersModels = new List<CustomerModel>();
+            List<CustomerModel> customerModels = new List<CustomerModel>();
 
             foreach (var customer in customersFromDb)
             {
@@ -40,8 +40,9 @@ namespace IsolDesign.Domain.Handlers
                     ContactPhone = customer.Phone,
                     ContactEmail = customer.Email
                 };
+                customerModels.Add(customerModel);
             }
-            return null;
+            return customerModels;
         }
     }
 }

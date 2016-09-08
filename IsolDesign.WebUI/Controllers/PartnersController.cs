@@ -31,13 +31,16 @@ namespace IsolDesign.WebUI.Controllers
             IDelete_Handler deleteHandler = new Delete_Handler();
             deleteHandler.DeleteApplicant(applicantId);
 
-            return RedirectToAction("ConfirmPartnerCreated");
+            RegisterViewModel vm = new RegisterViewModel
+            {
+                Email = handler.GetPartner().Email,
+                Password = "P_assword!1",
+                ConfirmPassword = "P_assword!1"
+            };
+
+            return RedirectToAction("RegisterPartner", "Account", vm);
         }
 
-        public ActionResult ConfirmPartnerCreated()
-        {
-            return View();
-        }
 
         //// GET: Partners/Edit/5
         //public ActionResult Edit(int id)
@@ -88,6 +91,13 @@ namespace IsolDesign.WebUI.Controllers
                 var partnerModel = handler.GetPartner(partnerId);
                 return View(partnerModel);
             }
+        }
+
+
+
+        public ActionResult ConfirmPartnerCreated()
+        {
+            return View();
         }
     }
 }

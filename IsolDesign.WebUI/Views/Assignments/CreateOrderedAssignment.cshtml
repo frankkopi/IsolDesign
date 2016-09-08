@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        @Html.Hidden("Type")
+        @Html.HiddenFor(model => model.orderedAssignmentModel.Type)
 
         <div class="form-group">
             @Html.LabelFor(model => model.orderedAssignmentModel.Description, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -46,8 +46,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.orderedAssignmentModel.CustomerId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.orderedAssignmentModel.Deadline, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.orderedAssignmentModel.Deadline, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.orderedAssignmentModel.CustomerId, (SelectList)ViewBag.Customers, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.orderedAssignmentModel.CustomerId, "", new { @class = "text-danger" })
             </div>
         </div>
 

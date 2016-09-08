@@ -3,6 +3,7 @@ using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using IsolDesign.WebUI.Models;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace IsolDesign.WebUI.Controllers
 {
@@ -30,49 +31,63 @@ namespace IsolDesign.WebUI.Controllers
         //    return View();
         //}
 
-        // GET: Assignments/Create
-        public ActionResult Create()
-        {
-            CreateAssignmentViewModel vm = new CreateAssignmentViewModel();
-            return View(vm);
-        }
-
-        // POST: Assignments/Create
-        [HttpPost]
-        public ActionResult Create(CreateAssignmentViewModel vm)
-        {
-            if (ModelState.IsValid)
-            {
-                var images = Request.Files;
-                var assignmentModel = vm.Assignment;
-
-                ICreateAssignment_Handler handler = new CreateAssignment_Handler(assignmentModel, images);
-            }
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         [HttpGet]
         public ActionResult CreatePartnerAssignment()
         {
+            IGetCustomers_Handler handler = new GetCustomers_Handler();
+            var customerModels = handler.GetAllCustomers();
+
             CreatePartnerAssignmentViewModel vm = new CreatePartnerAssignmentViewModel();
             return View(vm);
         }
 
+        [HttpPost]
+        public ActionResult CreatePartnerAssignment(CreatePartnerAssignmentViewModel vm)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string userName = User.Identity.GetUserName();
+                var images = Request.Files;
+                var assignmentModel = vm.partnerAssignmentModel;
+
+                ICreateAssignment_Handler handler = new CreateAssignment_Handler(images);
+                handler.CreatePartnerAssignment(assignmentModel, userName);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
         [HttpGet]
         public ActionResult CreateOrderedAssignment()
         {
+            IGetCustomers_Handler handler = new GetCustomers_Handler();
+            var customerModels = handler.GetAllCustomers();
+            ViewBag.Customers = new SelectList(customerModels, "CustomerId", "Name");
+
             CreateOrderedAssignmentViewModel vm = new CreateOrderedAssignmentViewModel();
             return View(vm);
         }
+
+        [HttpPost]
+        public ActionResult CreateOrderedAssignment(CreateOrderedAssignmentViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var images = Request.Files;
+                var assignmentModel = vm.orderedAssignmentModel;
+
+                ICreateAssignment_Handler handler = new CreateAssignment_Handler(images);
+                handler.CreateOrderedAssignment(assignmentModel);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
 
         //// GET: Assignments/Edit/5
         //public ActionResult Edit(int id)

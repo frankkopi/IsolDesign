@@ -21,8 +21,6 @@ namespace IsolDesign.Domain.Models
 
         public AssignmentType? Type { get; set; }
 
-        //public string Type { get; set; }
-
         [Required(ErrorMessage = "Description is required")]
         public string Description { get; set; }
 

@@ -8,7 +8,6 @@ namespace IsolDesign.Domain.Models
     {
         public DateTime Deadline { get; set; }
 
-        [Display(Name="Customer")]
         public int CustomerId { get; set; } // FK
 
 

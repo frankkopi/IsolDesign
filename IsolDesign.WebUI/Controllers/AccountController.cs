@@ -174,6 +174,32 @@ namespace IsolDesign.WebUI.Controllers
             return View(model);
         }
 
+
+
+        // ******************************  Code written by Frank Hansen  ***********************************************
+        //[HttpPost]
+        //[AllowAnonymous]
+        [Authorize(Roles = "Admin")]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterPartner(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ConfirmPartnerCreated", "Partners");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

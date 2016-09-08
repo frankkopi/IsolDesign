@@ -10,8 +10,12 @@ password: P_assword!1
 
 Admin in development version
 username: sapeaps@gmail.com
+username: poul@erik.dk
 password: Pe_1234
 
+
+default password when a Partner is Registered as User:
+password: P_assword!1
 
 
 Data Source=mssql6.unoeuro.com;Initial Catalog=isoldesign_dk_db;User ID=isoldesign_dk;Password=	rknb9tx6

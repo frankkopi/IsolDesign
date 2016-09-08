@@ -7,6 +7,5 @@ namespace IsolDesign.WebUI.Models
     {
         public OrderedAssignmentModel orderedAssignmentModel { get; set; } 
 
-        public IEnumerable<CustomerModel> Customers { get; set; }
     }
 }

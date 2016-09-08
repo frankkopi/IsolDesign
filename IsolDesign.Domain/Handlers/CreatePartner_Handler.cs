@@ -4,6 +4,7 @@ using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.Domain.Interfaces;
 using System.Linq;
+using System;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -62,6 +63,11 @@ namespace IsolDesign.Domain.Handlers
         {
             _unitOfWork.Partners.Add(_partner);
             _unitOfWork.SaveChanges();
+        }
+
+        public Partner GetPartner()
+        {
+            return this._partner;
         }
     }
 }
