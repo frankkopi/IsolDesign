@@ -115,11 +115,13 @@ namespace IsolDesign.WebUI.Controllers
         //    }
         //}
 
-        //// GET: Assignments/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Assignments/Delete/5
+        public ActionResult Delete(int id)
+        {
+            GetAssignments_Handler handler = new GetAssignments_Handler();
+            AssignmentModel assignmentModel = handler.GetAssignment(id);
+            return View(assignmentModel);
+        }
 
         //// POST: Assignments/Delete/5
         //[HttpPost]

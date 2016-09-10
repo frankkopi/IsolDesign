@@ -26,6 +26,4 @@ Data Source=mssql6.unoeuro.com;Initial Catalog=isoldesign_dk_db;User ID=isoldesi
             Database.SetInitializer<ApplicationDbContext>(null);
 
 
-A generic error occurred in GDI+.
-in ImageModel
-newImage.Save(savePath + fileName + ".jpg", ImageFormat.Jpeg);
+

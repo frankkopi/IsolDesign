@@ -1,4 +1,9 @@
-﻿using System.Web;
+﻿using IsolDesign.Data.Enums;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Reflection;
+using System.Web;
 
 namespace IsolDesign.Domain.Helpers
 {
@@ -9,6 +14,14 @@ namespace IsolDesign.Domain.Helpers
         {
             return (file != null && file.ContentLength > 0) ? true : false;
         }
-        
+
+        //public static string GetDisplayName(this Enum enumValue)
+        //{
+        //    return enumValue.GetType().GetMember(enumValue.ToString())
+        //                   .First()
+        //                   .GetCustomAttribute<DisplayAttribute>()
+        //                   .Name;
+        //}
+
     }
 }

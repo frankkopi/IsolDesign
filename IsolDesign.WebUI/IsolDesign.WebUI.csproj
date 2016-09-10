@@ -315,6 +315,7 @@
     <Content Include="Views\Assignments\CreateOrderedAssignment.cshtml" />
     <Content Include="Views\Assignments\CreatePartnerAssignment.cshtml" />
     <Content Include="Views\Account\RegisterPartner.cshtml" />
+    <Content Include="Views\Assignments\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

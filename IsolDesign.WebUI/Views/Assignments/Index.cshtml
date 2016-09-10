@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Index Assignments</h2>
 
 <table class="table">
     <tr>
@@ -35,20 +35,24 @@
             @Html.DisplayFor(modelItem => item.WorkTitle)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Type)
+            @{
+                var test = item.Type;
+                var name = Model.GetDisplayName(test);
+            }
+            @name
         </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.Photo)*@
             <img src="../../@item.Photo" class="thumbnail applicantsImage" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Drawing)
+            <img src="../../@item.Drawing" class="thumbnail applicantsImage" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Video)
+            <img src="../../@item.Video" class="thumbnail applicantsImage" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AssignmentId }) |

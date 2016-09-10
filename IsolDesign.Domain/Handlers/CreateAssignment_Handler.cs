@@ -84,20 +84,17 @@ namespace IsolDesign.Domain.Handlers
                 var image = _images.Get(i);
                 if (i == 0)
                 {
-                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentsImages\\", "assignmentPhoto", null);
+                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentImages\\", "assignmentPhoto", null);
                 }
                 else if (i == 1)
                 {
-                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentsImages\\", "assignmentDrawing", null);
+                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentImages\\", "assignmentDrawing", null);
                 }
                 else if (i == 2)
                 {
                     _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentsVideos\\", "assignmentVideo", null);
                 }
-                else
-                {
-                    return;  // TODO **************************************************************************************
-                }
+
             }
         }
 

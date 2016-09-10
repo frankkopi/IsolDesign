@@ -6,6 +6,7 @@ using IsolDesign.Domain.Interfaces;
 using IsolDesign.Domain.Models;
 using System.Collections.Generic;
 using IsolDesign.Data.Enums;
+using IsolDesign.Domain.Helpers;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -20,6 +21,7 @@ namespace IsolDesign.Domain.Handlers
             this._unitOfWork = new UnitOfWork(_context);
         }
 
+        // gets all assignments
         public IEnumerable<AssignmentModel> GetAssignments()
         {
             var assignmentsFromDB = _unitOfWork.Assignments.GetAllAss();
@@ -56,6 +58,15 @@ namespace IsolDesign.Domain.Handlers
             }
 
             return assignmentModels;
+        }
+
+        // gets an assignment and converts it into an assignmentModel
+        public AssignmentModel GetAssignment(int id)
+        {
+            var assignment = _unitOfWork.Assignments.Get(id);
+            AssignmentModel assignmentModel = AssignmentConverter.ConvertToAssignmentModel(assignment);
+
+            return assignmentModel;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace IsolDesign.Domain.Models
         public int AssignmentId { get; set; }
 
         [Required(ErrorMessage = "Work Title is required")]
-        [Display(Name = "Assignment Work Title")]
+        [Display(Name = "Work Title")]
         public string WorkTitle { get; set; }
 
         public AssignmentType? Type { get; set; }
