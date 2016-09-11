@@ -8,10 +8,10 @@ using System;
 
 namespace IsolDesign.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin, User")]
     public class AssignmentsController : Controller
     {
         // GET: Assignments
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Index()
         {
             IGetAssignments_Handler handler = new GetAssignments_Handler();
@@ -33,6 +33,7 @@ namespace IsolDesign.WebUI.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult CreatePartnerAssignment()
         {
             IGetCustomers_Handler handler = new GetCustomers_Handler();
@@ -43,6 +44,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult CreatePartnerAssignment(CreatePartnerAssignmentViewModel vm)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace IsolDesign.WebUI.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult CreateOrderedAssignment()
         {
             IGetCustomers_Handler handler = new GetCustomers_Handler();
@@ -77,6 +80,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult CreateOrderedAssignment(CreateOrderedAssignmentViewModel vm)
         {
             if (ModelState.IsValid)
@@ -116,27 +120,37 @@ namespace IsolDesign.WebUI.Controllers
         //}
 
         // GET: Assignments/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetAssignments_Handler handler = new GetAssignments_Handler();
             AssignmentModel assignmentModel = handler.GetAssignment(id);
-            return View(assignmentModel);
+
+            DeleteAssignmentViewModel vm = new DeleteAssignmentViewModel
+            {
+                AssignmentModel = assignmentModel
+            };
+            return View(vm);
         }
 
-        //// POST: Assignments/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+        // POST: Assignments/Delete/5
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                DeleteAssignment_Handler handler = new DeleteAssignment_Handler();
+                handler.DeleteAssignment(id);
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                GetAssignments_Handler handler = new GetAssignments_Handler();
+                AssignmentModel assignmentModel = handler.GetAssignment(id);
+                return View(assignmentModel);
+            }
+        }
     }
 }

@@ -36,8 +36,8 @@
         </td>
         <td>
             @{
-                var test = item.Type;
-                var name = Model.GetDisplayName(test);
+                var temp = item.Type;
+                var name = Model.DisplayName(temp);
             }
             @name
         </td>

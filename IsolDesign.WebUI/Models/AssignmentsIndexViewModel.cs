@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
+using IsolDesign.Domain.Helpers;
 
 namespace IsolDesign.WebUI.Models
 {
@@ -13,13 +14,18 @@ namespace IsolDesign.WebUI.Models
 
         public IEnumerable<AssignmentModel> Assignments { get; set; }
 
-
-        public string GetDisplayName(AssignmentType? enumValue)
+        
+        public string DisplayName(AssignmentType? enumValue)
         {
-            return enumValue.GetType().GetMember(enumValue.ToString())
-                           .First()
-                           .GetCustomAttribute<DisplayAttribute>()
-                           .Name;
+            return GetDisplayNameFromEnum_Helper.GetDisplayName(enumValue);
         }
+
+        //public string GetDisplayName(AssignmentType? enumValue)
+        //{
+        //    return enumValue.GetType().GetMember(enumValue.ToString())
+        //                   .First()
+        //                   .GetCustomAttribute<DisplayAttribute>()
+        //                   .Name;
+        //}
     }
 }

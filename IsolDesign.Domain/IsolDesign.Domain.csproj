@@ -50,6 +50,7 @@
     <Compile Include="Handlers\CreatePartner_Handler.cs" />
     <Compile Include="Handlers\CreateProject_Handler.cs" />
     <Compile Include="Handlers\CreateTeam_Handler.cs" />
+    <Compile Include="Handlers\DeleteAssignment_Handler.cs" />
     <Compile Include="Handlers\Delete_Handler.cs" />
     <Compile Include="Handlers\EditCompetency_Handler.cs" />
     <Compile Include="Handlers\EditTeam_Handler.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Helpers\AssignmentConverter.cs" />
     <Compile Include="Helpers\CompetencyConverter.cs" />
     <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\GetDisplayNameFromEnum_Helper.cs" />
     <Compile Include="Helpers\PartnerConverter.cs" />
     <Compile Include="Helpers\Dropdownlist_Helper.cs" />
     <Compile Include="Helpers\PortfolioConverter.cs" />

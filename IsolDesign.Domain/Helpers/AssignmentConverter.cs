@@ -11,7 +11,7 @@ namespace IsolDesign.Domain.Helpers
             {
                 AssignmentId = assignment.AssignmentId,
                 WorkTitle = assignment.WorkTitle,
-                Type = null,
+                Type = assignment.Type,
                 Description = assignment.Description,
                 Photo = assignment.Photo,
                 Drawing = assignment.Drawing,

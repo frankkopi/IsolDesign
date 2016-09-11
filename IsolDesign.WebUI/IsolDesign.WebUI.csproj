@@ -207,6 +207,7 @@
     <Compile Include="Models\CreatePartnerAssignmentViewModel.cs" />
     <Compile Include="Models\CreateProjectViewModel.cs" />
     <Compile Include="Models\CreateTeamViewModel.cs" />
+    <Compile Include="Models\DeleteAssignmentViewModel.cs" />
     <Compile Include="Models\DeleteProjectViewModel.cs" />
     <Compile Include="Models\DeleteTeamViewModel.cs" />
     <Compile Include="Models\EditTeamViewModel.cs" />

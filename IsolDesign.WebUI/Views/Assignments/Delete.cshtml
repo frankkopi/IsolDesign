@@ -1,4 +1,4 @@
-﻿@model IsolDesign.Domain.Models.AssignmentModel
+﻿@model IsolDesign.WebUI.Models.DeleteAssignmentViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -12,52 +12,55 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.WorkTitle)
+            @Html.DisplayNameFor(model => model.AssignmentModel.WorkTitle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WorkTitle)
+            @Html.DisplayFor(model => model.AssignmentModel.WorkTitle)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.AssignmentModel.Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Type)
+            @{
+                var temp = Model.AssignmentModel.Type;
+                var name = Model.DisplayName(temp);
+            }
+            @name
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.AssignmentModel.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.AssignmentModel.Description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Photo)
+            @Html.DisplayNameFor(model => model.AssignmentModel.Photo)
         </dt>
 
         <dd>
-            <img src="../../@Model.Photo" class="thumbnail applicantsImage" />
-            @*@Html.DisplayFor(model => model.Photo)*@
+            <img src="../../@Model.AssignmentModel.Photo" class="thumbnail applicantsImage" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Drawing)
+            @Html.DisplayNameFor(model => model.AssignmentModel.Drawing)
         </dt>
 
         <dd>
-            <img src="../../@Model.Drawing" class="thumbnail applicantsImage" />
+            <img src="../../@Model.AssignmentModel.Drawing" class="thumbnail applicantsImage" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Video)
+            @Html.DisplayNameFor(model => model.AssignmentModel.Video)
         </dt>
 
         <dd>
-            <img src="../../@Model.Video" class="thumbnail applicantsImage" />
+            <img src="../../@Model.AssignmentModel.Video" class="thumbnail applicantsImage" />
         </dd>
 
     </dl>
@@ -66,7 +69,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
