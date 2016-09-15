@@ -81,7 +81,10 @@
             <label class="control-label col-md-2">Profile Image</label>
             <!-- The name="image" attribute must match the parameter name in the post action-method for model binding to work -->
             <div class="col-md-10">
-                <input type="file" name="profileImage" class="form-control" />
+                <input type="file" data-val="true" data-val-required="The Profile Image field is required (Maximum file size 1 MB)" name="profileImage" class="form-control" />
+                @*<input type="file" name="profileImage" class="form-control" />*@
+                @*<input type="file" data-val="true" data-val-required="please select a file" name="file" />*@
+                @Html.ValidationMessage("profileImage", new { @class = "text-danger" })
             </div>
         </div>
 

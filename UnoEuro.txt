@@ -1,0 +1,2 @@
+Data Source=mssql6.unoeuro.com;Initial Catalog=frankh_dk_db;User ID=frankh_dk;Password=1900headgc
+

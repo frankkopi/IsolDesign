@@ -16,6 +16,7 @@ namespace IsolDesign.Domain.Models
         public AssignmentType? Type { get; set; }
 
         [Required(ErrorMessage = "Description is required")]
+        [StringLength(500, ErrorMessage = "Description must be between 20 and 500 characters", MinimumLength = 20)]
         public string Description { get; set; }
 
         public string Photo { get; set; }

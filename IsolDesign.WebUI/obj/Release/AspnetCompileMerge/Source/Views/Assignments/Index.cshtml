@@ -4,60 +4,84 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Index Assignments</h2>
+<br />
+<hr class="hrMargin"/>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Assignment.WorkTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Assignment.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Assignment.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Assignment.Photo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Assignment.Drawing)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Assignment.Video)
-        </th>
-        <th></th>
-    </tr>
+<div class="row" style="font-size: 16px;font-weight: bold; ">
+    <div class="col-md-3">
+        @Html.DisplayNameFor(model => model.Assignment.WorkTitle)
+    </div>
+    <div class="col-md-3">
+        @Html.DisplayNameFor(model => model.Assignment.Type)
+    </div>
+    <div class="col-md-3">
+        @Html.DisplayNameFor(model => model.Assignment.Description)
+    </div>
+    <div class="col-md-3">
 
-@foreach (var item in Model.Assignments) {
-    <tr>
-        <td>
+    </div>
+</div>
+
+@foreach (var item in Model.Assignments)
+{
+    <hr class="hrMargin" />
+    <div class="row">
+        <div class="col-md-3">
             @Html.DisplayFor(modelItem => item.WorkTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Drawing)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Video)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AssignmentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AssignmentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AssignmentId })
-        </td>
-    </tr>
+        </div>
+        <div class="col-md-3">
+            @{
+                var temp = item.Type;
+                var name = Model.DisplayName(temp);
+            }
+            @name
+        </div>
+        <div class="col-md-3 shortDescription">
+            @{
+                var longText = item.Description;
+                var shortText = Model.ShortString(longText);
+            }
+            @shortText
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Details", "Details", new { id = item.AssignmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AssignmentId })
+        </div>
+    </div>
+
+    //Hidden Table Row for showing long description
+    <div class="row hide" style="margin-top: 20px; margin-bottom: 20px; ">
+        <div class="col-md-12 longDescription">
+            @Html.TextAreaFor(modelItem => item.Description, new {@class = "assignmentTextArea", @readonly = "readonly" })
+        </div>
+    </div>
 }
 
-</table>
+<br />
+<div class="row">
+    <div class="col-md-offset-1 col-md-5">
+        @Html.ActionLink("Upload Partner Assignment", "CreatePartnerAssignment", null, new { @class = "btn btn-lg btn-primary" })
+    </div>
+    <div class="col-md-6">
+        @Html.ActionLink("Upload Ordered Assignment", "CreateOrderedAssignment", null, new { @class = "btn btn-lg btn-primary" })
+    </div>
+</div>
+
+@section ExpandAssignmentDescription {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".shortDescription").click(function () {
+                $(this).parent().next().removeClass("hide");
+                $(this).parent().next().addClass("show");
+            });
+
+            $(".longDescription").click(function () {
+                $(this).parent().removeClass("show");
+                $(this).parent().addClass("hide");
+            });
+
+        });
+    </script>
+
+}

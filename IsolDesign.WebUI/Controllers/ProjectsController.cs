@@ -7,10 +7,10 @@ using System.Web.Mvc;
 
 namespace IsolDesign.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class ProjectsController : Controller
     {
         // GET: Projects
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Index()
         {
             IGetProjects_Handler handler = new GetProjects_Handler();
@@ -26,6 +26,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         // GET: Projects/Details/5
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Details(int id)
         {
             GetProjects_Handler handler = new GetProjects_Handler();
@@ -39,6 +40,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         // GET: Projects/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             GetPartners_Handler handler = new GetPartners_Handler();
@@ -68,6 +70,7 @@ namespace IsolDesign.WebUI.Controllers
 
         // POST: Projects/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(CreateProjectViewModel model, int assignmentId)
         {
             ProjectModel projectModel = model.Project;
@@ -103,6 +106,7 @@ namespace IsolDesign.WebUI.Controllers
         //}
 
         // GET: Projects/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetProjects_Handler handler = new GetProjects_Handler();
@@ -117,6 +121,7 @@ namespace IsolDesign.WebUI.Controllers
 
         // POST: Projects/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(DeleteProjectViewModel model)
         {
             try

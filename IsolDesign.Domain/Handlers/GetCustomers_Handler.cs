@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using IsolDesign.Domain.Interfaces;
 using IsolDesign.DataAccess.DBContext;
 using IsolDesign.DataAccess.Interfaces.IUnitOfWork;
 using IsolDesign.DataAccess;
 using IsolDesign.Domain.Models;
+using IsolDesign.Domain.Helpers;
 
 namespace IsolDesign.Domain.Handlers
 {
@@ -26,23 +26,20 @@ namespace IsolDesign.Domain.Handlers
 
             foreach (var customer in customersFromDb)
             {
-                CustomerModel customerModel = new CustomerModel
-                {
-                    CustomerId = customer.CustomerId,
-                    Name = customer.Name,
-                    Address = customer.Address,
-                    Country = customer.Country,
-                    Phone = customer.Phone,
-                    Email = customer.Email,
-                    Category = customer.Category,
-                    Homepage = customer.Homepage,
-                    ContactName = customer.ContactName,
-                    ContactPhone = customer.Phone,
-                    ContactEmail = customer.Email
-                };
+                CustomerModel customerModel = CustomerConverter.ConvertToCustomerModel(customer);
                 customerModels.Add(customerModel);
             }
             return customerModels;
         }
+
+
+        public CustomerModel GetCustomerModel(int id)
+        {
+            var customer = _unitOfWork.Customers.Get(id);
+            CustomerModel customerModel = CustomerConverter.ConvertToCustomerModel(customer);
+
+            return customerModel;
+        }
+
     }
 }

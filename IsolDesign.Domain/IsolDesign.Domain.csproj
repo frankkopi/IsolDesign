@@ -47,12 +47,15 @@
     <Compile Include="Handlers\CreateApplicant_Handler.cs" />
     <Compile Include="Handlers\CreateAssignment_Handler.cs" />
     <Compile Include="Handlers\CreateCompetency_Handler.cs" />
+    <Compile Include="Handlers\CreateCustomer_Handler.cs" />
     <Compile Include="Handlers\CreatePartner_Handler.cs" />
     <Compile Include="Handlers\CreateProject_Handler.cs" />
     <Compile Include="Handlers\CreateTeam_Handler.cs" />
     <Compile Include="Handlers\DeleteAssignment_Handler.cs" />
+    <Compile Include="Handlers\DeleteCustomer_Handler.cs" />
     <Compile Include="Handlers\Delete_Handler.cs" />
     <Compile Include="Handlers\EditCompetency_Handler.cs" />
+    <Compile Include="Handlers\EditCustomer_Handler.cs" />
     <Compile Include="Handlers\EditTeam_Handler.cs" />
     <Compile Include="Handlers\GetApplicants_Handler.cs" />
     <Compile Include="Handlers\GetAssignments_Handler.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="Helpers\ApplicantConverter.cs" />
     <Compile Include="Helpers\AssignmentConverter.cs" />
     <Compile Include="Helpers\CompetencyConverter.cs" />
+    <Compile Include="Helpers\CustomerConverter.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\GetDisplayNameFromEnum_Helper.cs" />
     <Compile Include="Helpers\PartnerConverter.cs" />

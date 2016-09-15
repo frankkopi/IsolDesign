@@ -92,7 +92,7 @@ namespace IsolDesign.Domain.Handlers
                 }
                 else if (i == 2)
                 {
-                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentsVideos\\", "assignmentVideo", null);
+                    _imageHandler.SaveImage(image, applicationPath, "Images\\AssignmentVideos\\", "assignmentVideo", null);
                 }
 
             }

@@ -30,6 +30,7 @@
                     <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
                     <li>@Html.ActionLink("Teams", "Index", "Teams")</li>
                     <li>@Html.ActionLink("Assignments", "Index", "Assignments")</li>
+                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -49,6 +50,7 @@
     @RenderSection("ApplicantAndPartnerInfo", required: false)
     @RenderSection("FilterCompetencies", required: false)
     @RenderSection("ExpandDescription", required: false)
+    @RenderSection("ExpandAssignmentDescription", required: false)
     @RenderSection("ScriptForDatePicker", required: false)
     @RenderSection("ToggleInstructions", required: false)
 </body>

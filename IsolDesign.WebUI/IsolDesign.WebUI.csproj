@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ApplicantsController.cs" />
     <Compile Include="Controllers\AssignmentsController.cs" />
     <Compile Include="Controllers\CompetenciesController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartnersController.cs" />
@@ -203,13 +204,17 @@
     <Compile Include="Models\CreateApplicantViewModel.cs" />
     <Compile Include="Models\CreateAssignmentViewModel.cs" />
     <Compile Include="Models\CreateCompetencyViewModel.cs" />
+    <Compile Include="Models\CreateCustomerViewModel.cs" />
     <Compile Include="Models\CreateOrderedAssignmentViewModel.cs" />
     <Compile Include="Models\CreatePartnerAssignmentViewModel.cs" />
     <Compile Include="Models\CreateProjectViewModel.cs" />
     <Compile Include="Models\CreateTeamViewModel.cs" />
+    <Compile Include="Models\CustomersIndexViewModel.cs" />
     <Compile Include="Models\DeleteAssignmentViewModel.cs" />
     <Compile Include="Models\DeleteProjectViewModel.cs" />
     <Compile Include="Models\DeleteTeamViewModel.cs" />
+    <Compile Include="Models\DetailsAssignmentViewModel.cs" />
+    <Compile Include="Models\EditCustomerViewModel.cs" />
     <Compile Include="Models\EditTeamViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PartnersIndexViewModel.cs" />
@@ -317,11 +322,16 @@
     <Content Include="Views\Assignments\CreatePartnerAssignment.cshtml" />
     <Content Include="Views\Account\RegisterPartner.cshtml" />
     <Content Include="Views\Assignments\Delete.cshtml" />
+    <Content Include="Views\Assignments\Details.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\AssignmentImages\" />
-    <Folder Include="Images\AssignmentsVideos\" />
+    <Folder Include="Images\AssignmentVideos\" />
     <Folder Include="Images\PortfolioImages\" />
     <Folder Include="Images\ProfileImages\" />
     <Folder Include="Views\PortfolioSubjects\" />

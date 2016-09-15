@@ -1,0 +1,87 @@
+﻿@model IsolDesign.WebUI.Models.CustomersIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.Homepage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.ContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.ContactPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerModel.ContactEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.CustomerModels) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Homepage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CustomerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerId })
+        </td>
+    </tr>
+}
+
+</table>

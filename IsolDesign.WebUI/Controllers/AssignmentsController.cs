@@ -25,20 +25,25 @@ namespace IsolDesign.WebUI.Controllers
             return View(vm);
         }
 
-        //// GET: Assignments/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Assignments/Details/5
+        [Authorize(Roles = "Admin, User")]
+        public ActionResult Details(int id)
+        {
+            GetAssignments_Handler handler = new GetAssignments_Handler();
+            AssignmentModel assignmentModel = handler.GetAssignment(id);
+
+            DetailsAssignmentViewModel vm = new DetailsAssignmentViewModel
+            {
+                AssignmentModel = assignmentModel
+            };
+            return View(vm);
+        }
 
 
         [HttpGet]
         [Authorize(Roles = "Admin, User")]
         public ActionResult CreatePartnerAssignment()
         {
-            IGetCustomers_Handler handler = new GetCustomers_Handler();
-            var customerModels = handler.GetAllCustomers();
-
             CreatePartnerAssignmentViewModel vm = new CreatePartnerAssignmentViewModel();
             return View(vm);
         }
@@ -95,29 +100,6 @@ namespace IsolDesign.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-        //// GET: Assignments/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Assignments/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
 
         // GET: Assignments/Delete/5
         [Authorize(Roles = "Admin")]

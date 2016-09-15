@@ -2,15 +2,14 @@
 
 namespace IsolDesign.Data.Enums
 {
-
-    public enum CategoryType
+    // enum used to describe a customers category
+    public enum CustomerCategory
     {
-        //[Display(Name = "High Level")]
+        [Display(Name = "High Level Customer")]
         High = 1,
-
-        //[Display(Name = "Mid Level")]
-        Middel = 2,
-        //[Display(Name = "Low Level")]
+        [Display(Name = "Standard Level Customer")]
+        Standard = 2,
+        [Display(Name = "Low Level Customer")]
         Low = 3
     }
 

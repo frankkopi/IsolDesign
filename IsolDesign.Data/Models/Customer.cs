@@ -17,7 +17,7 @@ namespace IsolDesign.Data.Models
 
         public string Email { get; set; }
 
-        public CategoryType Category { get; set; }
+        public CustomerCategory Category { get; set; }
 
         public string Homepage { get; set; }
 

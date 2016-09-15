@@ -53,6 +53,14 @@ dl dd .showTextArea {
     height: 400px;
 }
 
+.assignmentTextArea {
+    max-width: 100%;
+    width: 100%;
+    height: 200px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
 dl dt.addMarginTop, dl dd.addMarginTop {
     margin-top: 20px;
 }
@@ -114,4 +122,12 @@ dl dt.addMarginTop, dl dd.addMarginTop {
 
 .OnTeam {
     color: red;
+}
+
+.shortDescription, .longDescription {
+    cursor: pointer;
+}
+
+.hrMargin {
+    margin: 10px;
 }
