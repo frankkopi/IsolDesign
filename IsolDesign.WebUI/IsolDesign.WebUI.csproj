@@ -211,9 +211,11 @@
     <Compile Include="Models\CreateTeamViewModel.cs" />
     <Compile Include="Models\CustomersIndexViewModel.cs" />
     <Compile Include="Models\DeleteAssignmentViewModel.cs" />
+    <Compile Include="Models\DeleteCustomerViewModel.cs" />
     <Compile Include="Models\DeleteProjectViewModel.cs" />
     <Compile Include="Models\DeleteTeamViewModel.cs" />
     <Compile Include="Models\DetailsAssignmentViewModel.cs" />
+    <Compile Include="Models\DetailsCustomerViewModel.cs" />
     <Compile Include="Models\EditCustomerViewModel.cs" />
     <Compile Include="Models\EditTeamViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -327,6 +329,7 @@
     <Content Include="Views\Customers\Create.cshtml" />
     <Content Include="Views\Customers\Delete.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

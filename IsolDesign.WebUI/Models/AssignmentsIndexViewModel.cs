@@ -11,11 +11,6 @@ namespace IsolDesign.WebUI.Models
 
         public IEnumerable<AssignmentModel> Assignments { get; set; }
 
-        
-        public string DisplayName(AssignmentType? enumValue)
-        {
-            return GetDisplayNameFromEnum_Helper.GetDisplayName(enumValue);
-        }
 
         public string ShortString(string s)
         {

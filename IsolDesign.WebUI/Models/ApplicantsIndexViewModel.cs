@@ -7,9 +7,5 @@ namespace IsolDesign.WebUI.Models
     {
         public IEnumerable<ApplicantModel> Applicants { get; set; }
 
-        //public PortfolioSubjectModel PortfolioSubjectModel1 { get; set; }
-
-        //public PortfolioSubjectModel PortfolioSubjectModel2 { get; set; }
-
     }
 }

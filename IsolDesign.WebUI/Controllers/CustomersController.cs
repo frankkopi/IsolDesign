@@ -10,21 +10,30 @@ namespace IsolDesign.WebUI.Controllers
         // GET: Customers
         public ActionResult Index()
         {
+            CustomerModel customerModel = new CustomerModel();
             GetCustomers_Handler handler = new GetCustomers_Handler();
             var customerModels = handler.GetAllCustomers();
 
             CustomersIndexViewModel vm = new CustomersIndexViewModel()
             {
+                CustomerModel = customerModel,
                 CustomerModels = customerModels
             };   
             return View(vm);
         }
 
-        //// GET: Customers/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Customers/Details/5
+        public ActionResult Details(int id)
+        {
+            GetCustomers_Handler handler = new GetCustomers_Handler();
+            var customerModel = handler.GetCustomerModel(id);
+
+            DetailsCustomerViewModel vm = new DetailsCustomerViewModel
+            {
+                CustomerModel = customerModel
+            };
+            return View(vm);
+        }
 
         // GET: Customers/Create
         [HttpGet]
@@ -84,7 +93,12 @@ namespace IsolDesign.WebUI.Controllers
         {
             GetCustomers_Handler handler = new GetCustomers_Handler();
             var customerModel = handler.GetCustomerModel(id);
-            return View(customerModel);
+
+            DeleteCustomerViewModel vm = new DeleteCustomerViewModel
+            {
+                CustomerModel = customerModel
+            };
+            return View(vm);
         }
 
         // POST: Customers/Delete/5

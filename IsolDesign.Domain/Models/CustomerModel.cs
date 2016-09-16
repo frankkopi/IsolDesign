@@ -1,4 +1,5 @@
 ﻿using IsolDesign.Data.Enums;
+using IsolDesign.Domain.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,11 +10,9 @@ namespace IsolDesign.Domain.Models
         public int CustomerId { get; set; }
 
         [Required]
-        [Display(Name = "Customer Name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Customer address is required")]
-        [Display(Name = "Customer Address")]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Customer country is required")]
@@ -31,13 +30,22 @@ namespace IsolDesign.Domain.Models
 
         public string Homepage { get; set; }
 
+        [Display(Name = "Contact Name")]
         public string ContactName { get; set; }
 
+        [Display(Name = "Contact Phone")]
         public string ContactPhone { get; set; }
 
+        [Display(Name = "Contact Email")]
         public string ContactEmail { get; set; }
 
 
         public virtual ICollection<OrderedAssignmentModel> Assignments { get; set; }
+
+        // Gets the string from the Display(Name = "") attribute in the CustomerCategory enum
+        public string DisplayName2(CustomerCategory enumValue)
+        {
+            return GetDisplayNameFromEnum_Helper.GetDisplayName2(enumValue);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using IsolDesign.Domain.Interfaces.Interfaces_Models;
 using IsolDesign.Data.Enums;
+using IsolDesign.Domain.Helpers;
 
 namespace IsolDesign.Domain.Models
 {
@@ -25,5 +26,10 @@ namespace IsolDesign.Domain.Models
 
         public string Video { get; set; }
 
+        // Gets the string from the Display(Name = "") attribute in the AssignmentType enum
+        public string DisplayName(AssignmentType? enumValue)
+        {
+            return GetDisplayNameFromEnum_Helper.GetDisplayName(enumValue);
+        }
     }
 }

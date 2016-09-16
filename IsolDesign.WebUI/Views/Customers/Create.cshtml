@@ -1,7 +1,7 @@
 ﻿@model IsolDesign.WebUI.Models.CreateCustomerViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Customer";
 }
 
 <h2>Create</h2>
@@ -13,13 +13,13 @@
     <div class="form-horizontal">
         <h4>Customer</h4>
         <hr />
-        @Html.ValidationSummary()
-        @Html.Hidden("CustomerId");
+        @*@Html.ValidationSummary()*@
+        @Html.Hidden("CustomerId")
         <div class="form-group">
             @Html.LabelFor(model => model.CustomerModel.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.Name, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.CustomerModel.Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.Address, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.Address, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -35,7 +35,7 @@
             @Html.LabelFor(model => model.CustomerModel.Country, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.Country, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.Country, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.Country, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -43,7 +43,7 @@
             @Html.LabelFor(model => model.CustomerModel.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.Phone, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.Phone, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -51,7 +51,7 @@
             @Html.LabelFor(model => model.CustomerModel.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.Email, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -59,7 +59,7 @@
             @Html.LabelFor(model => model.CustomerModel.Category, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.CustomerModel.Category, "Choose Category", htmlAttributes: new { @class = "form-control" })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.Category, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.Category, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -67,7 +67,7 @@
             @Html.LabelFor(model => model.CustomerModel.Homepage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.Homepage, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.Homepage, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.Homepage, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -75,7 +75,7 @@
             @Html.LabelFor(model => model.CustomerModel.ContactName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.ContactName, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.ContactName, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.ContactName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -83,7 +83,7 @@
             @Html.LabelFor(model => model.CustomerModel.ContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.ContactPhone, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.ContactPhone, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.ContactPhone, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -91,7 +91,7 @@
             @Html.LabelFor(model => model.CustomerModel.ContactEmail, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerModel.ContactEmail, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.CustomerModel.ContactEmail, "", new { @class = "text-danger" })*@
+                @Html.ValidationMessageFor(model => model.CustomerModel.ContactEmail, "", new { @class = "text-danger" })
             </div>
         </div>
 

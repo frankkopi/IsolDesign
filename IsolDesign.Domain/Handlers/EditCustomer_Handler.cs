@@ -30,8 +30,8 @@ namespace IsolDesign.Domain.Handlers
             customer.Category = customerModel.Category;
             customer.Homepage = customerModel.Homepage;
             customer.ContactName = customerModel.ContactName;
-            customer.ContactPhone = customerModel.Phone;
-            customer.ContactEmail = customerModel.Email;
+            customer.ContactPhone = customerModel.ContactPhone;
+            customer.ContactEmail = customerModel.ContactEmail;
 
             Execute();
         }

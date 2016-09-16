@@ -15,5 +15,14 @@ namespace IsolDesign.Domain.Helpers
                            .GetCustomAttribute<DisplayAttribute>()
                            .Name;
         }
+
+        // Gets the string from the Display(Name = "") attribute in the CustomerCategory enum
+        public static string GetDisplayName2(CustomerCategory enumValue)
+        {
+            return enumValue.GetType().GetMember(enumValue.ToString())
+                           .First()
+                           .GetCustomAttribute<DisplayAttribute>()
+                           .Name;
+        }
     }
 }

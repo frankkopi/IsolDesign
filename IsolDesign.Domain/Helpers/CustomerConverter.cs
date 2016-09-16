@@ -18,8 +18,8 @@ namespace IsolDesign.Domain.Helpers
                 Category = customer.Category,
                 Homepage = customer.Homepage,
                 ContactName = customer.ContactName,
-                ContactPhone = customer.Phone,
-                ContactEmail = customer.Email
+                ContactPhone = customer.ContactPhone,
+                ContactEmail = customer.ContactEmail
             };
 
             return customerModel;

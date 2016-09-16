@@ -8,9 +8,5 @@ namespace IsolDesign.WebUI.Models
     {
         public AssignmentModel AssignmentModel { get; set; }
 
-        public string DisplayName(AssignmentType? enumValue)
-        {
-            return GetDisplayNameFromEnum_Helper.GetDisplayName(enumValue);
-        }
     }
 }
