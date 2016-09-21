@@ -9,6 +9,5 @@ C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDes
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Debug\IsolDesign.Data.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Debug\IsolDesign.Data.dll
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Eksamen\IsolDesign\IsolDesign.Data\obj\Debug\IsolDesign.Data.pdb

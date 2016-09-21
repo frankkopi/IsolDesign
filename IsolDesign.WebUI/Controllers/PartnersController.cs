@@ -8,7 +8,7 @@ namespace IsolDesign.WebUI.Controllers
     public class PartnersController : Controller
     {
         // GET: Partners
-        [Authorize(Roles = "Admin, User")]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             IGetPartners_Handler handler = new GetPartners_Handler();

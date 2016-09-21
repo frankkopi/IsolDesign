@@ -24,6 +24,7 @@ namespace IsolDesign.Domain.Models
         public string Phone { get; set; }
 
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         public string ProfileImagePath { get; set; }
@@ -39,7 +40,6 @@ namespace IsolDesign.Domain.Models
         public string LinkedIn { get; set; }
 
         public string Homepage { get; set; }
-
 
         public ICollection<CompetencyModel> Competencies { get; set; }
         public ICollection<PortfolioSubjectModel> Portfolio { get; set; }

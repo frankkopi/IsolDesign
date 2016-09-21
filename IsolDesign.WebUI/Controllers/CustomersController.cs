@@ -8,6 +8,7 @@ namespace IsolDesign.WebUI.Controllers
     public class CustomersController : Controller
     {
         // GET: Customers
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Index()
         {
             CustomerModel customerModel = new CustomerModel();
@@ -23,6 +24,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         // GET: Customers/Details/5
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Details(int id)
         {
             GetCustomers_Handler handler = new GetCustomers_Handler();
@@ -37,6 +39,7 @@ namespace IsolDesign.WebUI.Controllers
 
         // GET: Customers/Create
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create()
         {
             CustomerModel customerModel = new CustomerModel();
@@ -50,6 +53,7 @@ namespace IsolDesign.WebUI.Controllers
 
         // POST: Customers/Create
         [HttpPost]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create(CreateCustomerViewModel vm)
         {
             if (ModelState.IsValid)
@@ -62,6 +66,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         // GET: Customers/Edit/5
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Edit(int id)
         {
             GetCustomers_Handler handler = new GetCustomers_Handler();
@@ -77,6 +82,7 @@ namespace IsolDesign.WebUI.Controllers
 
         // POST: Customers/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Edit(EditCustomerViewModel vm, FormCollection collection)
         {
             if (ModelState.IsValid)
@@ -89,6 +95,7 @@ namespace IsolDesign.WebUI.Controllers
         }
 
         // GET: Customers/Delete/5
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Delete(int id)
         {
             GetCustomers_Handler handler = new GetCustomers_Handler();
@@ -103,6 +110,7 @@ namespace IsolDesign.WebUI.Controllers
 
         // POST: Customers/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             if (ModelState.IsValid)

@@ -22,7 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("Applicants", "Index", "Applicants")</li>
                     <li>@Html.ActionLink("Competencies", "Index", "Competencies")</li>
@@ -30,6 +30,7 @@
                     <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
                     <li>@Html.ActionLink("Teams", "Index", "Teams")</li>
                     <li>@Html.ActionLink("Assignments", "Index", "Assignments")</li>
+                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -52,5 +53,6 @@
     @RenderSection("ExpandAssignmentDescription", required: false)
     @RenderSection("ScriptForDatePicker", required: false)
     @RenderSection("ToggleInstructions", required: false)
+    @RenderSection("ValidationForCheckboxes", required: false)
 </body>
 </html>

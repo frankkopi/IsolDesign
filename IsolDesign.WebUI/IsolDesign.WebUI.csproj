@@ -240,15 +240,16 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Logos\backgroundImage.jpg" />
     <Content Include="Images\Logos\logo1.png" />
+    <Content Include="Images\ProfileImages\ce5b1ad4-b539-4c8b-a0c1-fc8efe2c2d54.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\IsolDesign.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -336,7 +337,6 @@
     <Folder Include="Images\AssignmentImages\" />
     <Folder Include="Images\AssignmentVideos\" />
     <Folder Include="Images\PortfolioImages\" />
-    <Folder Include="Images\ProfileImages\" />
     <Folder Include="Views\PortfolioSubjects\" />
   </ItemGroup>
   <ItemGroup>

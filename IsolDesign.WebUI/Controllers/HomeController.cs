@@ -11,7 +11,7 @@ namespace IsolDesign.WebUI.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Application description";
 
             return View();
         }

@@ -1,7 +1,7 @@
 Admin in deployed version 
 poul erik
-username: sapeaps@msn.com
-password: Pe_1234
+username: poul@erik.dk
+password: P_assword!1
 
 frank hansen
 username: frankkopi@yahoo.dk

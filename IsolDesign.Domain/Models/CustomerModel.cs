@@ -24,7 +24,7 @@ namespace IsolDesign.Domain.Models
         [Required(ErrorMessage = "Customer Email is required")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Customer Category is required")]
+        [Range(1, 3, ErrorMessage = "Customer Category is required")]
         [Display(Name = "Customer Category")]
         public CustomerCategory Category { get; set; }
 

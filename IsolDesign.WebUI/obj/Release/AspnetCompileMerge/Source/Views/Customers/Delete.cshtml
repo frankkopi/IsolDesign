@@ -1,0 +1,108 @@
+﻿@model IsolDesign.WebUI.Models.DeleteCustomerViewModel
+
+@{
+    ViewBag.Title = "Delete Customer";
+}
+
+<h2>Delete Customer</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.Category)
+        </dt>
+
+        <dd>
+            @{
+                var temp = Model.CustomerModel.Category;
+                var categoryName = Model.CustomerModel.DisplayName2(temp);
+            }
+            @categoryName
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.Homepage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.Homepage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.ContactName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.ContactName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.ContactPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.ContactPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerModel.ContactEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerModel.ContactEmail)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

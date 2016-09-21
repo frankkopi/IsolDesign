@@ -41,12 +41,10 @@
             </div>
         </div>
 
-
-        @*// ***************************************************************************************************************@
         <div class="form-group">
             @Html.LabelFor(model => model.orderedAssignmentModel.CustomerId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.orderedAssignmentModel.CustomerId, (SelectList)ViewBag.Customers, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.orderedAssignmentModel.CustomerId, (SelectList)ViewBag.Customers, "Choose Customer", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.orderedAssignmentModel.CustomerId, "", new { @class = "text-danger" })
             </div>
         </div>

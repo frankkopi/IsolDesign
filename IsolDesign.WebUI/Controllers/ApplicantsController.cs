@@ -29,22 +29,7 @@ namespace IsolDesign.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
-            IGetCompetencies_Handler handler = new GetCompetencies_Handler();
-            var competencies = handler.GetCompetencies();
-
-            ApplicantModel applicantModel = new ApplicantModel();
-            PortfolioSubjectModel port1 = new PortfolioSubjectModel();
-            port1.Date = DateTime.Today;
-            PortfolioSubjectModel port2 = new PortfolioSubjectModel();
-            port2.Date = DateTime.Today;
-
-            CreateApplicantViewModel vm = new CreateApplicantViewModel()
-            {
-                ApplicantModel = applicantModel,
-                PortfolioSubject1 = port1,
-                PortfolioSubject2 = port2,
-                Competencies = competencies
-            };
+            CreateApplicantViewModel vm = GetViewModelForCreateApplicant();
 
             return View(vm);
         }
@@ -54,7 +39,14 @@ namespace IsolDesign.WebUI.Controllers
         [HttpPost]
         public ActionResult Create(CreateApplicantViewModel model, IEnumerable<int> competencyIds)
         {
-            if (ModelState.IsValid)
+            if (competencyIds == null)
+            {
+                ModelState.AddModelError("", "At least one checkbox for Competencies is required");
+
+                CreateApplicantViewModel vm = GetViewModelForCreateApplicant();
+                return View(vm);
+            }
+            else if (ModelState.IsValid && competencyIds != null)
             {
                 var images = Request.Files;
                 var applicantModel = model.ApplicantModel;
@@ -72,7 +64,7 @@ namespace IsolDesign.WebUI.Controllers
                 return RedirectToAction("ThanxForApplication", vm);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
 
@@ -130,6 +122,29 @@ namespace IsolDesign.WebUI.Controllers
         public ActionResult DismissAsPartner()
         {
             return RedirectToAction("Index");
+        }
+
+        // Creates and returns a CreateApplicantViewModel
+        public CreateApplicantViewModel GetViewModelForCreateApplicant()
+        {
+            IGetCompetencies_Handler handler = new GetCompetencies_Handler();
+            var competencies = handler.GetCompetencies();
+
+            ApplicantModel applicantModel = new ApplicantModel();
+            PortfolioSubjectModel port1 = new PortfolioSubjectModel();
+            port1.Date = DateTime.Today;
+            PortfolioSubjectModel port2 = new PortfolioSubjectModel();
+            port2.Date = DateTime.Today;
+
+            CreateApplicantViewModel vm = new CreateApplicantViewModel()
+            {
+                ApplicantModel = applicantModel,
+                PortfolioSubject1 = port1,
+                PortfolioSubject2 = port2,
+                Competencies = competencies
+            };
+
+            return vm;
         }
     }
 }
